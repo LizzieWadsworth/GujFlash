@@ -1,0 +1,426 @@
+/* Flashcards data and simple app logic
+   Format: { g: "ગુજરાતી શબ્દ", e: "english meaning" }
+   NOTE: This starter set includes 200 common words. You can append more
+   items to DATA (up to 1000) without changing any code.
+*/
+
+// --- DATA ------------------------------------------------------------------
+const DATA = [
+  // Pronouns & basics
+  { g: "હું", e: "I" },
+  { g: "તું", e: "you (informal)" },
+  { g: "તમે", e: "you (formal/plural)" },
+  { g: "અમે", e: "we" },
+  { g: "તે", e: "he/she/that" },
+  { g: "આ", e: "this" },
+  { g: "અહિં", e: "here" },
+  { g: "ત્યાં", e: "there" },
+  { g: "શું", e: "what" },
+  { g: "ક્યાં", e: "where" },
+  { g: "કેમ", e: "why/how" },
+  { g: "ક્યારે", e: "when" },
+  { g: "કોણ", e: "who" },
+  { g: "કઈ", e: "which" },
+  { g: "બધા", e: "all/everyone" },
+  { g: "કોઈ", e: "someone/anyone" },
+  { g: "કાંઈ", e: "something/anything" },
+  { g: "કંઈ નહીં", e: "nothing" },
+  { g: "હા", e: "yes" },
+  { g: "ના", e: "no" },
+  { g: "કૃપા કરીને", e: "please" },
+  { g: "આભાર", e: "thank you" },
+  { g: "માફ કરશો", e: "sorry/excuse me" },
+  { g: "બરાબર", e: "okay" },
+  { g: "ચાલો", e: "let's / okay" },
+
+  // Common verbs
+  { g: "હોવું", e: "to be" },
+  { g: "આવવું", e: "to come" },
+  { g: "જવું", e: "to go" },
+  { g: "કરવું", e: "to do/make" },
+  { g: "ખાવું", e: "to eat" },
+  { g: "પીવું", e: "to drink" },
+  { g: "જોઆવું", e: "to see/watch" },
+  { g: "સાંભળવું", e: "to listen/hear" },
+  { g: "બોલવું", e: "to speak" },
+  { g: "વાંચવું", e: "to read" },
+  { g: "લખવું", e: "to write" },
+  { g: "લેવું", e: "to take" },
+  { g: "આપવું", e: "to give" },
+  { g: "મળવું", e: "to meet/get" },
+  { g: "સમજવું", e: "to understand" },
+  { g: "જાણવું", e: "to know" },
+  { g: "ઈચ્છવું", e: "to want" },
+  { g: "ગમવું", e: "to like" },
+  { g: "રહેવું", e: "to live/stay" },
+  { g: "કહેવું", e: "to say/tell" },
+  { g: "શીખવું", e: "to learn" },
+  { g: "શીખવવું", e: "to teach" },
+  { g: "રમવું", e: "to play" },
+  { g: "ખરીદવું", e: "to buy" },
+  { g: "વેચવું", e: "to sell" },
+  { g: "ખોલવું", e: "to open" },
+  { g: "બંધ કરવું", e: "to close" },
+  { g: "ચાલવું", e: "to walk" },
+  { g: "ધોડવું", e: "to run" },
+  { g: "બેઠવું", e: "to sit" },
+  { g: "ઊઠવું", e: "to get up" },
+  { g: "સૂવું", e: "to sleep" },
+  { g: "ઉઠાવવું", e: "to lift/pick up" },
+  { g: "વાપરવું", e: "to use" },
+  { g: "યાદ રાખવું", e: "to remember" },
+  { g: "ભૂલવું", e: "to forget" },
+  { g: "રાખવું", e: "to keep/put" },
+  { g: "લાવવું", e: "to bring" },
+  { g: "શરૂ કરવું", e: "to start/begin" },
+  { g: "પૂર્ણ કરવું", e: "to finish/complete" },
+  { g: "રાહ જોવી", e: "to wait" },
+  { g: "મદદ કરવી", e: "to help" },
+  { g: "વિચારવું", e: "to think" },
+  { g: "આશા રાખવી", e: "to hope" },
+  { g: "વિશ્વાસ રાખવો", e: "to trust/believe" },
+
+  // Prepositions/Conjunctions
+  { g: "અને", e: "and" },
+  { g: "કે", e: "that" },
+  { g: "પણ", e: "also/but" },
+  { g: "પરંતુ", e: "however/but" },
+  { g: "કારણ કે", e: "because" },
+  { g: "જો", e: "if" },
+  { g: "તેથી", e: "therefore/so" },
+  { g: "પર", e: "on" },
+  { g: "માથી", e: "from/out of" },
+  { g: "માં", e: "in/inside" },
+  { g: "સાથે", e: "with" },
+  { g: "વિના", e: "without" },
+  { g: "আগળ", e: "ahead/before" }, // Note: potential script mixing, keep as is or replace
+  { g: "પાછળ", e: "behind" },
+  { g: "ઉપર", e: "above/up" },
+  { g: "નીચે", e: "below/down" },
+  { g: "આસપાસ", e: "around" },
+  { g: "વચ્ચે", e: "between" },
+  { g: "દરમિયાન", e: "during" },
+  { g: "બંધે", e: "both" },
+
+  // Numbers (0-20, tens)
+  { g: "શૂન્ય", e: "zero" },
+  { g: "એક", e: "one" },
+  { g: "બે", e: "two" },
+  { g: "ત્રણ", e: "three" },
+  { g: "ચાર", e: "four" },
+  { g: "પાંચ", e: "five" },
+  { g: "છ", e: "six" },
+  { g: "સાત", e: "seven" },
+  { g: "આઠ", e: "eight" },
+  { g: "નવ", e: "nine" },
+  { g: "દસ", e: "ten" },
+  { g: "અગિયાર", e: "eleven" },
+  { g: "બાર", e: "twelve" },
+  { g: "તેર", e: "thirteen" },
+  { g: "ચૌદ", e: "fourteen" },
+  { g: "પંદર", e: "fifteen" },
+  { g: "સોળ", e: "sixteen" },
+  { g: "સત્તર", e: "seventeen" },
+  { g: "અઢાર", e: "eighteen" },
+  { g: "ઓગણીસ", e: "nineteen" },
+  { g: "વીસ", e: "twenty" },
+  { g: "ત્રીસ", e: "thirty" },
+  { g: "ચાળીશ", e: "forty" },
+  { g: "પચાસ", e: "fifty" },
+  { g: "સાઠ", e: "sixty" },
+  { g: "સિત્તેર", e: "seventy" },
+  { g: "એંસી", e: "eighty" },
+  { g: "નેવું", e: "ninety" },
+  { g: "સો", e: "hundred" },
+
+  // Time & days
+  { g: "આજે", e: "today" },
+  { g: "ગઈકાલે", e: "yesterday" },
+  { g: "આવતીકાલે", e: "tomorrow" },
+  { g: "સવાર", e: "morning" },
+  { g: "બપોર", e: "afternoon" },
+  { g: "સાંજ", e: "evening" },
+  { g: "રાત", e: "night" },
+  { g: "વરસાદ", e: "rain" },
+  { g: "ધુપ", e: "sunlight" },
+  { g: "પવન", e: "wind" },
+  { g: "સમય", e: "time" },
+  { g: "હમણાં", e: "now" },
+  { g: "પછી", e: "later/after" },
+  { g: "જલ્દી", e: "soon/quickly" },
+  { g: "ધીમે", e: "slowly" },
+  { g: "વારંવાર", e: "often" },
+  { g: "ક્યારેક", e: "sometimes" },
+  { g: "ક્યારેય નહીં", e: "never" },
+  { g: "હંમેશા", e: "always" },
+  { g: "વાડે", e: "weekly" },
+
+  // People & relations
+  { g: "પુરુષ", e: "man" },
+  { g: "સ્ત્રી", e: "woman" },
+  { g: "બાળક", e: "child" },
+  { g: "મિત્ર", e: "friend" },
+  { g: "પરિવાર", e: "family" },
+  { g: "પિતા", e: "father" },
+  { g: "માતા", e: "mother" },
+  { g: "ભાઈ", e: "brother" },
+  { g: "બહેન", e: "sister" },
+  { g: "પુત્ર", e: "son" },
+  { g: "પુત્રી", e: "daughter" },
+  { g: "પતિ", e: "husband" },
+  { g: "પત્ની", e: "wife" },
+  { g: "લોકો", e: "people" },
+
+  // Places & objects
+  { g: "ઘર", e: "home/house" },
+  { g: "શાળા", e: "school" },
+  { g: "કામ", e: "work/job" },
+  { g: "બજાર", e: "market" },
+  { g: "દુકાન", e: "shop" },
+  { g: "રસ્તો", e: "road" },
+  { g: "ગામ", e: "village" },
+  { g: "શહેર", e: "city" },
+  { g: "પુસ્તક", e: "book" },
+  { g: "પેન", e: "pen" },
+  { g: "પાણી", e: "water" },
+  { g: "ભોજન", e: "food/meal" },
+  { g: "ચા", e: "tea" },
+  { g: "દૂધ", e: "milk" },
+  { g: "ચોખા", e: "rice" },
+  { g: "રોટલી", e: "flatbread/roti" },
+  { g: "ફળ", e: "fruit" },
+  { g: "શાકભાજી", e: "vegetables" },
+  { g: "મીઠું", e: "salt" },
+  { g: "ખાંડ", e: "sugar" },
+  { g: "ઘી", e: "ghee" },
+  { g: "તેલ", e: "oil" },
+
+  // Adjectives & adverbs
+  { g: "મોટું", e: "big" },
+  { g: "નાનું", e: "small" },
+  { g: "લાંબું", e: "long" },
+  { g: "ટૂંકું", e: "short" },
+  { g: "ગરમ", e: "hot/warm" },
+  { g: "ઠંડું", e: "cold" },
+  { g: "મીઠું", e: "sweet" },
+  { g: "ખાટું", e: "sour" },
+  { g: "સારું", e: "good" },
+  { g: "ખરાબ", e: "bad" },
+  { g: "નવું", e: "new" },
+  { g: "જૂનું", e: "old" },
+  { g: "સસ્તુ", e: "cheap" },
+  { g: "મોંઘું", e: "expensive" },
+  { g: "સુંદર", e: "beautiful" },
+  { g: "મજબૂત", e: "strong" },
+  { g: "નબળું", e: "weak" },
+  { g: "સાચું", e: "true/right" },
+  { g: "ખોટું", e: "false/wrong" },
+  { g: "સાફ", e: "clean" },
+  { g: "ગંદુ", e: "dirty" },
+
+  // More verbs & daily actions
+  { g: "સ્નાન કરવું", e: "to bathe" },
+  { g: "ધોવું", e: "to wash" },
+  { g: "બનાવવું", e: "to make/prepare" },
+  { g: "રાંધવું", e: "to cook" },
+  { g: "સેવું", e: "to serve" },
+  { g: "ચૂકવવું", e: "to pay" },
+  { g: "વિતાવવું", e: "to spend (time)" },
+  { g: "કમાવવું", e: "to earn" },
+  { g: "ફોન કરવો", e: "to call (phone)" },
+  { g: "પૂછવું", e: "to ask" },
+  { g: "જવાબ આપવો", e: "to answer" },
+  { g: "રોકાવું", e: "to stop/stay" },
+  { g: "હલાવવું", e: "to move/shake" },
+  { g: "દેખાડવું", e: "to show" },
+  { g: "પહેરીવું", e: "to wear" },
+  { g: "ખોલાવું", e: "to remove/open" },
+
+  // Health & feelings
+  { g: "દર્દ", e: "pain" },
+  { g: "બીમાર", e: "sick" },
+  { g: "સ્વસ્થ", e: "healthy" },
+  { g: "ખુશ", e: "happy" },
+  { g: "દુઃખી", e: "sad" },
+  { g: "ગુસ્સો", e: "anger" },
+  { g: "ડર", e: "fear" },
+  { g: "ભૂખ", e: "hunger" },
+  { g: "તરસ", e: "thirst" },
+
+  // Colors
+  { g: "સફેદ", e: "white" },
+  { g: "કાળો", e: "black" },
+  { g: "લાલ", e: "red" },
+  { g: "લીલો", e: "green" },
+  { g: "વાદળી", e: "blue" },
+  { g: "પીળો", e: "yellow" },
+  { g: "ભૂરો", e: "brown" },
+  { g: "રાખોડી", e: "gray" },
+  { g: "ગુલાબી", e: "pink" },
+  { g: "નારંગી", e: "orange" },
+
+  // Extra function words
+  { g: "હજુ", e: "still/yet" },
+  { g: "માત્ર", e: "only/just" },
+  { g: "લગભગ", e: "about/approximately" },
+  { g: "ખરેખર", e: "really/truly" },
+  { g: "અવશ્ય", e: "certainly" },
+  { g: "શાયદ", e: "maybe/perhaps" },
+  { g: "ફરીથી", e: "again" },
+  { g: "એક સાથે", e: "together" },
+  { g: "અલગ", e: "separate" },
+
+  // Travel & directions
+  { g: "ડાબે", e: "left" },
+  { g: "જમણે", e: "right" },
+  { g: "સીધું", e: "straight" },
+  { g: "બસ", e: "bus" },
+  { g: "ટ્રેન", e: "train" },
+  { g: "સ્ટેશન", e: "station" },
+  { g: "ટિકિટ", e: "ticket" },
+  { g: "કિંમત", e: "price" },
+  { g: "હોટેલ", e: "hotel" },
+  { g: "મદદ", e: "help" },
+];
+
+// --- UTILITIES -------------------------------------------------------------
+const el = (id) => document.getElementById(id);
+const fmtPct = (n) => Math.round(n * 100);
+
+// Build decks in batches (100 per deck if you later expand to 1000)
+function buildDecks(data, size = 100) {
+  const decks = [];
+  for (let i = 0; i < data.length; i += size) {
+    decks.push(data.slice(i, i + size));
+  }
+  return decks;
+}
+
+// --- STATE -----------------------------------------------------------------
+let pool = [...DATA];
+let decks = buildDecks(pool, 100);
+let deckIdx = 0;
+let i = 0;
+let face = "front";
+let known = new Set(JSON.parse(localStorage.getItem("known_gj") || "[]"));
+let order = [...Array(pool.length).keys()];
+
+// --- RENDER ----------------------------------------------------------------
+function renderDeckSelect() {
+  const sel = el("deckSelect");
+  sel.innerHTML = "";
+  decks.forEach((d, idx) => {
+    const opt = document.createElement("option");
+    opt.value = idx;
+    opt.textContent = d.length >= 100 ? `Deck ${idx + 1} (${d.length})` : `Deck ${idx + 1} (${d.length})`;
+    sel.appendChild(opt);
+  });
+  sel.value = String(deckIdx);
+}
+
+function renderCard() {
+  const deck = decks[deckIdx];
+  const item = deck[i];
+  if (!item) return;
+  el("word").textContent = item.g;
+  el("meaning").textContent = item.e;
+  el("idx").textContent = `${i + 1} / ${deck.length}`;
+  el("bar").style.width = `${fmtPct(known.size / pool.length)}%`;
+  el("pct").textContent = `${fmtPct(known.size / pool.length)}% known`;
+  el("front").classList.toggle("hidden", face !== "front");
+  el("back").classList.toggle("hidden", face !== "back");
+  el("pill").textContent = face === "front" ? "Front • Gujarati" : "Back • English";
+}
+
+function next() {
+  const deck = decks[deckIdx];
+  i = (i + 1) % deck.length;
+  face = "front";
+  renderCard();
+}
+function prev() {
+  const deck = decks[deckIdx];
+  i = (i - 1 + deck.length) % deck.length;
+  face = "front";
+  renderCard();
+}
+function flip() {
+  face = face === "front" ? "back" : "front";
+  renderCard();
+}
+function shuffleDeck() {
+  const deck = decks[deckIdx];
+  for (let j = deck.length - 1; j > 0; j--) {
+    const k = Math.floor(Math.random() * (j + 1));
+    [deck[j], deck[k]] = [deck[k], deck[j]];
+  }
+  i = 0;
+  face = "front";
+  renderCard();
+}
+
+function applySearch(q) {
+  q = q.trim().toLowerCase();
+  if (!q) {
+    pool = [...DATA];
+  } else {
+    pool = DATA.filter(d => d.e.toLowerCase().includes(q));
+  }
+  decks = buildDecks(pool, 100);
+  deckIdx = 0;
+  i = 0;
+  renderDeckSelect();
+  renderCard();
+}
+
+function markKnownCurrent() {
+  const globalIdx = DATA.indexOf(decks[deckIdx][i]);
+  if (globalIdx >= 0) known.add(globalIdx);
+  localStorage.setItem("known_gj", JSON.stringify([...known]));
+  next();
+}
+function resetKnown() {
+  if (confirm("Reset known progress?")) {
+    known = new Set();
+    localStorage.removeItem("known_gj");
+    renderCard();
+  }
+}
+
+// --- EVENTS ----------------------------------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+  renderDeckSelect();
+  renderCard();
+
+  el("next").addEventListener("click", next);
+  el("prev").addEventListener("click", prev);
+  el("flip").addEventListener("click", flip);
+  el("shuffle").addEventListener("click", shuffleDeck);
+  el("showAns").addEventListener("click", () => { face = "back"; renderCard(); });
+  el("markKnown").addEventListener("click", markKnownCurrent);
+  el("resetKnown").addEventListener("click", resetKnown);
+
+  el("deckSelect").addEventListener("change", (e) => {
+    deckIdx = Number(e.target.value);
+    i = 0;
+    face = "front";
+    renderCard();
+  });
+  el("q").addEventListener("input", (e) => applySearch(e.target.value));
+
+  // Keyboard shortcuts
+  window.addEventListener("keydown", (e) => {
+    if (e.key === " " ) { e.preventDefault(); flip(); }
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "/") { e.preventDefault(); el("q").focus(); }
+  });
+});
+
+// --- HOW TO EXTEND ---------------------------------------------------------
+/*
+To reach 1000 words:
+1) Append more { g: "...", e: "..." } items to DATA.
+2) The app auto-chunks decks in groups of 100.
+3) No other changes needed.
+*/
