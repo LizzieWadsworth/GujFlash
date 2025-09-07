@@ -1,188 +1,285 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gujarati 1000 – Flashcards</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gujarati Flashcards (1,000 words)</title>
+  <meta name="description" content="Flashcards for learning 1,000 common Gujarati words with English meanings.">
   <style>
-    :root {
-      --bg: #0b1020;
-      --card: #121a32;
-      --muted: #7f8da1;
-      --text: #e7ecf6;
-      --accent: #7aa2ff;
-      --accent-2: #78e3c6;
-      --danger: #ff7a7a;
+    :root{
+      --bg:#0f172a;        /* slate-900 */
+      --card:#111827;      /* gray-900 */
+      --muted:#94a3b8;     /* slate-400 */
+      --text:#e5e7eb;      /* gray-200 */
+      --accent:#22d3ee;    /* cyan-400 */
+      --accent-2:#a78bfa;  /* violet-400 */
+      --btn:#1f2937;       /* gray-800 */
+      --btn-hover:#374151; /* gray-700 */
+      --ring:#334155;      /* slate-700 */
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 80% -10%, #1b2450 0%, #0b1020 55%);
-      color: var(--text);
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 16px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(167,139,250,.12), transparent 60%),
+                  radial-gradient(1000px 700px at 120% 10%, rgba(34,211,238,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      gap:16px;
     }
-    header {
-      padding: 16px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #1e2a50;
-      background: linear-gradient(180deg, rgba(18,26,50,0.7), rgba(18,26,50,0.3));
-      backdrop-filter: blur(6px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    header{
+      text-align:center;
     }
-    header .title {
-      font-weight: 800;
-      letter-spacing: 0.3px;
+    header h1{
+      margin:0 0 6px 0;
+      font-weight:800;
+      letter-spacing:.3px;
     }
-    header .title small { color: var(--muted); font-weight: 500; }
-    .controls {
-      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    header p{
+      margin:0;
+      color:var(--muted);
+      font-size:0.95rem;
     }
-    input, select, button {
-      border: 1px solid #2a365f;
-      background: #0f1530;
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      outline: none;
+
+    .controls{
+      width:min(960px, 95vw);
+      display:grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap:8px;
+      align-items:center;
     }
-    input::placeholder { color: #9fb0cc88; }
-    button {
-      cursor: pointer;
-      transition: transform 0.06s ease, background 0.2s ease;
+    .controls input[type="search"]{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid var(--ring);
+      border-radius:12px;
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      outline:none;
     }
-    button:hover { transform: translateY(-1px); }
-    button.primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #091225; border: none; }
-    button.ghost { background: #0f1530; }
-    button.danger { background: #2a0f15; border-color: #622a35; color: #ffb3b3; }
-    main {
-      display: grid;
-      place-items: center;
-      padding: 12px;
+    .controls button, .controls select{
+      padding:10px 14px;
+      border:1px solid var(--ring);
+      border-radius:12px;
+      background:var(--btn);
+      color:var(--text);
+      cursor:pointer;
     }
-    .card {
-      width: min(780px, 92vw);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid #283156;
-      border-radius: 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      padding: 28px 28px 20px;
-      position: relative;
+    .controls button:hover{ background:var(--btn-hover); }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--ring);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.9rem;
     }
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
+
+    .card{
+      width:min(960px, 95vw);
+      min-height:280px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)) , var(--card);
+      border:1px solid var(--ring);
+      border-radius:24px;
+      padding:28px;
+      position:relative;
+      box-shadow: 0 30px 50px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      user-select:none;
     }
-    .pill {
-      font-size: 12px; color: var(--muted);
-      border: 1px dashed #394776;
-      padding: 6px 10px;
-      border-radius: 20px;
+    .gujarati{
+      font-size: clamp(2rem, 7vw, 4rem);
+      line-height:1.2;
+      margin:0 0 10px 0;
+      font-weight:700;
     }
-    .front, .back {
-      display: grid;
-      gap: 10px;
-      align-items: center;
-      justify-items: center;
-      min-height: 180px;
-      padding: 18px 8px;
-      text-align: center;
+    .english{
+      font-size: clamp(1.1rem, 3.2vw, 1.6rem);
+      color:var(--muted);
+      margin:0;
     }
-    .front .word {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      line-height: 1.1;
+
+    .nav{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
     }
-    .back .meaning {
-      font-size: clamp(22px, 4.5vw, 34px);
-      font-weight: 700;
-      color: #d6e3ff;
+    .nav button{
+      padding:12px 16px;
+      border:1px solid var(--ring);
+      border-radius:12px;
+      background:var(--btn);
+      color:var(--text);
+      cursor:pointer;
+      min-width:120px;
+      font-weight:600;
     }
-    .hint { color: var(--muted); font-size: 13px; }
-    .actions {
-      display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-top: 8px;
+    .nav button:hover{ background:var(--btn-hover); }
+    .progress{
+      width:min(960px, 95vw);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
     }
-    .nav {
-      display: flex; gap: 8px; justify-content: center;
+    progress{
+      width:100%;
+      height:10px;
+      appearance:none;
+      -webkit-appearance:none;
     }
-    .progress {
-      display: flex; gap: 10px; align-items: center; justify-content: center; font-size: 13px; color: var(--muted);
+    progress::-webkit-progress-bar{ background:#111827; border-radius:999px; }
+    progress::-webkit-progress-value{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:999px; }
+    .kbd{
+      font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      border:1px solid var(--ring);
+      border-bottom-width:3px;
+      border-radius:8px;
+      padding:2px 6px;
+      background:#0b1220;
+      color:var(--muted);
+      font-size:.85rem;
     }
-    .progress-bar {
-      width: 220px; height: 8px; border-radius: 999px; background: #1a2140; overflow: hidden; border: 1px solid #2a3360;
+    footer{
+      color:var(--muted);
+      font-size:.85rem;
+      text-align:center;
+      margin-top:12px;
     }
-    .progress-bar > div {
-      height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%;
-    }
-    footer {
-      padding: 14px 20px; color: var(--muted); text-align: center; font-size: 12px;
-    }
-    .row { display:flex; gap:8px; flex-wrap: wrap; }
-    .sm { font-size: 12px; color: var(--muted); }
-    .kbd { padding: 2px 6px; border: 1px solid #314075; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    .hidden { display:none !important; }
   </style>
 </head>
 <body>
   <header>
-    <div class="title">Gujarati Flashcards <small>• common words</small></div>
-    <div class="controls">
-      <input id="q" type="search" placeholder="Search English meaning (e.g., water)..." />
-      <select id="deckSelect"></select>
-      <button id="shuffle" class="ghost">Shuffle</button>
-      <button id="flip" class="primary">Flip (Space)</button>
-    </div>
+    <h1>Gujarati Flashcards</h1>
+    <p>1,000 common words — Gujarati → English</p>
   </header>
 
-  <main>
-    <div class="card" id="card">
-      <div class="card-top">
-        <div class="pill" id="pill">Front • Gujarati</div>
-        <div class="pill" id="idx">1 / 1</div>
-      </div>
-      <div class="front" id="front">
-        <div class="word" id="word">...</div>
-        <div class="hint">Press <span class="kbd">Space</span> to flip</div>
-      </div>
-      <div class="back hidden" id="back">
-        <div class="meaning" id="meaning">...</div>
-        <div class="hint">Use ← and → to navigate</div>
-      </div>
-      <div class="actions">
-        <div class="progress">
-          <div class="progress-bar"><div id="bar"></div></div>
-          <span id="pct">0%</span>
-        </div>
-        <div class="nav">
-          <button id="prev" class="ghost">← Prev</button>
-          <button id="next" class="ghost">Next →</button>
-        </div>
-        <div class="row" style="justify-content:flex-end;">
-          <button id="showAns" class="ghost">Show Meaning</button>
-          <button id="markKnown" class="ghost">Mark Known</button>
-          <button id="resetKnown" class="danger">Reset</button>
-        </div>
-      </div>
+  <div class="controls" role="region" aria-label="Controls">
+    <input id="search" type="search" placeholder="Search English or Gujarati…" aria-label="Search words">
+    <button id="shuffle" title="Shuffle deck">Shuffle</button>
+    <select id="revealMode" title="Reveal mode">
+      <option value="both" selected>Show both</option>
+      <option value="gu">Gujarati only</option>
+      <option value="en">English only</option>
+    </select>
+    <span id="counter" class="pill" aria-live="polite">0 / 0</span>
+  </div>
+
+  <main class="card" tabindex="0" aria-live="polite">
+    <div id="gujarati" class="gujarati">—</div>
+    <div id="english" class="english">—</div>
+
+    <div class="nav">
+      <button id="prev" aria-label="Previous (←)">← Previous</button>
+      <button id="next" aria-label="Next (→)">Next →</button>
     </div>
   </main>
 
+  <div class="progress">
+    <progress id="bar" max="100" value="0"></progress>
+    <span class="pill"><span id="percent">0%</span></span>
+  </div>
+
   <footer>
-    Tip: Filter by deck to study smaller batches. Keyboard: <span class="kbd">Space</span> flip • <span class="kbd">←</span>/<span class="kbd">→</span> nav • <span class="kbd">/</span> focus search
+    Tip: Use <span class="kbd">←</span> and <span class="kbd">→</span> to navigate. Press <span class="kbd">S</span> to shuffle.
   </footer>
 
+  <!-- App logic: expects flashcards.js that loads data-1000.json -->
+  <script>
+    // Helpers layered atop your flashcards.js
+    let deck = [];
+    let filtered = [];
+    let idx = 0;
+    let reveal = "both";
+
+    // Patch: if flashcards.js defines global functions/vars:
+    // - loadFlashcards() will set window.flashcards
+    // - currentIndex will be managed there; we keep our own view state too.
+    function syncFromGlobal(){
+      if (!Array.isArray(window.flashcards) || window.flashcards.length === 0) return;
+      deck = window.flashcards.slice();
+      filtered = deck.slice();
+      idx = (window.currentIndex || 0) % filtered.length;
+      updateUI();
+    }
+
+    function updateUI(){
+      const card = filtered[idx] || { g: "—", e: "—" };
+      const g = document.getElementById("gujarati");
+      const e = document.getElementById("english");
+      g.textContent = (reveal === "en") ? "•••" : card.g;
+      e.textContent = (reveal === "gu") ? "•••" : card.e;
+
+      const counter = document.getElementById("counter");
+      counter.textContent = (filtered.length ? (idx+1) : 0) + " / " + filtered.length;
+
+      const percent = filtered.length ? Math.round(((idx+1) / filtered.length) * 100) : 0;
+      document.getElementById("bar").value = percent;
+      document.getElementById("percent").textContent = percent + "%";
+    }
+
+    function go(n){
+      if (!filtered.length) return;
+      idx = ( (idx + n) % filtered.length + filtered.length ) % filtered.length;
+      updateUI();
+    }
+
+    function shuffle(){
+      for (let i = filtered.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+      }
+      idx = 0;
+      updateUI();
+    }
+
+    function search(q){
+      const s = q.trim().toLowerCase();
+      if (!s){
+        filtered = deck.slice();
+      } else {
+        filtered = deck.filter(d =>
+          (d.g && String(d.g).toLowerCase().includes(s)) ||
+          (d.e && String(d.e).toLowerCase().includes(s))
+        );
+      }
+      idx = 0;
+      updateUI();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wait a tick for flashcards.js to load its data
+      setTimeout(syncFromGlobal, 50);
+
+      document.getElementById("prev").addEventListener("click", () => go(-1));
+      document.getElementById("next").addEventListener("click", () => go(1));
+      document.getElementById("shuffle").addEventListener("click", shuffle);
+      document.getElementById("search").addEventListener("input", (e)=> search(e.target.value));
+      document.getElementById("revealMode").addEventListener("change", (e)=>{
+        reveal = e.target.value;
+        updateUI();
+      });
+
+      // Keyboard shortcuts: arrows for nav, 's' for shuffle
+      window.addEventListener("keydown", (e)=>{
+        if (e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
+        else if (e.key === "ArrowRight"){ e.preventDefault(); go(1); }
+        else if (e.key.toLowerCase() === "s"){ shuffle(); }
+      });
+    });
+  </script>
   <script src="flashcards.js"></script>
 </body>
 </html>
