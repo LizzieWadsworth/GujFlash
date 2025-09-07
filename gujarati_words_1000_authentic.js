@@ -1,10 +1,3 @@
-/* Flashcards data and simple app logic
-   Format: { g: "ગુજરાતી શબ્દ", e: "english meaning" }
-   NOTE: This starter set includes 200 common words. You can append more
-   items to DATA (up to 1000) without changing any code.
-*/
-
-// --- DATA ------------------------------------------------------------------
 const DATA = [
   {
     "g": "હું",
@@ -3155,7 +3148,7 @@ const DATA = [
     "e": "To pay attention"
   },
   {
-    "g": "વિરામ લેવું",
+    "g": "વિરામ लेना",
     "e": "To take a break"
   },
   {
@@ -4020,144 +4013,4 @@ const DATA = [
   }
 ];
 
-// --- UTILITIES -------------------------------------------------------------
-const el = (id) => document.getElementById(id);
-const fmtPct = (n) => Math.round(n * 150);
-
-// Build decks in batches (100 per deck if you later expand to 1000)
-function buildDecks(data, size = 150) {
-  const decks = [];
-  for (let i = 0; i < data.length; i += size) {
-    decks.push(data.slice(i, i + size));
-  }
-  return decks;
-}
-
-// --- STATE -----------------------------------------------------------------
-let pool = [...DATA];
-let decks = buildDecks(pool, 150);
-let deckIdx = 0;
-let i = 0;
-let face = "front";
-let known = new Set(JSON.parse(localStorage.getItem("known_gj") || "[]"));
-let order = [...Array(pool.length).keys()];
-
-// --- RENDER ----------------------------------------------------------------
-function renderDeckSelect() {
-  const sel = el("deckSelect");
-  sel.innerHTML = "";
-  decks.forEach((d, idx) => {
-    const opt = document.createElement("option");
-    opt.value = idx;
-    opt.textContent = d.length >= 150 ? `Deck ${idx + 1} (${d.length})` : `Deck ${idx + 1} (${d.length})`;
-    sel.appendChild(opt);
-  });
-  sel.value = String(deckIdx);
-}
-
-function renderCard() {
-  const deck = decks[deckIdx];
-  const item = deck[i];
-  if (!item) return;
-  el("word").textContent = item.g;
-  el("meaning").textContent = item.e;
-  el("idx").textContent = `${i + 1} / ${deck.length}`;
-  el("bar").style.width = `${fmtPct(known.size / pool.length)}%`;
-  el("pct").textContent = `${fmtPct(known.size / pool.length)}% known`;
-  el("front").classList.toggle("hidden", face !== "front");
-  el("back").classList.toggle("hidden", face !== "back");
-  el("pill").textContent = face === "front" ? "Front • Gujarati" : "Back • English";
-}
-
-function next() {
-  const deck = decks[deckIdx];
-  i = (i + 1) % deck.length;
-  face = "front";
-  renderCard();
-}
-function prev() {
-  const deck = decks[deckIdx];
-  i = (i - 1 + deck.length) % deck.length;
-  face = "front";
-  renderCard();
-}
-function flip() {
-  face = face === "front" ? "back" : "front";
-  renderCard();
-}
-function shuffleDeck() {
-  const deck = decks[deckIdx];
-  for (let j = deck.length - 1; j > 0; j--) {
-    const k = Math.floor(Math.random() * (j + 1));
-    [deck[j], deck[k]] = [deck[k], deck[j]];
-  }
-  i = 0;
-  face = "front";
-  renderCard();
-}
-
-function applySearch(q) {
-  q = q.trim().toLowerCase();
-  if (!q) {
-    pool = [...DATA];
-  } else {
-    pool = DATA.filter(d => d.e.toLowerCase().includes(q));
-  }
-  decks = buildDecks(pool, 150);
-  deckIdx = 0;
-  i = 0;
-  renderDeckSelect();
-  renderCard();
-}
-
-function markKnownCurrent() {
-  const globalIdx = DATA.indexOf(decks[deckIdx][i]);
-  if (globalIdx >= 0) known.add(globalIdx);
-  localStorage.setItem("known_gj", JSON.stringify([...known]));
-  next();
-}
-function resetKnown() {
-  if (confirm("Reset known progress?")) {
-    known = new Set();
-    localStorage.removeItem("known_gj");
-    renderCard();
-  }
-}
-
-// --- EVENTS ----------------------------------------------------------------
-window.addEventListener("DOMContentLoaded", () => {
-  renderDeckSelect();
-  renderCard();
-
-  el("next").addEventListener("click", next);
-  el("prev").addEventListener("click", prev);
-  el("flip").addEventListener("click", flip);
-  el("shuffle").addEventListener("click", shuffleDeck);
-  el("showAns").addEventListener("click", () => { face = "back"; renderCard(); });
-  el("markKnown").addEventListener("click", markKnownCurrent);
-  el("resetKnown").addEventListener("click", resetKnown);
-
-  el("deckSelect").addEventListener("change", (e) => {
-    deckIdx = Number(e.target.value);
-    i = 0;
-    face = "front";
-    renderCard();
-  });
-  el("q").addEventListener("input", (e) => applySearch(e.target.value));
-
-  // Keyboard shortcuts
-  window.addEventListener("keydown", (e) => {
-    if (e.key === " " ) { e.preventDefault(); flip(); }
-    if (e.key === "ArrowRight") next();
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "/") { e.preventDefault(); el("q").focus(); }
-  });
-});
-
-// --- HOW TO EXTEND ---------------------------------------------------------
-/*
-To reach 1000 words:
-1) Append more { g: "...", e: "..." } items to DATA.
-2) The app auto-chunks decks in groups of 100.
-3) No other changes needed.
-*/
+export default DATA;

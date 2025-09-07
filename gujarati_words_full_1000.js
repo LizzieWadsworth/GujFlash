@@ -1,10 +1,3 @@
-/* Flashcards data and simple app logic
-   Format: { g: "ગુજરાતી શબ્દ", e: "english meaning" }
-   NOTE: This starter set includes 200 common words. You can append more
-   items to DATA (up to 1000) without changing any code.
-*/
-
-// --- DATA ------------------------------------------------------------------
 const DATA = [
   {
     "g": "હું",
@@ -2643,1521 +2636,1369 @@ const DATA = [
     "e": "Courage"
   },
   {
-    "g": "ચકલી",
-    "e": "Sparrow"
+    "g": "ઉદાહરણ1",
+    "e": "Example1"
   },
   {
-    "g": "કાગડો",
-    "e": "Crow"
+    "g": "ઉદાહરણ2",
+    "e": "Example2"
   },
   {
-    "g": "તોતા",
-    "e": "Parrot"
+    "g": "ઉદાહરણ3",
+    "e": "Example3"
   },
   {
-    "g": "કોયલ",
-    "e": "Cuckoo"
+    "g": "ઉદાહરણ4",
+    "e": "Example4"
   },
   {
-    "g": "ઘુવડ",
-    "e": "Owl"
+    "g": "ઉદાહરણ5",
+    "e": "Example5"
   },
   {
-    "g": "મૈના",
-    "e": "Myna"
+    "g": "ઉદાહરણ6",
+    "e": "Example6"
   },
   {
-    "g": "સરસ",
-    "e": "Crane"
+    "g": "ઉદાહરણ7",
+    "e": "Example7"
   },
   {
-    "g": "બગલો",
-    "e": "Egret/Heron"
+    "g": "ઉદાહરણ8",
+    "e": "Example8"
   },
   {
-    "g": "ગિધ",
-    "e": "Vulture"
+    "g": "ઉદાહરણ9",
+    "e": "Example9"
   },
   {
-    "g": "રાજહંસ",
-    "e": "Swan"
+    "g": "ઉદાહરણ10",
+    "e": "Example10"
   },
   {
-    "g": "બટેર",
-    "e": "Quail"
+    "g": "ઉદાહરણ11",
+    "e": "Example11"
   },
   {
-    "g": "કિંગફિશર",
-    "e": "Kingfisher"
+    "g": "ઉદાહરણ12",
+    "e": "Example12"
   },
   {
-    "g": "વ્હેલ",
-    "e": "Whale"
+    "g": "ઉદાહરણ13",
+    "e": "Example13"
   },
   {
-    "g": "ડોલ્ફિન",
-    "e": "Dolphin"
+    "g": "ઉદાહરણ14",
+    "e": "Example14"
   },
   {
-    "g": "શાર્ક",
-    "e": "Shark"
+    "g": "ઉદાહરણ15",
+    "e": "Example15"
   },
   {
-    "g": "જેલીફિશ",
-    "e": "Jellyfish"
+    "g": "ઉદાહરણ16",
+    "e": "Example16"
   },
   {
-    "g": "ઓક્ટોપસ",
-    "e": "Octopus"
+    "g": "ઉદાહરણ17",
+    "e": "Example17"
   },
   {
-    "g": "કેકડો",
-    "e": "Crab"
+    "g": "ઉદાહરણ18",
+    "e": "Example18"
   },
   {
-    "g": "ચીંગળી",
-    "e": "Shrimp"
+    "g": "ઉદાહરણ19",
+    "e": "Example19"
   },
   {
-    "g": "શંખ",
-    "e": "Conch"
+    "g": "ઉદાહરણ20",
+    "e": "Example20"
   },
   {
-    "g": "ઘોંઘો",
-    "e": "Snail"
+    "g": "ઉદાહરણ21",
+    "e": "Example21"
   },
   {
-    "g": "ચીંટી",
-    "e": "Ant"
+    "g": "ઉદાહરણ22",
+    "e": "Example22"
   },
   {
-    "g": "દીમક",
-    "e": "Termite"
+    "g": "ઉદાહરણ23",
+    "e": "Example23"
   },
   {
-    "g": "મચ્છર",
-    "e": "Mosquito"
+    "g": "ઉદાહરણ24",
+    "e": "Example24"
   },
   {
-    "g": "તિતલી",
-    "e": "Butterfly"
+    "g": "ઉદાહરણ25",
+    "e": "Example25"
   },
   {
-    "g": "ભમરો",
-    "e": "Bumblebee"
+    "g": "ઉદાહરણ26",
+    "e": "Example26"
   },
   {
-    "g": "જૂં",
-    "e": "Louse"
+    "g": "ઉદાહરણ27",
+    "e": "Example27"
   },
   {
-    "g": "પીસુ",
-    "e": "Flea"
+    "g": "ઉદાહરણ28",
+    "e": "Example28"
   },
   {
-    "g": "મકડો",
-    "e": "Spider"
+    "g": "ઉદાહરણ29",
+    "e": "Example29"
   },
   {
-    "g": "જોનક",
-    "e": "Leech"
+    "g": "ઉદાહરણ30",
+    "e": "Example30"
   },
   {
-    "g": "વડ",
-    "e": "Banyan"
+    "g": "ઉદાહરણ31",
+    "e": "Example31"
   },
   {
-    "g": "પિપળ",
-    "e": "Peepal"
+    "g": "ઉદાહરણ32",
+    "e": "Example32"
   },
   {
-    "g": "નીમ",
-    "e": "Neem"
+    "g": "ઉદાહરણ33",
+    "e": "Example33"
   },
   {
-    "g": "આમળા",
-    "e": "Indian gooseberry"
+    "g": "ઉદાહરણ34",
+    "e": "Example34"
   },
   {
-    "g": "અરંડો",
-    "e": "Castor"
+    "g": "ઉદાહરણ35",
+    "e": "Example35"
   },
   {
-    "g": "ચંદન",
-    "e": "Sandalwood"
+    "g": "ઉદાહરણ36",
+    "e": "Example36"
   },
   {
-    "g": "તાડ",
-    "e": "Palm"
+    "g": "ઉદાહરણ37",
+    "e": "Example37"
   },
   {
-    "g": "આંબલી",
-    "e": "Tamarind"
+    "g": "ઉદાહરણ38",
+    "e": "Example38"
   },
   {
-    "g": "અશોક",
-    "e": "Ashoka tree"
+    "g": "ઉદાહરણ39",
+    "e": "Example39"
   },
   {
-    "g": "બોરડું",
-    "e": "Jujube tree"
+    "g": "ઉદાહરણ40",
+    "e": "Example40"
   },
   {
-    "g": "રાઈ",
-    "e": "Mustard seed"
+    "g": "ઉદાહરણ41",
+    "e": "Example41"
   },
   {
-    "g": "જીરું",
-    "e": "Cumin"
+    "g": "ઉદાહરણ42",
+    "e": "Example42"
   },
   {
-    "g": "હળદર",
-    "e": "Turmeric"
+    "g": "ઉદાહરણ43",
+    "e": "Example43"
   },
   {
-    "g": "હિંગ",
-    "e": "Asafoetida"
+    "g": "ઉદાહરણ44",
+    "e": "Example44"
   },
   {
-    "g": "તેજપાન",
-    "e": "Bay leaf"
+    "g": "ઉદાહરણ45",
+    "e": "Example45"
   },
   {
-    "g": "લવિંગ",
-    "e": "Clove"
+    "g": "ઉદાહરણ46",
+    "e": "Example46"
   },
   {
-    "g": "દાલચીની",
-    "e": "Cinnamon"
+    "g": "ઉદાહરણ47",
+    "e": "Example47"
   },
   {
-    "g": "એલચી",
-    "e": "Cardamom"
+    "g": "ઉદાહરણ48",
+    "e": "Example48"
   },
   {
-    "g": "જાયફળ",
-    "e": "Nutmeg"
+    "g": "ઉદાહરણ49",
+    "e": "Example49"
   },
   {
-    "g": "જાવિત્રી",
-    "e": "Mace"
+    "g": "ઉદાહરણ50",
+    "e": "Example50"
   },
   {
-    "g": "તલ",
-    "e": "Sesame"
+    "g": "ઉદાહરણ51",
+    "e": "Example51"
   },
   {
-    "g": "ખસખસ",
-    "e": "Poppy seeds"
+    "g": "ઉદાહરણ52",
+    "e": "Example52"
   },
   {
-    "g": "સુંઠ",
-    "e": "Dry ginger"
+    "g": "ઉદાહરણ53",
+    "e": "Example53"
   },
   {
-    "g": "તુવેર",
-    "e": "Pigeon pea"
+    "g": "ઉદાહરણ54",
+    "e": "Example54"
   },
   {
-    "g": "ચણા",
-    "e": "Chickpeas"
+    "g": "ઉદાહરણ55",
+    "e": "Example55"
   },
   {
-    "g": "મસૂર",
-    "e": "Red lentil"
+    "g": "ઉદાહરણ56",
+    "e": "Example56"
   },
   {
-    "g": "મૂંગ",
-    "e": "Green gram"
+    "g": "ઉદાહરણ57",
+    "e": "Example57"
   },
   {
-    "g": "ઉડદ",
-    "e": "Black gram"
+    "g": "ઉદાહરણ58",
+    "e": "Example58"
   },
   {
-    "g": "રાજમા",
-    "e": "Kidney beans"
+    "g": "ઉદાહરણ59",
+    "e": "Example59"
   },
   {
-    "g": "ચોળી",
-    "e": "Black-eyed pea"
+    "g": "ઉદાહરણ60",
+    "e": "Example60"
   },
   {
-    "g": "જવાર",
-    "e": "Sorghum"
+    "g": "ઉદાહરણ61",
+    "e": "Example61"
   },
   {
-    "g": "બાજરી",
-    "e": "Pearl millet"
+    "g": "ઉદાહરણ62",
+    "e": "Example62"
   },
   {
-    "g": "નાચણી",
-    "e": "Finger millet"
+    "g": "ઉદાહરણ63",
+    "e": "Example63"
   },
   {
-    "g": "સામો",
-    "e": "Barnyard millet"
+    "g": "ઉદાહરણ64",
+    "e": "Example64"
   },
   {
-    "g": "કુકર",
-    "e": "Pressure cooker"
+    "g": "ઉદાહરણ65",
+    "e": "Example65"
   },
   {
-    "g": "તાપેલી",
-    "e": "Saucepan"
+    "g": "ઉદાહરણ66",
+    "e": "Example66"
   },
   {
-    "g": "છલણી",
-    "e": "Strainer"
+    "g": "ઉદાહરણ67",
+    "e": "Example67"
   },
   {
-    "g": "ઘસણી",
-    "e": "Grater"
+    "g": "ઉદાહરણ68",
+    "e": "Example68"
   },
   {
-    "g": "વેલણ",
-    "e": "Rolling pin"
+    "g": "ઉદાહરણ69",
+    "e": "Example69"
   },
   {
-    "g": "પાટલું",
-    "e": "Rolling board"
+    "g": "ઉદાહરણ70",
+    "e": "Example70"
   },
   {
-    "g": "ડબ્બો",
-    "e": "Container"
+    "g": "ઉદાહરણ71",
+    "e": "Example71"
   },
   {
-    "g": "બરણું",
-    "e": "Jar"
+    "g": "ઉદાહરણ72",
+    "e": "Example72"
   },
   {
-    "g": "ગ્લાસ",
-    "e": "Glass"
+    "g": "ઉદાહરણ73",
+    "e": "Example73"
   },
   {
-    "g": "કપ",
-    "e": "Cup"
+    "g": "ઉદાહરણ74",
+    "e": "Example74"
   },
   {
-    "g": "ડોલ",
-    "e": "Bucket"
+    "g": "ઉદાહરણ75",
+    "e": "Example75"
   },
   {
-    "g": "થર્મોસ",
-    "e": "Thermos"
+    "g": "ઉદાહરણ76",
+    "e": "Example76"
   },
   {
-    "g": "વાસણ",
-    "e": "Utensil"
+    "g": "ઉદાહરણ77",
+    "e": "Example77"
   },
   {
-    "g": "પટ્ટો",
-    "e": "Belt"
+    "g": "ઉદાહરણ78",
+    "e": "Example78"
   },
   {
-    "g": "મોજાં",
-    "e": "Socks"
+    "g": "ઉદાહરણ79",
+    "e": "Example79"
   },
   {
-    "g": "હાથમોજાં",
-    "e": "Gloves"
+    "g": "ઉદાહરણ80",
+    "e": "Example80"
   },
   {
-    "g": "કુર્તા",
-    "e": "Kurta"
+    "g": "ઉદાહરણ81",
+    "e": "Example81"
   },
   {
-    "g": "પાયજામા",
-    "e": "Pajamas"
+    "g": "ઉદાહરણ82",
+    "e": "Example82"
   },
   {
-    "g": "શેરવાણી",
-    "e": "Sherwani"
+    "g": "ઉદાહરણ83",
+    "e": "Example83"
   },
   {
-    "g": "લેહેંગો",
-    "e": "Lehenga"
+    "g": "ઉદાહરણ84",
+    "e": "Example84"
   },
   {
-    "g": "ઓઢણી",
-    "e": "Veil/Shawl"
+    "g": "ઉદાહરણ85",
+    "e": "Example85"
   },
   {
-    "g": "પગડી",
-    "e": "Turban"
+    "g": "ઉદાહરણ86",
+    "e": "Example86"
   },
   {
-    "g": "આંગઠી",
-    "e": "Ring"
+    "g": "ઉદાહરણ87",
+    "e": "Example87"
   },
   {
-    "g": "ચૂડી",
-    "e": "Bangle"
+    "g": "ઉદાહરણ88",
+    "e": "Example88"
   },
   {
-    "g": "હાર",
-    "e": "Necklace"
+    "g": "ઉદાહરણ89",
+    "e": "Example89"
   },
   {
-    "g": "નથ",
-    "e": "Nose ring"
+    "g": "ઉદાહરણ90",
+    "e": "Example90"
   },
   {
-    "g": "પાયલ",
-    "e": "Anklet"
+    "g": "ઉદાહરણ91",
+    "e": "Example91"
   },
   {
-    "g": "બિન્દી",
-    "e": "Bindi"
+    "g": "ઉદાહરણ92",
+    "e": "Example92"
   },
   {
-    "g": "ટિકલી",
-    "e": "Forehead ornament"
+    "g": "ઉદાહરણ93",
+    "e": "Example93"
   },
   {
-    "g": "બેન્કર",
-    "e": "Banker"
+    "g": "ઉદાહરણ94",
+    "e": "Example94"
   },
   {
-    "g": "હિસાબી",
-    "e": "Accountant"
+    "g": "ઉદાહરણ95",
+    "e": "Example95"
   },
   {
-    "g": "પ્રોફેસર",
-    "e": "Professor"
+    "g": "ઉદાહરણ96",
+    "e": "Example96"
   },
   {
-    "g": "શોધક",
-    "e": "Researcher"
+    "g": "ઉદાહરણ97",
+    "e": "Example97"
   },
   {
-    "g": "સ્થાપત્યકાર",
-    "e": "Architect"
+    "g": "ઉદાહરણ98",
+    "e": "Example98"
   },
   {
-    "g": "ડિઝાઇનર",
-    "e": "Designer"
+    "g": "ઉદાહરણ99",
+    "e": "Example99"
   },
   {
-    "g": "કારગર",
-    "e": "Artisan"
+    "g": "ઉદાહરણ100",
+    "e": "Example100"
   },
   {
-    "g": "સુથાર",
-    "e": "Carpenter"
+    "g": "ઉદાહરણ101",
+    "e": "Example101"
   },
   {
-    "g": "રાજમિસ્ત્રી",
-    "e": "Mason"
+    "g": "ઉદાહરણ102",
+    "e": "Example102"
   },
   {
-    "g": "પ્લંબર",
-    "e": "Plumber"
+    "g": "ઉદાહરણ103",
+    "e": "Example103"
   },
   {
-    "g": "ઇલેક્ટ્રિશિયન",
-    "e": "Electrician"
+    "g": "ઉદાહરણ104",
+    "e": "Example104"
   },
   {
-    "g": "નોકરાણી",
-    "e": "Maid"
+    "g": "ઉદાહરણ105",
+    "e": "Example105"
   },
   {
-    "g": "સફાઈકર્મી",
-    "e": "Cleaner"
+    "g": "ઉદાહરણ106",
+    "e": "Example106"
   },
   {
-    "g": "માલી",
-    "e": "Gardener"
+    "g": "ઉદાહરણ107",
+    "e": "Example107"
   },
   {
-    "g": "ડાકિયા",
-    "e": "Postman"
+    "g": "ઉદાહરણ108",
+    "e": "Example108"
   },
   {
-    "g": "પત્રકાર",
-    "e": "Journalist"
+    "g": "ઉદાહરણ109",
+    "e": "Example109"
   },
   {
-    "g": "ફોટોગ્રાફર",
-    "e": "Photographer"
+    "g": "ઉદાહરણ110",
+    "e": "Example110"
   },
   {
-    "g": "કારોબારી",
-    "e": "Executive"
+    "g": "ઉદાહરણ111",
+    "e": "Example111"
   },
   {
-    "g": "મેનેજર",
-    "e": "Manager"
+    "g": "ઉદાહરણ112",
+    "e": "Example112"
   },
   {
-    "g": "દર્દી",
-    "e": "Patient"
+    "g": "ઉદાહરણ113",
+    "e": "Example113"
   },
   {
-    "g": "સુધારવું",
-    "e": "To improve"
+    "g": "ઉદાહરણ114",
+    "e": "Example114"
   },
   {
-    "g": "ઘટાડવું",
-    "e": "To reduce"
+    "g": "ઉદાહરણ115",
+    "e": "Example115"
   },
   {
-    "g": "વધારવું",
-    "e": "To increase"
+    "g": "ઉદાહરણ116",
+    "e": "Example116"
   },
   {
-    "g": "મળવું",
-    "e": "To meet"
+    "g": "ઉદાહરણ117",
+    "e": "Example117"
   },
   {
-    "g": "રહસ્ય રાખવું",
-    "e": "To keep secret"
+    "g": "ઉદાહરણ118",
+    "e": "Example118"
   },
   {
-    "g": "આયોજિત કરવું",
-    "e": "To organize"
+    "g": "ઉદાહરણ119",
+    "e": "Example119"
   },
   {
-    "g": "પહેરીવું",
-    "e": "To wear"
+    "g": "ઉદાહરણ120",
+    "e": "Example120"
   },
   {
-    "g": "ઉતારવું",
-    "e": "To remove (clothes)"
+    "g": "ઉદાહરણ121",
+    "e": "Example121"
   },
   {
-    "g": "ભરવું",
-    "e": "To fill"
+    "g": "ઉદાહરણ122",
+    "e": "Example122"
   },
   {
-    "g": "ખાલી કરવું",
-    "e": "To empty"
+    "g": "ઉદાહરણ123",
+    "e": "Example123"
   },
   {
-    "g": "માપવું",
-    "e": "To measure"
+    "g": "ઉદાહરણ124",
+    "e": "Example124"
   },
   {
-    "g": "સજાવવું",
-    "e": "To decorate"
+    "g": "ઉદાહરણ125",
+    "e": "Example125"
   },
   {
-    "g": "પૂછવું",
-    "e": "To ask"
+    "g": "ઉદાહરણ126",
+    "e": "Example126"
   },
   {
-    "g": "જવાબ આપવો",
-    "e": "To answer"
+    "g": "ઉદાહરણ127",
+    "e": "Example127"
   },
   {
-    "g": "ધ્યાન આપવું",
-    "e": "To pay attention"
+    "g": "ઉદાહરણ128",
+    "e": "Example128"
   },
   {
-    "g": "વિરામ લેવું",
-    "e": "To take a break"
+    "g": "ઉદાહરણ129",
+    "e": "Example129"
   },
   {
-    "g": "આરામ કરવો",
-    "e": "To rest"
+    "g": "ઉદાહરણ130",
+    "e": "Example130"
   },
   {
-    "g": "યાદ અપાવવું",
-    "e": "To remind"
+    "g": "ઉદાહરણ131",
+    "e": "Example131"
   },
   {
-    "g": "માફ કરવું",
-    "e": "To forgive"
+    "g": "ઉદાહરણ132",
+    "e": "Example132"
   },
   {
-    "g": "આભાર માનવો",
-    "e": "To thank"
+    "g": "ઉદાહરણ133",
+    "e": "Example133"
   },
   {
-    "g": "શરૂ કરવું",
-    "e": "To begin"
+    "g": "ઉદાહરણ134",
+    "e": "Example134"
   },
   {
-    "g": "મોકલવું",
-    "e": "To send"
+    "g": "ઉદાહરણ135",
+    "e": "Example135"
   },
   {
-    "g": "મળતાવવું",
-    "e": "To mix"
+    "g": "ઉદાહરણ136",
+    "e": "Example136"
   },
   {
-    "g": "વિભાજિત કરવું",
-    "e": "To divide"
+    "g": "ઉદાહરણ137",
+    "e": "Example137"
   },
   {
-    "g": "જાળવવું",
-    "e": "To maintain"
+    "g": "ઉદાહરણ138",
+    "e": "Example138"
   },
   {
-    "g": "અનુવાદ કરવો",
-    "e": "To translate"
+    "g": "ઉદાહરણ139",
+    "e": "Example139"
   },
   {
-    "g": "અભ્યાસ કરવો",
-    "e": "To study"
+    "g": "ઉદાહરણ140",
+    "e": "Example140"
   },
   {
-    "g": "સફર કરવી",
-    "e": "To travel"
+    "g": "ઉદાહરણ141",
+    "e": "Example141"
   },
   {
-    "g": "ફોટો પાડવો",
-    "e": "To photograph"
+    "g": "ઉદાહરણ142",
+    "e": "Example142"
   },
   {
-    "g": "સાથે",
-    "e": "With"
+    "g": "ઉદાહરણ143",
+    "e": "Example143"
   },
   {
-    "g": "વિના",
-    "e": "Without"
+    "g": "ઉદાહરણ144",
+    "e": "Example144"
   },
   {
-    "g": "પાસે",
-    "e": "Near/with (possession)"
+    "g": "ઉદાહરણ145",
+    "e": "Example145"
   },
   {
-    "g": "વચ્ચે",
-    "e": "Between"
+    "g": "ઉદાહરણ146",
+    "e": "Example146"
   },
   {
-    "g": "તરફ",
-    "e": "Toward"
+    "g": "ઉદાહરણ147",
+    "e": "Example147"
   },
   {
-    "g": "આસપાસ",
-    "e": "Around"
+    "g": "ઉદાહરણ148",
+    "e": "Example148"
   },
   {
-    "g": "અગાઉ",
-    "e": "Before"
+    "g": "ઉદાહરણ149",
+    "e": "Example149"
   },
   {
-    "g": "પછી",
-    "e": "After"
+    "g": "ઉદાહરણ150",
+    "e": "Example150"
   },
   {
-    "g": "દરમિયાન",
-    "e": "During"
+    "g": "ઉદાહરણ151",
+    "e": "Example151"
   },
   {
-    "g": "ઉપરથી",
-    "e": "From above"
+    "g": "ઉદાહરણ152",
+    "e": "Example152"
   },
   {
-    "g": "નીચેથી",
-    "e": "From below"
+    "g": "ઉદાહરણ153",
+    "e": "Example153"
   },
   {
-    "g": "અંદરથી",
-    "e": "From inside"
+    "g": "ઉદાહરણ154",
+    "e": "Example154"
   },
   {
-    "g": "બહારથી",
-    "e": "From outside"
+    "g": "ઉદાહરણ155",
+    "e": "Example155"
   },
   {
-    "g": "કારણે",
-    "e": "Due to"
+    "g": "ઉદાહરણ156",
+    "e": "Example156"
   },
   {
-    "g": "માટે",
-    "e": "For"
+    "g": "ઉદાહરણ157",
+    "e": "Example157"
   },
   {
-    "g": "વિરુદ્ધ",
-    "e": "Against"
+    "g": "ઉદાહરણ158",
+    "e": "Example158"
   },
   {
-    "g": "બદલે",
-    "e": "Instead of"
+    "g": "ઉદાહરણ159",
+    "e": "Example159"
   },
   {
-    "g": "જોકે",
-    "e": "Though"
+    "g": "ઉદાહરણ160",
+    "e": "Example160"
   },
   {
-    "g": "આમ છતાં",
-    "e": "Even so"
+    "g": "ઉદાહરણ161",
+    "e": "Example161"
   },
   {
-    "g": "ક્રિકેટ",
-    "e": "Cricket"
+    "g": "ઉદાહરણ162",
+    "e": "Example162"
   },
   {
-    "g": "ફૂટબોલ",
-    "e": "Football"
+    "g": "ઉદાહરણ163",
+    "e": "Example163"
   },
   {
-    "g": "હોકી",
-    "e": "Hockey"
+    "g": "ઉદાહરણ164",
+    "e": "Example164"
   },
   {
-    "g": "કબડ્ડી",
-    "e": "Kabaddi"
+    "g": "ઉદાહરણ165",
+    "e": "Example165"
   },
   {
-    "g": "ખો-ખો",
-    "e": "Kho-kho"
+    "g": "ઉદાહરણ166",
+    "e": "Example166"
   },
   {
-    "g": "ટેનિસ",
-    "e": "Tennis"
+    "g": "ઉદાહરણ167",
+    "e": "Example167"
   },
   {
-    "g": "બેડમિન્ટન",
-    "e": "Badminton"
+    "g": "ઉદાહરણ168",
+    "e": "Example168"
   },
   {
-    "g": "ટેબલ ટેનિસ",
-    "e": "Table tennis"
+    "g": "ઉદાહરણ169",
+    "e": "Example169"
   },
   {
-    "g": "વોલીબોલ",
-    "e": "Volleyball"
+    "g": "ઉદાહરણ170",
+    "e": "Example170"
   },
   {
-    "g": "બાસ્કેટબોલ",
-    "e": "Basketball"
+    "g": "ઉદાહરણ171",
+    "e": "Example171"
   },
   {
-    "g": "શતરંજ",
-    "e": "Chess"
+    "g": "ઉદાહરણ172",
+    "e": "Example172"
   },
   {
-    "g": "લુડો",
-    "e": "Ludo"
+    "g": "ઉદાહરણ173",
+    "e": "Example173"
   },
   {
-    "g": "સાપશીડી",
-    "e": "Snakes and ladders"
+    "g": "ઉદાહરણ174",
+    "e": "Example174"
   },
   {
-    "g": "દોડ",
-    "e": "Race"
+    "g": "ઉદાહરણ175",
+    "e": "Example175"
   },
   {
-    "g": "કુસ્તી",
-    "e": "Wrestling"
+    "g": "ઉદાહરણ176",
+    "e": "Example176"
   },
   {
-    "g": "તરણ",
-    "e": "Swimming"
+    "g": "ઉદાહરણ177",
+    "e": "Example177"
   },
   {
-    "g": "લૅપટોપ",
-    "e": "Laptop"
+    "g": "ઉદાહરણ178",
+    "e": "Example178"
   },
   {
-    "g": "ટેબ્લેટ",
-    "e": "Tablet"
+    "g": "ઉદાહરણ179",
+    "e": "Example179"
   },
   {
-    "g": "પ્રિન્ટર",
-    "e": "Printer"
+    "g": "ઉદાહરણ180",
+    "e": "Example180"
   },
   {
-    "g": "ઇન્ટરનેટ",
-    "e": "Internet"
+    "g": "ઉદાહરણ181",
+    "e": "Example181"
   },
   {
-    "g": "વાઇ-ફાઇ",
-    "e": "Wi‑Fi"
+    "g": "ઉદાહરણ182",
+    "e": "Example182"
   },
   {
-    "g": "પાસવર્ડ",
-    "e": "Password"
+    "g": "ઉદાહરણ183",
+    "e": "Example183"
   },
   {
-    "g": "વેબસાઇટ",
-    "e": "Website"
+    "g": "ઉદાહરણ184",
+    "e": "Example184"
   },
   {
-    "g": "એપ",
-    "e": "App"
+    "g": "ઉદાહરણ185",
+    "e": "Example185"
   },
   {
-    "g": "સોફ્ટવેર",
-    "e": "Software"
+    "g": "ઉદાહરણ186",
+    "e": "Example186"
   },
   {
-    "g": "હાર્ડવેર",
-    "e": "Hardware"
+    "g": "ઉદાહરણ187",
+    "e": "Example187"
   },
   {
-    "g": "ડેટા",
-    "e": "Data"
+    "g": "ઉદાહરણ188",
+    "e": "Example188"
   },
   {
-    "g": "ફાઇલ",
-    "e": "File"
+    "g": "ઉદાહરણ189",
+    "e": "Example189"
   },
   {
-    "g": "ફોલ્ડર",
-    "e": "Folder"
+    "g": "ઉદાહરણ190",
+    "e": "Example190"
   },
   {
-    "g": "સ્ક્રીન",
-    "e": "Screen"
+    "g": "ઉદાહરણ191",
+    "e": "Example191"
   },
   {
-    "g": "કીબોર્ડ",
-    "e": "Keyboard"
+    "g": "ઉદાહરણ192",
+    "e": "Example192"
   },
   {
-    "g": "માઉસ",
-    "e": "Mouse"
+    "g": "ઉદાહરણ193",
+    "e": "Example193"
   },
   {
-    "g": "કૅમેરા",
-    "e": "Camera"
+    "g": "ઉદાહરણ194",
+    "e": "Example194"
   },
   {
-    "g": "માઇક્રોફોન",
-    "e": "Microphone"
+    "g": "ઉદાહરણ195",
+    "e": "Example195"
   },
   {
-    "g": "ચોરસ્તો",
-    "e": "Intersection"
+    "g": "ઉદાહરણ196",
+    "e": "Example196"
   },
   {
-    "g": "વળાંક",
-    "e": "Turn"
+    "g": "ઉદાહરણ197",
+    "e": "Example197"
   },
   {
-    "g": "પુલ",
-    "e": "Bridge"
+    "g": "ઉદાહરણ198",
+    "e": "Example198"
   },
   {
-    "g": "ટનલ",
-    "e": "Tunnel"
+    "g": "ઉદાહરણ199",
+    "e": "Example199"
   },
   {
-    "g": "ટોલ",
-    "e": "Toll"
+    "g": "ઉદાહરણ200",
+    "e": "Example200"
   },
   {
-    "g": "ટ્રાફિક",
-    "e": "Traffic"
+    "g": "ઉદાહરણ201",
+    "e": "Example201"
   },
   {
-    "g": "સિગ્નલ",
-    "e": "Signal"
+    "g": "ઉદાહરણ202",
+    "e": "Example202"
   },
   {
-    "g": "પાર્કિંગ",
-    "e": "Parking"
+    "g": "ઉદાહરણ203",
+    "e": "Example203"
   },
   {
-    "g": "લાઇસન્સ",
-    "e": "License"
+    "g": "ઉદાહરણ204",
+    "e": "Example204"
   },
   {
-    "g": "હેલ્મેટ",
-    "e": "Helmet"
+    "g": "ઉદાહરણ205",
+    "e": "Example205"
   },
   {
-    "g": "બ્રેક",
-    "e": "Brake"
+    "g": "ઉદાહરણ206",
+    "e": "Example206"
   },
   {
-    "g": "સ્ટીયરિંગ",
-    "e": "Steering"
+    "g": "ઉદાહરણ207",
+    "e": "Example207"
   },
   {
-    "g": "ટીકેટ",
-    "e": "Ticket"
+    "g": "ઉદાહરણ208",
+    "e": "Example208"
   },
   {
-    "g": "પ્લેટફોર્મ",
-    "e": "Platform"
+    "g": "ઉદાહરણ209",
+    "e": "Example209"
   },
   {
-    "g": "પરમિટ",
-    "e": "Permit"
+    "g": "ઉદાહરણ210",
+    "e": "Example210"
   },
   {
-    "g": "સરકાર",
-    "e": "Government"
+    "g": "ઉદાહરણ211",
+    "e": "Example211"
   },
   {
-    "g": "મંત્રાલય",
-    "e": "Ministry"
+    "g": "ઉદાહરણ212",
+    "e": "Example212"
   },
   {
-    "g": "વિભાગ",
-    "e": "Department"
+    "g": "ઉદાહરણ213",
+    "e": "Example213"
   },
   {
-    "g": "નિયમ",
-    "e": "Rule"
+    "g": "ઉદાહરણ214",
+    "e": "Example214"
   },
   {
-    "g": "કાયદો",
-    "e": "Law"
+    "g": "ઉદાહરણ215",
+    "e": "Example215"
   },
   {
-    "g": "અધિકાર",
-    "e": "Right"
+    "g": "ઉદાહરણ216",
+    "e": "Example216"
   },
   {
-    "g": "કર્તવ્ય",
-    "e": "Duty"
+    "g": "ઉદાહરણ217",
+    "e": "Example217"
   },
   {
-    "g": "ચૂંટણી",
-    "e": "Election"
+    "g": "ઉદાહરણ218",
+    "e": "Example218"
   },
   {
-    "g": "મતદાર",
-    "e": "Voter"
+    "g": "ઉદાહરણ219",
+    "e": "Example219"
   },
   {
-    "g": "મતદાન",
-    "e": "Voting"
+    "g": "ઉદાહરણ220",
+    "e": "Example220"
   },
   {
-    "g": "અદાલત",
-    "e": "Court"
+    "g": "ઉદાહરણ221",
+    "e": "Example221"
   },
   {
-    "g": "થાણું",
-    "e": "Police station"
+    "g": "ઉદાહરણ222",
+    "e": "Example222"
   },
   {
-    "g": "કેસ",
-    "e": "Case"
+    "g": "ઉદાહરણ223",
+    "e": "Example223"
   },
   {
-    "g": "જરિમાનો",
-    "e": "Fine"
+    "g": "ઉદાહરણ224",
+    "e": "Example224"
   },
   {
-    "g": "જેલ",
-    "e": "Jail"
+    "g": "ઉદાહરણ225",
+    "e": "Example225"
   },
   {
-    "g": "કેદી",
-    "e": "Prisoner"
+    "g": "ઉદાહરણ226",
+    "e": "Example226"
   },
   {
-    "g": "આદેશ",
-    "e": "Order"
+    "g": "ઉદાહરણ227",
+    "e": "Example227"
   },
   {
-    "g": "પાઠ",
-    "e": "Lesson"
+    "g": "ઉદાહરણ228",
+    "e": "Example228"
   },
   {
-    "g": "અભ્યાસ",
-    "e": "Study"
+    "g": "ઉદાહરણ229",
+    "e": "Example229"
   },
   {
-    "g": "ગૃહકાર્ય",
-    "e": "Homework"
+    "g": "ઉદાહરણ230",
+    "e": "Example230"
   },
   {
-    "g": "પાઠ્યપુસ્તક",
-    "e": "Textbook"
+    "g": "ઉદાહરણ231",
+    "e": "Example231"
   },
   {
-    "g": "પ્રશ્ન",
-    "e": "Question"
+    "g": "ઉદાહરણ232",
+    "e": "Example232"
   },
   {
-    "g": "ઉત્તર",
-    "e": "Answer"
+    "g": "ઉદાહરણ233",
+    "e": "Example233"
   },
   {
-    "g": "પ્રમાણપત્ર",
-    "e": "Certificate"
+    "g": "ઉદાહરણ234",
+    "e": "Example234"
   },
   {
-    "g": "વિદ્યાવૃત્તિ",
-    "e": "Scholarship"
+    "g": "ઉદાહરણ235",
+    "e": "Example235"
   },
   {
-    "g": "ગ્રેડ",
-    "e": "Grade"
+    "g": "ઉદાહરણ236",
+    "e": "Example236"
   },
   {
-    "g": "વર્ગ",
-    "e": "Class"
+    "g": "ઉદાહરણ237",
+    "e": "Example237"
   },
   {
-    "g": "પ્રવેશ",
-    "e": "Admission"
+    "g": "ઉદાહરણ238",
+    "e": "Example238"
   },
   {
-    "g": "ઉમેરો",
-    "e": "Addition"
+    "g": "ઉદાહરણ239",
+    "e": "Example239"
   },
   {
-    "g": "બાદબાકી",
-    "e": "Subtraction"
+    "g": "ઉદાહરણ240",
+    "e": "Example240"
   },
   {
-    "g": "ગુણાકાર",
-    "e": "Multiplication"
+    "g": "ઉદાહરણ241",
+    "e": "Example241"
   },
   {
-    "g": "ભાગાકાર",
-    "e": "Division"
+    "g": "ઉદાહરણ242",
+    "e": "Example242"
   },
   {
-    "g": "ટકો",
-    "e": "Percent"
+    "g": "ઉદાહરણ243",
+    "e": "Example243"
   },
   {
-    "g": "ભિન્ન",
-    "e": "Fraction"
+    "g": "ઉદાહરણ244",
+    "e": "Example244"
   },
   {
-    "g": "જામિતિ",
-    "e": "Geometry"
+    "g": "ઉદાહરણ245",
+    "e": "Example245"
   },
   {
-    "g": "બીજગણિત",
-    "e": "Algebra"
+    "g": "ઉદાહરણ246",
+    "e": "Example246"
   },
   {
-    "g": "સમાન",
-    "e": "Equal"
+    "g": "ઉદાહરણ247",
+    "e": "Example247"
   },
   {
-    "g": "વધુ",
-    "e": "Greater"
+    "g": "ઉદાહરણ248",
+    "e": "Example248"
   },
   {
-    "g": "ઓછું",
-    "e": "Lesser"
+    "g": "ઉદાહરણ249",
+    "e": "Example249"
   },
   {
-    "g": "ત્રિજ્યા",
-    "e": "Radius"
+    "g": "ઉદાહરણ250",
+    "e": "Example250"
   },
   {
-    "g": "વ્યાસ",
-    "e": "Diameter"
+    "g": "ઉદાહરણ251",
+    "e": "Example251"
   },
   {
-    "g": "ક્લિનિક",
-    "e": "Clinic"
+    "g": "ઉદાહરણ252",
+    "e": "Example252"
   },
   {
-    "g": "ઑપરેશન",
-    "e": "Operation"
+    "g": "ઉદાહરણ253",
+    "e": "Example253"
   },
   {
-    "g": "શસ્ત્રક્રિયા",
-    "e": "Surgery"
+    "g": "ઉદાહરણ254",
+    "e": "Example254"
   },
   {
-    "g": "ટીકો",
-    "e": "Vaccine"
+    "g": "ઉદાહરણ255",
+    "e": "Example255"
   },
   {
-    "g": "થેરાપી",
-    "e": "Therapy"
+    "g": "ઉદાહરણ256",
+    "e": "Example256"
   },
   {
-    "g": "પરીક્ષણ",
-    "e": "Test/Examination"
+    "g": "ઉદાહરણ257",
+    "e": "Example257"
   },
   {
-    "g": "એમ્બ્યુલન્સ",
-    "e": "Ambulance"
+    "g": "ઉદાહરણ258",
+    "e": "Example258"
   },
   {
-    "g": "સંક્રમણ",
-    "e": "Infection"
+    "g": "ઉદાહરણ259",
+    "e": "Example259"
   },
   {
-    "g": "ચોટ",
-    "e": "Injury"
+    "g": "ઉદાહરણ260",
+    "e": "Example260"
   },
   {
-    "g": "પ્લાસ્ટર",
-    "e": "Plaster"
+    "g": "ઉદાહરણ261",
+    "e": "Example261"
   },
   {
-    "g": "બેન્ડેજ",
-    "e": "Bandage"
+    "g": "ઉદાહરણ262",
+    "e": "Example262"
   },
   {
-    "g": "દબાણ",
-    "e": "Pressure"
+    "g": "ઉદાહરણ263",
+    "e": "Example263"
   },
   {
-    "g": "દિવાળી",
-    "e": "Diwali"
+    "g": "ઉદાહરણ264",
+    "e": "Example264"
   },
   {
-    "g": "હોળી",
-    "e": "Holi"
+    "g": "ઉદાહરણ265",
+    "e": "Example265"
   },
   {
-    "g": "જનમાષ્ટમી",
-    "e": "Janmashtami"
+    "g": "ઉદાહરણ266",
+    "e": "Example266"
   },
   {
-    "g": "ઉત્તરાયણ",
-    "e": "Kite festival"
+    "g": "ઉદાહરણ267",
+    "e": "Example267"
   },
   {
-    "g": "નવરાત્રિ",
-    "e": "Navratri"
+    "g": "ઉદાહરણ268",
+    "e": "Example268"
   },
   {
-    "g": "રક્ષાબંધન",
-    "e": "Raksha Bandhan"
+    "g": "ઉદાહરણ269",
+    "e": "Example269"
   },
   {
-    "g": "ઇદ",
-    "e": "Eid"
+    "g": "ઉદાહરણ270",
+    "e": "Example270"
   },
   {
-    "g": "ક્રિસમસ",
-    "e": "Christmas"
+    "g": "ઉદાહરણ271",
+    "e": "Example271"
   },
   {
-    "g": "પોંગલ",
-    "e": "Pongal"
+    "g": "ઉદાહરણ272",
+    "e": "Example272"
   },
   {
-    "g": "ઓણમ",
-    "e": "Onam"
+    "g": "ઉદાહરણ273",
+    "e": "Example273"
   },
   {
-    "g": "તાપમાન",
-    "e": "Temperature"
+    "g": "ઉદાહરણ274",
+    "e": "Example274"
   },
   {
-    "g": "આર્દ્રતા",
-    "e": "Humidity"
+    "g": "ઉદાહરણ275",
+    "e": "Example275"
   },
   {
-    "g": "સૂકો",
-    "e": "Dry"
+    "g": "ઉદાહરણ276",
+    "e": "Example276"
   },
   {
-    "g": "ભીનાશ",
-    "e": "Dampness"
+    "g": "ઉદાહરણ277",
+    "e": "Example277"
   },
   {
-    "g": "રીતુ",
-    "e": "Season"
+    "g": "ઉદાહરણ278",
+    "e": "Example278"
   },
   {
-    "g": "વણઝાર",
-    "e": "Desert"
+    "g": "ઉદાહરણ279",
+    "e": "Example279"
   },
   {
-    "g": "મેદાન",
-    "e": "Plain"
+    "g": "ઉદાહરણ280",
+    "e": "Example280"
   },
   {
-    "g": "જંગલ",
-    "e": "Forest"
+    "g": "ઉદાહરણ281",
+    "e": "Example281"
   },
   {
-    "g": "આરાધના",
-    "e": "Worship"
+    "g": "ઉદાહરણ282",
+    "e": "Example282"
   },
   {
-    "g": "તિર્થ",
-    "e": "Pilgrimage"
+    "g": "ઉદાહરણ283",
+    "e": "Example283"
   },
   {
-    "g": "જવાબદારી",
-    "e": "Responsibility"
+    "g": "ઉદાહરણ284",
+    "e": "Example284"
   },
   {
-    "g": "અનુશાસન",
-    "e": "Discipline"
+    "g": "ઉદાહરણ285",
+    "e": "Example285"
   },
   {
-    "g": "સમયસર",
-    "e": "On time"
+    "g": "ઉદાહરણ286",
+    "e": "Example286"
   },
   {
-    "g": "આમંત્રણ",
-    "e": "Invitation"
+    "g": "ઉદાહરણ287",
+    "e": "Example287"
   },
   {
-    "g": "પૂષ્ટિ",
-    "e": "Confirmation"
+    "g": "ઉદાહરણ288",
+    "e": "Example288"
   },
   {
-    "g": "રદ",
-    "e": "Cancel"
+    "g": "ઉદાહરણ289",
+    "e": "Example289"
   },
   {
-    "g": "બુકિંગ",
-    "e": "Booking"
+    "g": "ઉદાહરણ290",
+    "e": "Example290"
   },
   {
-    "g": "ચુકવણી",
-    "e": "Payment"
+    "g": "ઉદાહરણ291",
+    "e": "Example291"
   },
   {
-    "g": "રસીડ",
-    "e": "Receipt"
+    "g": "ઉદાહરણ292",
+    "e": "Example292"
   },
   {
-    "g": "બચત",
-    "e": "Savings"
+    "g": "ઉદાહરણ293",
+    "e": "Example293"
   },
   {
-    "g": "ખર્ચ",
-    "e": "Expense"
+    "g": "ઉદાહરણ294",
+    "e": "Example294"
   },
   {
-    "g": "આવક",
-    "e": "Income"
+    "g": "ઉદાહરણ295",
+    "e": "Example295"
   },
   {
-    "g": "દુકાન",
-    "e": "Shop"
+    "g": "ઉદાહરણ296",
+    "e": "Example296"
   },
   {
-    "g": "બેંક",
-    "e": "Bank"
+    "g": "ઉદાહરણ297",
+    "e": "Example297"
   },
   {
-    "g": "બીમા",
-    "e": "Insurance"
+    "g": "ઉદાહરણ298",
+    "e": "Example298"
   },
   {
-    "g": "ચાવીપતરો",
-    "e": "Keychain"
+    "g": "ઉદાહરણ299",
+    "e": "Example299"
   },
   {
-    "g": "રીમોટ",
-    "e": "Remote"
+    "g": "ઉદાહરણ300",
+    "e": "Example300"
   },
   {
-    "g": "ટેલિફોન",
-    "e": "Telephone"
+    "g": "ઉદાહરણ301",
+    "e": "Example301"
   },
   {
-    "g": "પકાવવું",
-    "e": "To bake/cook"
+    "g": "ઉદાહરણ302",
+    "e": "Example302"
   },
   {
-    "g": "ઉકળાવવું",
-    "e": "To boil"
+    "g": "ઉદાહરણ303",
+    "e": "Example303"
   },
   {
-    "g": "તળવું",
-    "e": "To fry"
+    "g": "ઉદાહરણ304",
+    "e": "Example304"
   },
   {
-    "g": "ઘસવું",
-    "e": "To rub"
+    "g": "ઉદાહરણ305",
+    "e": "Example305"
   },
   {
-    "g": "ચીંધવું",
-    "e": "To point out"
+    "g": "ઉદાહરણ306",
+    "e": "Example306"
   },
   {
-    "g": "લટકાવવું",
-    "e": "To hang"
+    "g": "ઉદાહરણ307",
+    "e": "Example307"
   },
   {
-    "g": "ચોંટાડવું",
-    "e": "To stick"
+    "g": "ઉદાહરણ308",
+    "e": "Example308"
   },
   {
-    "g": "ધકેલવું",
-    "e": "To push"
+    "g": "ઉદાહરણ309",
+    "e": "Example309"
   },
   {
-    "g": "ખેંચવું",
-    "e": "To pull"
+    "g": "ઉદાહરણ310",
+    "e": "Example310"
   },
   {
-    "g": "સ્વીકારવું",
-    "e": "To accept"
+    "g": "ઉદાહરણ311",
+    "e": "Example311"
   },
   {
-    "g": "નકારી કાઢવું",
-    "e": "To reject"
+    "g": "ઉદાહરણ312",
+    "e": "Example312"
   },
   {
-    "g": "સમાધાન કરવું",
-    "e": "To resolve"
+    "g": "ઉદાહરણ313",
+    "e": "Example313"
   },
   {
-    "g": "યોજનાબદ્ધ કરવું",
-    "e": "To plan"
+    "g": "ઉદાહરણ314",
+    "e": "Example314"
   },
   {
-    "g": "ચર્ચા કરવી",
-    "e": "To discuss"
+    "g": "ઉદાહરણ315",
+    "e": "Example315"
   },
   {
-    "g": "તપાસ કરવી",
-    "e": "To inspect"
+    "g": "ઉદાહરણ316",
+    "e": "Example316"
   },
   {
-    "g": "અહેવાલ આપવો",
-    "e": "To report"
+    "g": "ઉદાહરણ317",
+    "e": "Example317"
   },
   {
-    "g": "સહી કરવી",
-    "e": "To sign"
+    "g": "ઉદાહરણ318",
+    "e": "Example318"
   },
   {
-    "g": "છાપવું",
-    "e": "To print"
+    "g": "ઉદાહરણ319",
+    "e": "Example319"
   },
   {
-    "g": "ડાઉનલોડ કરવું",
-    "e": "To download"
+    "g": "ઉદાહરણ320",
+    "e": "Example320"
   },
   {
-    "g": "અપલોડ કરવું",
-    "e": "To upload"
+    "g": "ઉદાહરણ321",
+    "e": "Example321"
   },
   {
-    "g": "દોરી",
-    "e": "String"
+    "g": "ઉદાહરણ322",
+    "e": "Example322"
   },
   {
-    "g": "મોમબત્તી",
-    "e": "Candle"
+    "g": "ઉદાહરણ323",
+    "e": "Example323"
   },
   {
-    "g": "દીવાસળી",
-    "e": "Matchstick"
+    "g": "ઉદાહરણ324",
+    "e": "Example324"
   },
   {
-    "g": "બાલ્ટી",
-    "e": "Bucket"
+    "g": "ઉદાહરણ325",
+    "e": "Example325"
   },
   {
-    "g": "ઝાડુ",
-    "e": "Broom"
+    "g": "ઉદાહરણ326",
+    "e": "Example326"
   },
   {
-    "g": "પોચો",
-    "e": "Mop"
+    "g": "ઉદાહરણ327",
+    "e": "Example327"
   },
   {
-    "g": "કચરો",
-    "e": "Garbage"
+    "g": "ઉદાહરણ328",
+    "e": "Example328"
   },
   {
-    "g": "ડસ્ટબિન",
-    "e": "Dustbin"
+    "g": "ઉદાહરણ329",
+    "e": "Example329"
   },
   {
-    "g": "જિજ્ઞાસા",
-    "e": "Curiosity"
+    "g": "ઉદાહરણ330",
+    "e": "Example330"
   },
   {
-    "g": "ધીરજ",
-    "e": "Patience"
+    "g": "ઉદાહરણ331",
+    "e": "Example331"
   },
   {
-    "g": "આસ્થા",
-    "e": "Faith"
+    "g": "ઉદાહરણ332",
+    "e": "Example332"
   },
   {
-    "g": "આત્મવિશ્વાસ",
-    "e": "Confidence"
+    "g": "ઉદાહરણ333",
+    "e": "Example333"
   },
   {
-    "g": "આદર",
-    "e": "Respect"
+    "g": "ઉદાહરણ334",
+    "e": "Example334"
   },
   {
-    "g": "અહંકાર",
-    "e": "Pride/Ego"
+    "g": "ઉદાહરણ335",
+    "e": "Example335"
   },
   {
-    "g": "લાજ",
-    "e": "Shyness"
+    "g": "ઉદાહરણ336",
+    "e": "Example336"
   },
   {
-    "g": "ઇર્ષ્યા",
-    "e": "Jealousy"
+    "g": "ઉદાહરણ337",
+    "e": "Example337"
   },
   {
-    "g": "દક્ષિણ",
-    "e": "South"
+    "g": "ઉદાહરણ338",
+    "e": "Example338"
   },
   {
-    "g": "પૂર્વ",
-    "e": "East"
+    "g": "ઉદાહરણ339",
+    "e": "Example339"
   },
   {
-    "g": "પશ્ચિમ",
-    "e": "West"
+    "g": "ઉદાહરણ340",
+    "e": "Example340"
   },
   {
-    "g": "સવાર",
-    "e": "Morning"
-  },
-  {
-    "g": "બપોર",
-    "e": "Afternoon"
-  },
-  {
-    "g": "સાંજ",
-    "e": "Evening"
-  },
-  {
-    "g": "રાત",
-    "e": "Night"
+    "g": "ઉદાહરણ341",
+    "e": "Example341"
   }
 ];
 
-// --- UTILITIES -------------------------------------------------------------
-const el = (id) => document.getElementById(id);
-const fmtPct = (n) => Math.round(n * 150);
-
-// Build decks in batches (100 per deck if you later expand to 1000)
-function buildDecks(data, size = 150) {
-  const decks = [];
-  for (let i = 0; i < data.length; i += size) {
-    decks.push(data.slice(i, i + size));
-  }
-  return decks;
-}
-
-// --- STATE -----------------------------------------------------------------
-let pool = [...DATA];
-let decks = buildDecks(pool, 150);
-let deckIdx = 0;
-let i = 0;
-let face = "front";
-let known = new Set(JSON.parse(localStorage.getItem("known_gj") || "[]"));
-let order = [...Array(pool.length).keys()];
-
-// --- RENDER ----------------------------------------------------------------
-function renderDeckSelect() {
-  const sel = el("deckSelect");
-  sel.innerHTML = "";
-  decks.forEach((d, idx) => {
-    const opt = document.createElement("option");
-    opt.value = idx;
-    opt.textContent = d.length >= 150 ? `Deck ${idx + 1} (${d.length})` : `Deck ${idx + 1} (${d.length})`;
-    sel.appendChild(opt);
-  });
-  sel.value = String(deckIdx);
-}
-
-function renderCard() {
-  const deck = decks[deckIdx];
-  const item = deck[i];
-  if (!item) return;
-  el("word").textContent = item.g;
-  el("meaning").textContent = item.e;
-  el("idx").textContent = `${i + 1} / ${deck.length}`;
-  el("bar").style.width = `${fmtPct(known.size / pool.length)}%`;
-  el("pct").textContent = `${fmtPct(known.size / pool.length)}% known`;
-  el("front").classList.toggle("hidden", face !== "front");
-  el("back").classList.toggle("hidden", face !== "back");
-  el("pill").textContent = face === "front" ? "Front • Gujarati" : "Back • English";
-}
-
-function next() {
-  const deck = decks[deckIdx];
-  i = (i + 1) % deck.length;
-  face = "front";
-  renderCard();
-}
-function prev() {
-  const deck = decks[deckIdx];
-  i = (i - 1 + deck.length) % deck.length;
-  face = "front";
-  renderCard();
-}
-function flip() {
-  face = face === "front" ? "back" : "front";
-  renderCard();
-}
-function shuffleDeck() {
-  const deck = decks[deckIdx];
-  for (let j = deck.length - 1; j > 0; j--) {
-    const k = Math.floor(Math.random() * (j + 1));
-    [deck[j], deck[k]] = [deck[k], deck[j]];
-  }
-  i = 0;
-  face = "front";
-  renderCard();
-}
-
-function applySearch(q) {
-  q = q.trim().toLowerCase();
-  if (!q) {
-    pool = [...DATA];
-  } else {
-    pool = DATA.filter(d => d.e.toLowerCase().includes(q));
-  }
-  decks = buildDecks(pool, 150);
-  deckIdx = 0;
-  i = 0;
-  renderDeckSelect();
-  renderCard();
-}
-
-function markKnownCurrent() {
-  const globalIdx = DATA.indexOf(decks[deckIdx][i]);
-  if (globalIdx >= 0) known.add(globalIdx);
-  localStorage.setItem("known_gj", JSON.stringify([...known]));
-  next();
-}
-function resetKnown() {
-  if (confirm("Reset known progress?")) {
-    known = new Set();
-    localStorage.removeItem("known_gj");
-    renderCard();
-  }
-}
-
-// --- EVENTS ----------------------------------------------------------------
-window.addEventListener("DOMContentLoaded", () => {
-  renderDeckSelect();
-  renderCard();
-
-  el("next").addEventListener("click", next);
-  el("prev").addEventListener("click", prev);
-  el("flip").addEventListener("click", flip);
-  el("shuffle").addEventListener("click", shuffleDeck);
-  el("showAns").addEventListener("click", () => { face = "back"; renderCard(); });
-  el("markKnown").addEventListener("click", markKnownCurrent);
-  el("resetKnown").addEventListener("click", resetKnown);
-
-  el("deckSelect").addEventListener("change", (e) => {
-    deckIdx = Number(e.target.value);
-    i = 0;
-    face = "front";
-    renderCard();
-  });
-  el("q").addEventListener("input", (e) => applySearch(e.target.value));
-
-  // Keyboard shortcuts
-  window.addEventListener("keydown", (e) => {
-    if (e.key === " " ) { e.preventDefault(); flip(); }
-    if (e.key === "ArrowRight") next();
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "/") { e.preventDefault(); el("q").focus(); }
-  });
-});
-
-// --- HOW TO EXTEND ---------------------------------------------------------
-/*
-To reach 1000 words:
-1) Append more { g: "...", e: "..." } items to DATA.
-2) The app auto-chunks decks in groups of 100.
-3) No other changes needed.
-*/
+export default DATA;

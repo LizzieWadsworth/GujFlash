@@ -1,4163 +1,5019 @@
-/* Flashcards data and simple app logic
-   Format: { g: "ગુજરાતી શબ્દ", e: "english meaning" }
-   NOTE: This starter set includes 200 common words. You can append more
-   items to DATA (up to 1000) without changing any code.
-*/
-
-// --- DATA ------------------------------------------------------------------
 const DATA = [
   {
     "g": "હું",
-    "e": "I"
+    "e": "I",
+    "p": "pron"
   },
   {
     "g": "તમે",
-    "e": "You"
+    "e": "You",
+    "p": "pron"
   },
   {
     "g": "તે",
-    "e": "He/She/That"
+    "e": "He/She/That",
+    "p": "pron"
   },
   {
     "g": "આ",
-    "e": "This"
+    "e": "This",
+    "p": "pron"
   },
   {
     "g": "અમે",
-    "e": "We"
+    "e": "We",
+    "p": "pron"
   },
   {
     "g": "તેઓ",
-    "e": "They"
+    "e": "They",
+    "p": "pron"
   },
   {
     "g": "કયું",
-    "e": "Which"
+    "e": "Which",
+    "p": "n"
   },
   {
     "g": "શું",
-    "e": "What"
+    "e": "What",
+    "p": "n"
   },
   {
     "g": "કેમ",
-    "e": "Why"
+    "e": "Why",
+    "p": "n"
   },
   {
     "g": "ક્યારે",
-    "e": "When"
+    "e": "When",
+    "p": "n"
   },
   {
     "g": "ક્યાં",
-    "e": "Where"
+    "e": "Where",
+    "p": "n"
   },
   {
     "g": "હા",
-    "e": "Yes"
+    "e": "Yes",
+    "p": "intj"
   },
   {
     "g": "ના",
-    "e": "No"
+    "e": "No",
+    "p": "intj"
   },
   {
     "g": "એક",
-    "e": "One"
+    "e": "One",
+    "p": "num"
   },
   {
     "g": "બે",
-    "e": "Two"
+    "e": "Two",
+    "p": "num"
   },
   {
     "g": "ત્રણ",
-    "e": "Three"
+    "e": "Three",
+    "p": "num"
   },
   {
     "g": "ચાર",
-    "e": "Four"
+    "e": "Four",
+    "p": "num"
   },
   {
     "g": "પાંચ",
-    "e": "Five"
+    "e": "Five",
+    "p": "num"
   },
   {
     "g": "છ",
-    "e": "Six"
+    "e": "Six",
+    "p": "num"
   },
   {
     "g": "સાત",
-    "e": "Seven"
+    "e": "Seven",
+    "p": "num"
   },
   {
     "g": "આઠ",
-    "e": "Eight"
+    "e": "Eight",
+    "p": "num"
   },
   {
     "g": "નવ",
-    "e": "Nine"
+    "e": "Nine",
+    "p": "num"
   },
   {
     "g": "દસ",
-    "e": "Ten"
+    "e": "Ten",
+    "p": "num"
   },
   {
     "g": "પિતા",
-    "e": "Father"
+    "e": "Father / Dad",
+    "p": "n"
   },
   {
     "g": "માતા",
-    "e": "Mother"
+    "e": "Mother / Mom",
+    "p": "n"
   },
   {
     "g": "ભાઈ",
-    "e": "Brother"
+    "e": "Brother / Sibling (male)",
+    "p": "n"
   },
   {
     "g": "બહેન",
-    "e": "Sister"
+    "e": "Sister / Sibling (female)",
+    "p": "n"
   },
   {
     "g": "દીકરો",
-    "e": "Son"
+    "e": "Son / Child (male)",
+    "p": "n"
   },
   {
     "g": "દીકરી",
-    "e": "Daughter"
+    "e": "Daughter / Child (female)",
+    "p": "n"
   },
   {
     "g": "ઘર",
-    "e": "House"
+    "e": "House / Home",
+    "p": "n"
   },
   {
     "g": "શહેર",
-    "e": "City"
+    "e": "City / Urban area",
+    "p": "n"
   },
   {
     "g": "ગામ",
-    "e": "Village"
+    "e": "Village / Town (small)",
+    "p": "n"
   },
   {
     "g": "શાળા",
-    "e": "School"
+    "e": "School / Primary school",
+    "p": "n"
   },
   {
     "g": "બજાર",
-    "e": "Market"
+    "e": "Market",
+    "p": "n"
   },
   {
     "g": "મિત્ર",
-    "e": "Friend"
+    "e": "Friend / Buddy",
+    "p": "n"
   },
   {
     "g": "ખોરાક",
-    "e": "Food"
+    "e": "Food / Meal",
+    "p": "n"
   },
   {
     "g": "પાણી",
-    "e": "Water"
+    "e": "Water / Water (drink)",
+    "p": "n"
   },
   {
     "g": "દૂધ",
-    "e": "Milk"
+    "e": "Milk",
+    "p": "n"
   },
   {
     "g": "ચા",
-    "e": "Tea"
+    "e": "Tea / Chai",
+    "p": "n"
   },
   {
     "g": "કોફી",
-    "e": "Coffee"
+    "e": "Coffee / Coffee drink",
+    "p": "n"
   },
   {
     "g": "રોટલી",
-    "e": "Bread"
+    "e": "Flatbread / Roti",
+    "p": "n"
   },
   {
     "g": "ભાત",
-    "e": "Rice"
+    "e": "Rice (cooked) / Steamed rice",
+    "p": "n"
   },
   {
     "g": "દાળ",
-    "e": "Lentils"
+    "e": "Lentils / Dal",
+    "p": "n"
   },
   {
     "g": "શાક",
-    "e": "Vegetable"
+    "e": "Vegetable / Curry (Gujarati usage)",
+    "p": "n"
   },
   {
     "g": "ફળ",
-    "e": "Fruit"
+    "e": "Fruit",
+    "p": "n"
   },
   {
     "g": "કેળું",
-    "e": "Banana"
+    "e": "Banana",
+    "p": "n"
   },
   {
     "g": "સફરજન",
-    "e": "Apple"
+    "e": "Apple",
+    "p": "n"
   },
   {
     "g": "દાડમ",
-    "e": "Pomegranate"
+    "e": "Pomegranate",
+    "p": "n"
   },
   {
     "g": "આંબો",
-    "e": "Mango"
+    "e": "Mango",
+    "p": "n"
   },
   {
     "g": "લીંબુ",
-    "e": "Lemon"
+    "e": "Lemon",
+    "p": "n"
   },
   {
     "g": "દ્રાક્ષ",
-    "e": "Grapes"
+    "e": "Grapes",
+    "p": "n"
   },
   {
     "g": "તરબૂચ",
-    "e": "Watermelon"
+    "e": "Watermelon",
+    "p": "n"
   },
   {
     "g": "સંતરો",
-    "e": "Orange"
+    "e": "Orange",
+    "p": "n"
   },
   {
     "g": "કાકડી",
-    "e": "Cucumber"
+    "e": "Cucumber / Gourd (colloquial)",
+    "p": "n"
   },
   {
     "g": "બટાકો",
-    "e": "Potato"
+    "e": "Potato / Spud",
+    "p": "n"
   },
   {
     "g": "ડુંગળી",
-    "e": "Onion"
+    "e": "Onion / Shallot",
+    "p": "n"
   },
   {
     "g": "ટમેટું",
-    "e": "Tomato"
+    "e": "Tomato / Tomato (veg.)",
+    "p": "n"
   },
   {
     "g": "ભીંડો",
-    "e": "Okra"
+    "e": "Okra",
+    "p": "n"
   },
   {
     "g": "રીંગણ",
-    "e": "Eggplant"
+    "e": "Eggplant / Brinjal",
+    "p": "n"
   },
   {
     "g": "લસણ",
-    "e": "Garlic"
+    "e": "Garlic",
+    "p": "n"
   },
   {
     "g": "આદુ",
-    "e": "Ginger"
+    "e": "Ginger",
+    "p": "n"
   },
   {
     "g": "મીઠું",
-    "e": "Salt"
+    "e": "Salt",
+    "p": "adj"
   },
   {
     "g": "ખાંડ",
-    "e": "Sugar"
+    "e": "Sugar",
+    "p": "n"
   },
   {
     "g": "મરી",
-    "e": "Pepper"
+    "e": "Pepper",
+    "p": "n"
   },
   {
     "g": "તેલ",
-    "e": "Oil"
+    "e": "Oil",
+    "p": "n"
   },
   {
     "g": "ઘી",
-    "e": "Ghee"
+    "e": "Ghee",
+    "p": "n"
   },
   {
     "g": "મકાઈ",
-    "e": "Maize"
+    "e": "Maize / Corn",
+    "p": "n"
   },
   {
     "g": "ગહું",
-    "e": "Wheat"
+    "e": "Wheat",
+    "p": "n"
   },
   {
     "g": "જૌ",
-    "e": "Barley"
+    "e": "Barley",
+    "p": "n"
   },
   {
     "g": "ચોખા",
-    "e": "Rice grains"
+    "e": "Rice grains",
+    "p": "n"
   },
   {
     "g": "ફૂલ",
-    "e": "Flower"
+    "e": "Flower / Blossom",
+    "p": "n"
   },
   {
     "g": "ગુલાબ",
-    "e": "Rose"
+    "e": "Rose / Rose flower",
+    "p": "n"
   },
   {
     "g": "મોગરો",
-    "e": "Jasmine"
+    "e": "Jasmine / Mogra",
+    "p": "n"
   },
   {
     "g": "કમળ",
-    "e": "Lotus"
+    "e": "Lotus / Water lily (regional)",
+    "p": "n"
   },
   {
     "g": "કુંવળ",
-    "e": "Lily"
+    "e": "Lily / Water lily",
+    "p": "n"
   },
   {
     "g": "વૃક્ષ",
-    "e": "Tree"
+    "e": "Tree",
+    "p": "n"
   },
   {
     "g": "ઝાડ",
-    "e": "Plant"
+    "e": "Tree / Plant",
+    "p": "n"
   },
   {
     "g": "પાન",
-    "e": "Leaf"
+    "e": "Leaf / Betel leaf",
+    "p": "n"
   },
   {
     "g": "ફળો",
-    "e": "Fruits"
+    "e": "Fruits",
+    "p": "n"
   },
   {
     "g": "સૂર્ય",
-    "e": "Sun"
+    "e": "Sun",
+    "p": "n"
   },
   {
     "g": "ચંદ્ર",
-    "e": "Moon"
+    "e": "Moon",
+    "p": "n"
   },
   {
     "g": "તારા",
-    "e": "Stars"
+    "e": "Stars",
+    "p": "pron"
   },
   {
     "g": "આકાશ",
-    "e": "Sky"
+    "e": "Sky / Heaven (poetic)",
+    "p": "n"
   },
   {
     "g": "વાદળ",
-    "e": "Cloud"
+    "e": "Cloud",
+    "p": "n"
   },
   {
     "g": "વરસાદ",
-    "e": "Rain"
+    "e": "Rain / Rainfall",
+    "p": "n"
   },
   {
     "g": "પવન",
-    "e": "Wind"
+    "e": "Wind / Breeze",
+    "p": "n"
   },
   {
     "g": "હિમ",
-    "e": "Snow"
+    "e": "Snow",
+    "p": "n"
   },
   {
     "g": "સમુદ્ર",
-    "e": "Sea"
+    "e": "Sea / Ocean",
+    "p": "n"
   },
   {
     "g": "નદી",
-    "e": "River"
+    "e": "River / Stream",
+    "p": "n"
   },
   {
     "g": "તળાવ",
-    "e": "Lake"
+    "e": "Lake",
+    "p": "n"
   },
   {
     "g": "ઝરણું",
-    "e": "Waterfall"
+    "e": "Waterfall / Cascade",
+    "p": "n"
   },
   {
     "g": "પર્વત",
-    "e": "Mountain"
+    "e": "Mountain",
+    "p": "n"
   },
   {
     "g": "ટેકરી",
-    "e": "Hill"
+    "e": "Hill",
+    "p": "n"
   },
   {
     "g": "જમીન",
-    "e": "Land"
+    "e": "Land / Ground",
+    "p": "n"
   },
   {
     "g": "માટી",
-    "e": "Soil"
+    "e": "Soil / Clay / Earth",
+    "p": "n"
   },
   {
     "g": "માર્ગ",
-    "e": "Road"
+    "e": "Road / Route / Path",
+    "p": "n"
   },
   {
     "g": "ગલી",
-    "e": "Lane"
+    "e": "Lane",
+    "p": "n"
   },
   {
     "g": "રસ્તો",
-    "e": "Way"
+    "e": "Road / Way / Path",
+    "p": "n"
   },
   {
     "g": "તું",
-    "e": "You (informal)"
+    "e": "You / informal",
+    "p": "pron"
   },
   {
     "g": "આપણે",
-    "e": "We (inclusive)"
+    "e": "We / inclusive",
+    "p": "pron"
   },
   {
     "g": "આપ",
-    "e": "You (formal)"
+    "e": "You / formal",
+    "p": "pron"
   },
   {
     "g": "મારું",
-    "e": "My (neuter)"
+    "e": "My / neuter",
+    "p": "pron"
   },
   {
     "g": "મારી",
-    "e": "My (feminine)"
+    "e": "My / feminine",
+    "p": "pron"
   },
   {
     "g": "મારા",
-    "e": "My (plural/masc.)"
+    "e": "My / plural/masc.",
+    "p": "pron"
   },
   {
     "g": "તારું",
-    "e": "Your (informal, neuter)"
+    "e": "Your / informal, neuter",
+    "p": "pron"
   },
   {
     "g": "તારી",
-    "e": "Your (informal, feminine)"
+    "e": "Your / informal, feminine",
+    "p": "pron"
   },
   {
     "g": "તમારું",
-    "e": "Your (formal, neuter)"
+    "e": "Your / formal, neuter",
+    "p": "pron"
   },
   {
     "g": "તમારી",
-    "e": "Your (formal, feminine)"
+    "e": "Your / formal, feminine",
+    "p": "pron"
   },
   {
     "g": "તમારા",
-    "e": "Your (formal, plural/masc.)"
+    "e": "Your / formal, plural/masc.",
+    "p": "pron"
   },
   {
     "g": "તેનું",
-    "e": "His/Her/Its (neuter)"
+    "e": "His/Her/Its / neuter",
+    "p": "pron"
   },
   {
     "g": "તેણી",
-    "e": "She"
+    "e": "She",
+    "p": "pron"
   },
   {
     "g": "તેણો",
-    "e": "He"
+    "e": "He",
+    "p": "n"
   },
   {
     "g": "તેમનું",
-    "e": "Their (neuter)"
+    "e": "Their / neuter",
+    "p": "n"
   },
   {
     "g": "અપનું",
-    "e": "Our (neuter, inclusive)"
+    "e": "Our / neuter, inclusive",
+    "p": "n"
   },
   {
     "g": "અમારું",
-    "e": "Our (neuter)"
+    "e": "Our / neuter",
+    "p": "pron"
   },
   {
     "g": "અમારી",
-    "e": "Our (feminine)"
+    "e": "Our / feminine",
+    "p": "pron"
   },
   {
     "g": "અમારા",
-    "e": "Our (plural/masc.)"
+    "e": "Our / plural/masc.",
+    "p": "pron"
   },
   {
     "g": "હમણાં",
-    "e": "Now"
+    "e": "Now",
+    "p": "adv"
   },
   {
     "g": "આજ",
-    "e": "Today"
+    "e": "Today",
+    "p": "n"
   },
   {
     "g": "ગઈકાલે",
-    "e": "Yesterday"
+    "e": "Yesterday",
+    "p": "n"
   },
   {
     "g": "આવતીકાલે",
-    "e": "Tomorrow"
+    "e": "Tomorrow",
+    "p": "adv"
   },
   {
     "g": "અહીં",
-    "e": "Here"
+    "e": "Here",
+    "p": "adv"
   },
   {
     "g": "ત્યાં",
-    "e": "There"
+    "e": "There",
+    "p": "adv"
   },
   {
     "g": "અંદર",
-    "e": "Inside"
+    "e": "Inside",
+    "p": "prep"
   },
   {
     "g": "બહાર",
-    "e": "Outside"
+    "e": "Outside",
+    "p": "prep"
   },
   {
     "g": "ઉપર",
-    "e": "Above"
+    "e": "Above",
+    "p": "prep"
   },
   {
     "g": "નીચે",
-    "e": "Below"
+    "e": "Below",
+    "p": "prep"
   },
   {
     "g": "આગળ",
-    "e": "Ahead"
+    "e": "Ahead",
+    "p": "prep"
   },
   {
     "g": "પાછળ",
-    "e": "Behind"
+    "e": "Behind",
+    "p": "prep"
   },
   {
     "g": "બાજુ",
-    "e": "Side"
+    "e": "Side",
+    "p": "n"
   },
   {
     "g": "તાત્કાલિક",
-    "e": "Immediate"
+    "e": "Immediate",
+    "p": "n"
   },
   {
     "g": "ધીમે",
-    "e": "Slowly"
+    "e": "Slowly",
+    "p": "adv"
   },
   {
     "g": "ઝડપી",
-    "e": "Fast"
+    "e": "Fast / Quick",
+    "p": "adj"
   },
   {
     "g": "હંમેશાં",
-    "e": "Always"
+    "e": "Always",
+    "p": "adv"
   },
   {
     "g": "ક્યારેક",
-    "e": "Sometimes"
+    "e": "Sometimes",
+    "p": "adv"
   },
   {
     "g": "ક્યારેય નહીં",
-    "e": "Never"
+    "e": "Never",
+    "p": "n"
   },
   {
     "g": "આજે",
-    "e": "Today"
+    "e": "Today",
+    "p": "adv"
   },
   {
     "g": "હમણાંજ",
-    "e": "Just now"
+    "e": "Just now",
+    "p": "adv"
   },
   {
     "g": "બધું",
-    "e": "Everything"
+    "e": "Everything",
+    "p": "n"
   },
   {
     "g": "કંઈ",
-    "e": "Anything"
+    "e": "Anything",
+    "p": "n"
   },
   {
     "g": "કંઈ નહીં",
-    "e": "Nothing"
+    "e": "Nothing",
+    "p": "n"
   },
   {
     "g": "થોડું",
-    "e": "A little"
+    "e": "A little",
+    "p": "n"
   },
   {
     "g": "ઘણું",
-    "e": "A lot"
+    "e": "A lot",
+    "p": "n"
   },
   {
     "g": "ફરી",
-    "e": "Again"
+    "e": "Again",
+    "p": "adv"
   },
   {
     "g": "સોમવાર",
-    "e": "Monday"
+    "e": "Monday",
+    "p": "n"
   },
   {
     "g": "મંગળવાર",
-    "e": "Tuesday"
+    "e": "Tuesday",
+    "p": "n"
   },
   {
     "g": "બુધવાર",
-    "e": "Wednesday"
+    "e": "Wednesday",
+    "p": "n"
   },
   {
     "g": "ગુરુવાર",
-    "e": "Thursday"
+    "e": "Thursday",
+    "p": "n"
   },
   {
     "g": "શુક્રવાર",
-    "e": "Friday"
+    "e": "Friday",
+    "p": "n"
   },
   {
     "g": "શનિવાર",
-    "e": "Saturday"
+    "e": "Saturday",
+    "p": "n"
   },
   {
     "g": "રવિવાર",
-    "e": "Sunday"
+    "e": "Sunday",
+    "p": "n"
   },
   {
     "g": "જાન્યુઆરી",
-    "e": "January"
+    "e": "January",
+    "p": "n"
   },
   {
     "g": "ફેબ્રુઆરી",
-    "e": "February"
+    "e": "February",
+    "p": "n"
   },
   {
     "g": "માર્ચ",
-    "e": "March"
+    "e": "March",
+    "p": "n"
   },
   {
     "g": "એપ્રિલ",
-    "e": "April"
+    "e": "April",
+    "p": "n"
   },
   {
     "g": "મે",
-    "e": "May"
+    "e": "May",
+    "p": "n"
   },
   {
     "g": "જૂન",
-    "e": "June"
+    "e": "June",
+    "p": "n"
   },
   {
     "g": "જુલાઈ",
-    "e": "July"
+    "e": "July",
+    "p": "n"
   },
   {
     "g": "ઓગસ્ટ",
-    "e": "August"
+    "e": "August",
+    "p": "n"
   },
   {
     "g": "સપ્ટેમ્બર",
-    "e": "September"
+    "e": "September",
+    "p": "n"
   },
   {
     "g": "ઓક્ટોબર",
-    "e": "October"
+    "e": "October",
+    "p": "n"
   },
   {
     "g": "નવેમ્બર",
-    "e": "November"
+    "e": "November",
+    "p": "n"
   },
   {
     "g": "ડિસેમ્બર",
-    "e": "December"
+    "e": "December",
+    "p": "n"
   },
   {
     "g": "લાલ",
-    "e": "Red"
+    "e": "Red",
+    "p": "adj"
   },
   {
     "g": "નારંગી",
-    "e": "Orange (color)"
+    "e": "Orange / color",
+    "p": "adj"
   },
   {
     "g": "પીળો",
-    "e": "Yellow"
+    "e": "Yellow",
+    "p": "adj"
   },
   {
     "g": "લીલો",
-    "e": "Green"
+    "e": "Green",
+    "p": "adj"
   },
   {
     "g": "આસમાની",
-    "e": "Sky blue"
+    "e": "Sky blue",
+    "p": "adj"
   },
   {
     "g": "વાદળી",
-    "e": "Blue"
+    "e": "Blue",
+    "p": "adj"
   },
   {
     "g": "જામણી",
-    "e": "Purple"
+    "e": "Purple",
+    "p": "adj"
   },
   {
     "g": "કેસરી",
-    "e": "Saffron"
+    "e": "Saffron",
+    "p": "adj"
   },
   {
     "g": "કાળો",
-    "e": "Black"
+    "e": "Black",
+    "p": "adj"
   },
   {
     "g": "સફેદ",
-    "e": "White"
+    "e": "White",
+    "p": "adj"
   },
   {
     "g": "ભૂરો",
-    "e": "Brown"
+    "e": "Brown",
+    "p": "adj"
   },
   {
     "g": "છાંયો",
-    "e": "Shade"
+    "e": "Shade",
+    "p": "n"
   },
   {
     "g": "પત્ની",
-    "e": "Wife"
+    "e": "Wife / Spouse (female)",
+    "p": "n"
   },
   {
     "g": "પતિ",
-    "e": "Husband"
+    "e": "Husband / Spouse (male)",
+    "p": "n"
   },
   {
     "g": "દાદા",
-    "e": "Grandfather"
+    "e": "Grandfather",
+    "p": "n"
   },
   {
     "g": "દાદી",
-    "e": "Grandmother"
+    "e": "Grandmother",
+    "p": "n"
   },
   {
     "g": "કાકી",
-    "e": "Aunt (paternal)"
+    "e": "Aunt / paternal",
+    "p": "n"
   },
   {
     "g": "કાકા",
-    "e": "Uncle (paternal)"
+    "e": "Uncle / paternal",
+    "p": "n"
   },
   {
     "g": "મામા",
-    "e": "Uncle (maternal)"
+    "e": "Uncle / maternal",
+    "p": "n"
   },
   {
     "g": "મામી",
-    "e": "Aunt (maternal)"
+    "e": "Aunt / maternal",
+    "p": "n"
   },
   {
     "g": "ફોઈ",
-    "e": "Aunt (paternal aunt)"
+    "e": "Aunt / paternal aunt",
+    "p": "n"
   },
   {
     "g": "મોસાળ",
-    "e": "Maternal uncle's home"
+    "e": "Maternal uncle's home",
+    "p": "n"
   },
   {
     "g": "પોત્ર",
-    "e": "Grandson"
+    "e": "Grandson",
+    "p": "n"
   },
   {
     "g": "પોત્રી",
-    "e": "Granddaughter"
+    "e": "Granddaughter",
+    "p": "n"
   },
   {
     "g": "શિશુ",
-    "e": "Infant"
+    "e": "Infant",
+    "p": "n"
   },
   {
     "g": "બાળક",
-    "e": "Child"
+    "e": "Child",
+    "p": "n"
   },
   {
     "g": "યુવક",
-    "e": "Young man"
+    "e": "Young man",
+    "p": "n"
   },
   {
     "g": "યુવતી",
-    "e": "Young woman"
+    "e": "Young woman",
+    "p": "n"
   },
   {
     "g": "વૃદ્ધ",
-    "e": "Elderly"
+    "e": "Elderly",
+    "p": "n"
   },
   {
     "g": "ધર્મ",
-    "e": "Religion"
+    "e": "Religion",
+    "p": "n"
   },
   {
     "g": "ભાષા",
-    "e": "Language"
+    "e": "Language",
+    "p": "n"
   },
   {
     "g": "વાત",
-    "e": "Talk/Speech"
+    "e": "Talk / Matter / Topic",
+    "p": "n"
   },
   {
     "g": "કથા",
-    "e": "Story"
+    "e": "Story / Tale",
+    "p": "n"
   },
   {
     "g": "સમાચાર",
-    "e": "News"
+    "e": "News / Information",
+    "p": "n"
   },
   {
     "g": "માથું",
-    "e": "Head"
+    "e": "Head",
+    "p": "n"
   },
   {
     "g": "વાળ",
-    "e": "Hair"
+    "e": "Hair",
+    "p": "n"
   },
   {
     "g": "આંખ",
-    "e": "Eye"
+    "e": "Eye",
+    "p": "n"
   },
   {
     "g": "કાન",
-    "e": "Ear"
+    "e": "Ear",
+    "p": "n"
   },
   {
     "g": "નાક",
-    "e": "Nose"
+    "e": "Nose",
+    "p": "n"
   },
   {
     "g": "મોઢું",
-    "e": "Mouth"
+    "e": "Mouth",
+    "p": "n"
   },
   {
     "g": "દાંત",
-    "e": "Tooth"
+    "e": "Tooth",
+    "p": "n"
   },
   {
     "g": "જીભ",
-    "e": "Tongue"
+    "e": "Tongue",
+    "p": "n"
   },
   {
     "g": "ગળું",
-    "e": "Neck/Throat"
+    "e": "Neck / Throat",
+    "p": "n"
   },
   {
     "g": "ખભો",
-    "e": "Shoulder"
+    "e": "Shoulder",
+    "p": "n"
   },
   {
     "g": "હાથ",
-    "e": "Hand"
+    "e": "Hand / Arm (colloquial)",
+    "p": "n"
   },
   {
     "g": "આંગળી",
-    "e": "Finger"
+    "e": "Finger",
+    "p": "n"
   },
   {
     "g": "છાતી",
-    "e": "Chest"
+    "e": "Chest",
+    "p": "n"
   },
   {
     "g": "પેટ",
-    "e": "Stomach"
+    "e": "Stomach",
+    "p": "n"
   },
   {
     "g": "પીઠ",
-    "e": "Back"
+    "e": "Back",
+    "p": "n"
   },
   {
     "g": "પગ",
-    "e": "Leg/Foot"
+    "e": "Leg / Foot",
+    "p": "n"
   },
   {
     "g": "ઘૂંટણ",
-    "e": "Knee"
+    "e": "Knee",
+    "p": "n"
   },
   {
     "g": "રક્ત",
-    "e": "Blood"
+    "e": "Blood",
+    "p": "n"
   },
   {
     "g": "હૃદય",
-    "e": "Heart"
+    "e": "Heart",
+    "p": "n"
   },
   {
     "g": "કૂતરો",
-    "e": "Dog"
+    "e": "Dog",
+    "p": "n"
   },
   {
     "g": "બિલાડી",
-    "e": "Cat"
+    "e": "Cat",
+    "p": "n"
   },
   {
     "g": "ગાય",
-    "e": "Cow"
+    "e": "Cow",
+    "p": "n"
   },
   {
     "g": "ભેંસ",
-    "e": "Buffalo"
+    "e": "Buffalo",
+    "p": "n"
   },
   {
     "g": "ઘોડો",
-    "e": "Horse"
+    "e": "Horse",
+    "p": "n"
   },
   {
     "g": "ધેંશ",
-    "e": "Sheep"
+    "e": "Sheep",
+    "p": "n"
   },
   {
     "g": "બકરી",
-    "e": "Goat"
+    "e": "Goat",
+    "p": "n"
   },
   {
     "g": "ડુક્કર",
-    "e": "Pig"
+    "e": "Pig",
+    "p": "n"
   },
   {
     "g": "કૂકડી",
-    "e": "Hen"
+    "e": "Hen / Chicken",
+    "p": "n"
   },
   {
     "g": "મોર",
-    "e": "Peacock"
+    "e": "Peacock / Peafowl",
+    "p": "n"
   },
   {
     "g": "કબૂતર",
-    "e": "Pigeon"
+    "e": "Pigeon / Dove",
+    "p": "n"
   },
   {
     "g": "ગરૂડ",
-    "e": "Eagle"
+    "e": "Eagle",
+    "p": "n"
   },
   {
     "g": "માછલી",
-    "e": "Fish"
+    "e": "Fish (animal) / Fish (food)",
+    "p": "n"
   },
   {
     "g": "વાઘ",
-    "e": "Tiger"
+    "e": "Tiger",
+    "p": "n"
   },
   {
     "g": "સિંહ",
-    "e": "Lion"
+    "e": "Lion",
+    "p": "n"
   },
   {
     "g": "હાથી",
-    "e": "Elephant"
+    "e": "Elephant",
+    "p": "n"
   },
   {
     "g": "ઉંટ",
-    "e": "Camel"
+    "e": "Camel",
+    "p": "n"
   },
   {
     "g": "રીછ",
-    "e": "Bear"
+    "e": "Bear",
+    "p": "n"
   },
   {
     "g": "લુમડી",
-    "e": "Fox"
+    "e": "Fox",
+    "p": "n"
   },
   {
     "g": "સસલું",
-    "e": "Rabbit"
+    "e": "Rabbit",
+    "p": "n"
   },
   {
     "g": "દરવાજો",
-    "e": "Door"
+    "e": "Door",
+    "p": "n"
   },
   {
     "g": "બારી",
-    "e": "Window"
+    "e": "Window",
+    "p": "n"
   },
   {
     "g": "ભીંત",
-    "e": "Wall"
+    "e": "Wall",
+    "p": "n"
   },
   {
     "g": "છત",
-    "e": "Roof/Ceiling"
+    "e": "Roof/Ceiling",
+    "p": "n"
   },
   {
     "g": "ફરશ",
-    "e": "Floor"
+    "e": "Floor",
+    "p": "n"
   },
   {
     "g": "ખુરશી",
-    "e": "Chair"
+    "e": "Chair",
+    "p": "n"
   },
   {
     "g": "મેજ",
-    "e": "Table"
+    "e": "Table",
+    "p": "n"
   },
   {
     "g": "પથારી",
-    "e": "Bed"
+    "e": "Bed",
+    "p": "n"
   },
   {
     "g": "આરસો",
-    "e": "Mirror"
+    "e": "Mirror",
+    "p": "n"
   },
   {
     "g": "દિવો",
-    "e": "Lamp"
+    "e": "Lamp / Diya",
+    "p": "n"
   },
   {
     "g": "બલ્બ",
-    "e": "Bulb"
+    "e": "Bulb",
+    "p": "n"
   },
   {
     "g": "પંખો",
-    "e": "Fan"
+    "e": "Fan / Hand-fan",
+    "p": "n"
   },
   {
     "g": "ઘડિયાળ",
-    "e": "Clock"
+    "e": "Clock",
+    "p": "n"
   },
   {
     "g": "ચાવી",
-    "e": "Key"
+    "e": "Key",
+    "p": "n"
   },
   {
     "g": "તાળું",
-    "e": "Lock"
+    "e": "Lock",
+    "p": "n"
   },
   {
     "g": "થેલી",
-    "e": "Bag"
+    "e": "Bag",
+    "p": "n"
   },
   {
     "g": "કિતાબ",
-    "e": "Book"
+    "e": "Book",
+    "p": "n"
   },
   {
     "g": "ખાતું",
-    "e": "Notebook/Account"
+    "e": "Notebook/Account",
+    "p": "n"
   },
   {
     "g": "પેન",
-    "e": "Pen"
+    "e": "Pen",
+    "p": "n"
   },
   {
     "g": "પેન્સિલ",
-    "e": "Pencil"
+    "e": "Pencil",
+    "p": "n"
   },
   {
     "g": "રબર",
-    "e": "Eraser"
+    "e": "Eraser",
+    "p": "n"
   },
   {
     "g": "પાટીયું",
-    "e": "Slate/Board"
+    "e": "Slate/Board",
+    "p": "n"
   },
   {
     "g": "નકશો",
-    "e": "Map"
+    "e": "Map",
+    "p": "n"
   },
   {
     "g": "કમ્પ્યુટર",
-    "e": "Computer"
+    "e": "Computer / PC",
+    "p": "n"
   },
   {
     "g": "મોબાઈલ",
-    "e": "Mobile phone"
+    "e": "Mobile phone / Cell phone",
+    "p": "n"
   },
   {
     "g": "ચાર્જર",
-    "e": "Charger"
+    "e": "Charger",
+    "p": "n"
   },
   {
     "g": "ટોર્ચ",
-    "e": "Torch"
+    "e": "Torch",
+    "p": "n"
   },
   {
     "g": "બાટલી",
-    "e": "Bottle"
+    "e": "Bottle",
+    "p": "n"
   },
   {
     "g": "થાળી",
-    "e": "Plate"
+    "e": "Plate",
+    "p": "n"
   },
   {
     "g": "વાટકી",
-    "e": "Bowl"
+    "e": "Bowl",
+    "p": "n"
   },
   {
     "g": "ચમચી",
-    "e": "Spoon"
+    "e": "Spoon",
+    "p": "n"
   },
   {
     "g": "કાંટો",
-    "e": "Fork"
+    "e": "Fork",
+    "p": "n"
   },
   {
     "g": "છરી",
-    "e": "Knife"
+    "e": "Knife",
+    "p": "n"
   },
   {
     "g": "ભાંડો",
-    "e": "Utensil"
+    "e": "Utensil",
+    "p": "n"
   },
   {
     "g": "હંડો",
-    "e": "Pot"
+    "e": "Pot",
+    "p": "n"
   },
   {
     "g": "તવા",
-    "e": "Griddle"
+    "e": "Griddle",
+    "p": "n"
   },
   {
     "g": "કેટલી",
-    "e": "Kettle"
+    "e": "Kettle",
+    "p": "n"
   },
   {
     "g": "કપડા",
-    "e": "Clothes"
+    "e": "Clothes",
+    "p": "n"
   },
   {
     "g": "શર્ટ",
-    "e": "Shirt"
+    "e": "Shirt",
+    "p": "n"
   },
   {
     "g": "પતલૂન",
-    "e": "Trousers"
+    "e": "Trousers",
+    "p": "n"
   },
   {
     "g": "પગેરું",
-    "e": "Footwear"
+    "e": "Footwear / Shoes",
+    "p": "n"
   },
   {
     "g": "જુતા",
-    "e": "Shoes"
+    "e": "Shoes / Footwear",
+    "p": "n"
   },
   {
     "g": "ચંપલ",
-    "e": "Sandals"
+    "e": "Sandals / Slippers",
+    "p": "n"
   },
   {
     "g": "ટોપી",
-    "e": "Cap"
+    "e": "Cap",
+    "p": "n"
   },
   {
     "g": "સાડી",
-    "e": "Saree"
+    "e": "Saree",
+    "p": "n"
   },
   {
     "g": "ઘાઘરા",
-    "e": "Skirt"
+    "e": "Skirt",
+    "p": "n"
   },
   {
     "g": "દુપટ્ટો",
-    "e": "Scarf"
+    "e": "Scarf",
+    "p": "n"
   },
   {
     "g": "કોટ",
-    "e": "Coat"
+    "e": "Coat",
+    "p": "n"
   },
   {
     "g": "મંદિર",
-    "e": "Temple"
+    "e": "Temple",
+    "p": "n"
   },
   {
     "g": "મસ્જિદ",
-    "e": "Mosque"
+    "e": "Mosque",
+    "p": "n"
   },
   {
     "g": "ચર્ચ",
-    "e": "Church"
+    "e": "Church",
+    "p": "n"
   },
   {
     "g": "હોસ્પિટલ",
-    "e": "Hospital"
+    "e": "Hospital",
+    "p": "n"
   },
   {
     "g": "હોટેલ",
-    "e": "Hotel"
+    "e": "Hotel",
+    "p": "n"
   },
   {
     "g": "રેસ્ટોરન્ટ",
-    "e": "Restaurant"
+    "e": "Restaurant",
+    "p": "n"
   },
   {
     "g": "સ્ટેશન",
-    "e": "Station"
+    "e": "Station",
+    "p": "n"
   },
   {
     "g": "વિમાનમથક",
-    "e": "Airport"
+    "e": "Airport",
+    "p": "n"
   },
   {
     "g": "બગીચો",
-    "e": "Garden"
+    "e": "Garden",
+    "p": "n"
   },
   {
     "g": "રમણિય ઉદ્યાન",
-    "e": "Amusement park"
+    "e": "Amusement park",
+    "p": "n"
   },
   {
     "g": "ગ્રંથાલય",
-    "e": "Library"
+    "e": "Library",
+    "p": "n"
   },
   {
     "g": "સિનેમા",
-    "e": "Cinema"
+    "e": "Cinema",
+    "p": "n"
   },
   {
     "g": "બસ",
-    "e": "Bus"
+    "e": "Bus",
+    "p": "n"
   },
   {
     "g": "ટ્રેન",
-    "e": "Train"
+    "e": "Train",
+    "p": "n"
   },
   {
     "g": "વિમાન",
-    "e": "Airplane"
+    "e": "Airplane",
+    "p": "n"
   },
   {
     "g": "સાયકલ",
-    "e": "Bicycle"
+    "e": "Bicycle",
+    "p": "n"
   },
   {
     "g": "કાર",
-    "e": "Car"
+    "e": "Car",
+    "p": "n"
   },
   {
     "g": "ટેક્સી",
-    "e": "Taxi"
+    "e": "Taxi",
+    "p": "n"
   },
   {
     "g": "બંદર",
-    "e": "Port"
+    "e": "Port",
+    "p": "n"
   },
   {
     "g": "જવું",
-    "e": "To go"
+    "e": "To go",
+    "p": "v"
   },
   {
     "g": "આવવું",
-    "e": "To come"
+    "e": "To come",
+    "p": "v"
   },
   {
     "g": "ખાવું",
-    "e": "To eat"
+    "e": "To eat",
+    "p": "v"
   },
   {
     "g": "પીવું",
-    "e": "To drink"
+    "e": "To drink",
+    "p": "v"
   },
   {
     "g": "કરવું",
-    "e": "To do"
+    "e": "To do",
+    "p": "v"
   },
   {
     "g": "કહેવું",
-    "e": "To say"
+    "e": "To say",
+    "p": "v"
   },
   {
     "g": "આપવું",
-    "e": "To give"
+    "e": "To give",
+    "p": "v"
   },
   {
     "g": "લેવું",
-    "e": "To take"
+    "e": "To take",
+    "p": "v"
   },
   {
     "g": "જોવું",
-    "e": "To see"
+    "e": "To see",
+    "p": "v"
   },
   {
     "g": "રહેવું",
-    "e": "To live/stay"
+    "e": "To live/stay",
+    "p": "v"
   },
   {
     "g": "લખવું",
-    "e": "To write"
+    "e": "To write",
+    "p": "v"
   },
   {
     "g": "વાંચવું",
-    "e": "To read"
+    "e": "To read",
+    "p": "v"
   },
   {
     "g": "રમવું",
-    "e": "To play"
+    "e": "To play",
+    "p": "v"
   },
   {
     "g": "શીખવું",
-    "e": "To learn"
+    "e": "To learn",
+    "p": "v"
   },
   {
     "g": "સમજવું",
-    "e": "To understand"
+    "e": "To understand",
+    "p": "v"
   },
   {
     "g": "વિચારવું",
-    "e": "To think"
+    "e": "To think",
+    "p": "v"
   },
   {
     "g": "બનાવવું",
-    "e": "To make"
+    "e": "To make",
+    "p": "v"
   },
   {
     "g": "ખરીદવું",
-    "e": "To buy"
+    "e": "To buy",
+    "p": "v"
   },
   {
     "g": "વેચવું",
-    "e": "To sell"
+    "e": "To sell",
+    "p": "v"
   },
   {
     "g": "ચાલવું",
-    "e": "To walk"
+    "e": "To walk",
+    "p": "v"
   },
   {
     "g": "દોડવું",
-    "e": "To run"
+    "e": "To run",
+    "p": "v"
   },
   {
     "g": "બેસવું",
-    "e": "To sit"
+    "e": "To sit",
+    "p": "v"
   },
   {
     "g": "ઉઠવું",
-    "e": "To get up"
+    "e": "To get up",
+    "p": "v"
   },
   {
     "g": "સૂવું",
-    "e": "To sleep"
+    "e": "To sleep",
+    "p": "v"
   },
   {
     "g": "બોલવું",
-    "e": "To speak"
+    "e": "To speak",
+    "p": "v"
   },
   {
     "g": "સાંભળવું",
-    "e": "To listen"
+    "e": "To listen",
+    "p": "v"
   },
   {
     "g": "પહોંચવું",
-    "e": "To arrive"
+    "e": "To arrive",
+    "p": "v"
   },
   {
     "g": "રહે જવું",
-    "e": "To remain"
+    "e": "To remain",
+    "p": "v"
   },
   {
     "g": "ધોવું",
-    "e": "To wash"
+    "e": "To wash",
+    "p": "v"
   },
   {
     "g": "રસોઈ કરવી",
-    "e": "To cook"
+    "e": "To cook",
+    "p": "v"
   },
   {
     "g": "સફાઈ કરવી",
-    "e": "To clean"
+    "e": "To clean",
+    "p": "v"
   },
   {
     "g": "મદદ કરવી",
-    "e": "To help"
+    "e": "To help",
+    "p": "v"
   },
   {
     "g": "પ્રાર્થના કરવી",
-    "e": "To pray"
+    "e": "To pray",
+    "p": "v"
   },
   {
     "g": "મોટું",
-    "e": "Big"
+    "e": "Big / Large",
+    "p": "adj"
   },
   {
     "g": "નાનું",
-    "e": "Small"
+    "e": "Small / Little",
+    "p": "adj"
   },
   {
     "g": "લંબુ",
-    "e": "Long"
+    "e": "Long",
+    "p": "adj"
   },
   {
     "g": "ટૂંકું",
-    "e": "Short"
+    "e": "Short",
+    "p": "adj"
   },
   {
     "g": "ઉંચું",
-    "e": "Tall/High"
+    "e": "Tall/High",
+    "p": "adj"
   },
   {
     "g": "નીચું",
-    "e": "Low"
+    "e": "Low",
+    "p": "adj"
   },
   {
     "g": "સારું",
-    "e": "Good"
+    "e": "Good",
+    "p": "adj"
   },
   {
     "g": "ખરાબ",
-    "e": "Bad"
+    "e": "Bad",
+    "p": "adj"
   },
   {
     "g": "ગરમ",
-    "e": "Hot"
+    "e": "Hot / Warm",
+    "p": "adj"
   },
   {
     "g": "ઠંડું",
-    "e": "Cold"
+    "e": "Cold / Cool",
+    "p": "adj"
   },
   {
     "g": "ખાટું",
-    "e": "Sour"
+    "e": "Sour",
+    "p": "adj"
   },
   {
     "g": "તીખું",
-    "e": "Spicy"
+    "e": "Spicy",
+    "p": "adj"
   },
   {
     "g": "ખરું",
-    "e": "True"
+    "e": "True / Genuine",
+    "p": "n"
   },
   {
     "g": "ખોટું",
-    "e": "False/Wrong"
+    "e": "False / Wrong",
+    "p": "adj"
   },
   {
     "g": "સુંદર",
-    "e": "Beautiful"
+    "e": "Beautiful",
+    "p": "adj"
   },
   {
     "g": "ભદ્દું",
-    "e": "Ugly"
+    "e": "Ugly",
+    "p": "adj"
   },
   {
     "g": "મહંગું",
-    "e": "Expensive"
+    "e": "Expensive",
+    "p": "adj"
   },
   {
     "g": "સસ્તુ",
-    "e": "Cheap"
+    "e": "Cheap",
+    "p": "adj"
   },
   {
     "g": "નવું",
-    "e": "New"
+    "e": "New",
+    "p": "v"
   },
   {
     "g": "જૂનું",
-    "e": "Old"
+    "e": "Old",
+    "p": "adj"
   },
   {
     "g": "ભારે",
-    "e": "Heavy"
+    "e": "Heavy",
+    "p": "adj"
   },
   {
     "g": "હલકું",
-    "e": "Light (weight)"
+    "e": "Light / weight",
+    "p": "adj"
   },
   {
     "g": "શાંત",
-    "e": "Quiet/Calm"
+    "e": "Quiet/Calm",
+    "p": "adj"
   },
   {
     "g": "ગંદુ",
-    "e": "Dirty"
+    "e": "Dirty",
+    "p": "adj"
   },
   {
     "g": "સાફ",
-    "e": "Clean"
+    "e": "Clean",
+    "p": "adj"
   },
   {
     "g": "વર્ષ",
-    "e": "Year"
+    "e": "Year",
+    "p": "n"
   },
   {
     "g": "મહિનો",
-    "e": "Month"
+    "e": "Month",
+    "p": "n"
   },
   {
     "g": "અઠવાડિયું",
-    "e": "Week"
+    "e": "Week",
+    "p": "n"
   },
   {
     "g": "દિવસ",
-    "e": "Day"
+    "e": "Day",
+    "p": "n"
   },
   {
     "g": "ઘંટો",
-    "e": "Hour"
+    "e": "Hour",
+    "p": "n"
   },
   {
     "g": "મિનિટ",
-    "e": "Minute"
+    "e": "Minute",
+    "p": "n"
   },
   {
     "g": "સેકંડ",
-    "e": "Second"
+    "e": "Second",
+    "p": "n"
   },
   {
     "g": "વજન",
-    "e": "Weight"
+    "e": "Weight",
+    "p": "n"
   },
   {
     "g": "દૂર",
-    "e": "Far"
+    "e": "Far",
+    "p": "n"
   },
   {
     "g": "નજીક",
-    "e": "Near"
+    "e": "Near",
+    "p": "n"
   },
   {
     "g": "મધ્ય",
-    "e": "Middle"
+    "e": "Middle",
+    "p": "n"
   },
   {
     "g": "અને",
-    "e": "And"
+    "e": "And",
+    "p": "conj"
   },
   {
     "g": "પરંતુ",
-    "e": "But"
+    "e": "But",
+    "p": "conj"
   },
   {
     "g": "અથવા",
-    "e": "Or"
+    "e": "Or",
+    "p": "conj"
   },
   {
     "g": "કારણ કે",
-    "e": "Because"
+    "e": "Because",
+    "p": "n"
   },
   {
     "g": "જો",
-    "e": "If"
+    "e": "If",
+    "p": "conj"
   },
   {
     "g": "તેથી",
-    "e": "Therefore"
+    "e": "Therefore",
+    "p": "conj"
   },
   {
     "g": "હાલાંકિ",
-    "e": "Although"
+    "e": "Although",
+    "p": "conj"
   },
   {
     "g": "દુખાવો",
-    "e": "Pain"
+    "e": "Pain",
+    "p": "n"
   },
   {
     "g": "તબિયત",
-    "e": "Health/Condition"
+    "e": "Health/Condition",
+    "p": "n"
   },
   {
     "g": "ખાંસી",
-    "e": "Cough"
+    "e": "Cough",
+    "p": "n"
   },
   {
     "g": "તાવ",
-    "e": "Fever"
+    "e": "Fever",
+    "p": "n"
   },
   {
     "g": "દવા",
-    "e": "Medicine"
+    "e": "Medicine",
+    "p": "n"
   },
   {
     "g": "ડોકટર",
-    "e": "Doctor"
+    "e": "Doctor",
+    "p": "n"
   },
   {
     "g": "હાસ્ય",
-    "e": "Laughter"
+    "e": "Laughter",
+    "p": "n"
   },
   {
     "g": "આનંદ",
-    "e": "Joy"
+    "e": "Joy",
+    "p": "n"
   },
   {
     "g": "દુઃખ",
-    "e": "Sorrow"
+    "e": "Sorrow",
+    "p": "n"
   },
   {
     "g": "ક્રોધ",
-    "e": "Anger"
+    "e": "Anger",
+    "p": "n"
   },
   {
     "g": "ભય",
-    "e": "Fear"
+    "e": "Fear",
+    "p": "n"
   },
   {
     "g": "પ્રેમ",
-    "e": "Love"
+    "e": "Love",
+    "p": "n"
   },
   {
     "g": "મૈત્રી",
-    "e": "Friendship"
+    "e": "Friendship",
+    "p": "n"
   },
   {
     "g": "વાવાઝોડું",
-    "e": "Storm"
+    "e": "Storm",
+    "p": "n"
   },
   {
     "g": "ઇન્દ્રધનુષ",
-    "e": "Rainbow"
+    "e": "Rainbow",
+    "p": "n"
   },
   {
     "g": "વીજળી",
-    "e": "Lightning/Electricity"
+    "e": "Lightning/Electricity",
+    "p": "n"
   },
   {
     "g": "ગરમી",
-    "e": "Heat"
+    "e": "Heat",
+    "p": "n"
   },
   {
     "g": "ઠંડી",
-    "e": "Cold (weather)"
+    "e": "Cold / weather",
+    "p": "n"
   },
   {
     "g": "ભેજ",
-    "e": "Humidity"
+    "e": "Humidity",
+    "p": "n"
   },
   {
     "g": "ધુમ્મસ",
-    "e": "Fog"
+    "e": "Fog",
+    "p": "n"
   },
   {
     "g": "નોકરી",
-    "e": "Job"
+    "e": "Job",
+    "p": "n"
   },
   {
     "g": "વ્યવસાય",
-    "e": "Business"
+    "e": "Business",
+    "p": "n"
   },
   {
     "g": "ઓફિસ",
-    "e": "Office"
+    "e": "Office",
+    "p": "n"
   },
   {
     "g": "મજૂરી",
-    "e": "Labor"
+    "e": "Labor",
+    "p": "n"
   },
   {
     "g": "શિક્ષક",
-    "e": "Teacher"
+    "e": "Teacher",
+    "p": "n"
   },
   {
     "g": "વિદ્યાર્થી",
-    "e": "Student"
+    "e": "Student",
+    "p": "n"
   },
   {
     "g": "વિદ્યાલય",
-    "e": "School"
+    "e": "School / Educational institute",
+    "p": "n"
   },
   {
     "g": "વિદ્યાપીઠ",
-    "e": "University"
+    "e": "University / Institute",
+    "p": "n"
   },
   {
     "g": "વિષય",
-    "e": "Subject"
+    "e": "Subject",
+    "p": "n"
   },
   {
     "g": "પરીક્ષા",
-    "e": "Exam"
+    "e": "Exam",
+    "p": "n"
   },
   {
     "g": "અંક",
-    "e": "Marks/Points"
+    "e": "Marks/Points",
+    "p": "n"
   },
   {
     "g": "અગિયાર",
-    "e": "Eleven"
+    "e": "Eleven",
+    "p": "num"
   },
   {
     "g": "બાર",
-    "e": "Twelve"
+    "e": "Twelve",
+    "p": "num"
   },
   {
     "g": "તેેર",
-    "e": "Thirteen"
+    "e": "Thirteen",
+    "p": "num"
   },
   {
     "g": "ચૌદ",
-    "e": "Fourteen"
+    "e": "Fourteen",
+    "p": "num"
   },
   {
     "g": "પંદર",
-    "e": "Fifteen"
+    "e": "Fifteen",
+    "p": "num"
   },
   {
     "g": "સોળ",
-    "e": "Sixteen"
+    "e": "Sixteen",
+    "p": "num"
   },
   {
     "g": "સત્તર",
-    "e": "Seventeen"
+    "e": "Seventeen",
+    "p": "num"
   },
   {
     "g": "અઢાર",
-    "e": "Eighteen"
+    "e": "Eighteen",
+    "p": "num"
   },
   {
     "g": "ઓગણીસ",
-    "e": "Nineteen"
+    "e": "Nineteen",
+    "p": "num"
   },
   {
     "g": "વીસ",
-    "e": "Twenty"
+    "e": "Twenty",
+    "p": "num"
   },
   {
     "g": "એકવીસ",
-    "e": "Twenty one"
+    "e": "Twenty one",
+    "p": "num"
   },
   {
     "g": "બાવીસ",
-    "e": "Twenty two"
+    "e": "Twenty two",
+    "p": "num"
   },
   {
     "g": "તેવીસ",
-    "e": "Twenty three"
+    "e": "Twenty three",
+    "p": "num"
   },
   {
     "g": "ચોવીસ",
-    "e": "Twenty four"
+    "e": "Twenty four",
+    "p": "num"
   },
   {
     "g": "પંચવીસ",
-    "e": "Twenty five"
+    "e": "Twenty five",
+    "p": "num"
   },
   {
     "g": "છવીસ",
-    "e": "Twenty six"
+    "e": "Twenty six",
+    "p": "num"
   },
   {
     "g": "સત્તાવીસ",
-    "e": "Twenty seven"
+    "e": "Twenty seven",
+    "p": "num"
   },
   {
     "g": "અઠ્ઠાવીસ",
-    "e": "Twenty eight"
+    "e": "Twenty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણત્રીસ",
-    "e": "Twenty nine"
+    "e": "Twenty nine",
+    "p": "num"
   },
   {
     "g": "ત્રીસ",
-    "e": "Thirty"
+    "e": "Thirty",
+    "p": "num"
   },
   {
     "g": "એકત્રીસ",
-    "e": "Thirty one"
+    "e": "Thirty one",
+    "p": "num"
   },
   {
     "g": "બત્રીસ",
-    "e": "Thirty two"
+    "e": "Thirty two",
+    "p": "num"
   },
   {
     "g": "તેત્રીસ",
-    "e": "Thirty three"
+    "e": "Thirty three",
+    "p": "num"
   },
   {
     "g": "ચોત્રીસ",
-    "e": "Thirty four"
+    "e": "Thirty four",
+    "p": "num"
   },
   {
     "g": "પંત્રિસ",
-    "e": "Thirty five"
+    "e": "Thirty five",
+    "p": "num"
   },
   {
     "g": "છત્રીસ",
-    "e": "Thirty six"
+    "e": "Thirty six",
+    "p": "num"
   },
   {
     "g": "સડત્રીસ",
-    "e": "Thirty seven"
+    "e": "Thirty seven",
+    "p": "num"
   },
   {
     "g": "અડત્રીસ",
-    "e": "Thirty eight"
+    "e": "Thirty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણચાલીસ",
-    "e": "Thirty nine"
+    "e": "Thirty nine",
+    "p": "num"
   },
   {
     "g": "ચાલીસ",
-    "e": "Forty"
+    "e": "Forty",
+    "p": "num"
   },
   {
     "g": "એકતાલીસ",
-    "e": "Forty one"
+    "e": "Forty one",
+    "p": "num"
   },
   {
     "g": "બેતાલીસ",
-    "e": "Forty two"
+    "e": "Forty two",
+    "p": "num"
   },
   {
     "g": "ત્રેતાલીસ",
-    "e": "Forty three"
+    "e": "Forty three",
+    "p": "num"
   },
   {
     "g": "ચુમ્માલીસ",
-    "e": "Forty four"
+    "e": "Forty four",
+    "p": "num"
   },
   {
     "g": "પિસ્તાલીસ",
-    "e": "Forty five"
+    "e": "Forty five",
+    "p": "num"
   },
   {
     "g": "છેતાલીસ",
-    "e": "Forty six"
+    "e": "Forty six",
+    "p": "num"
   },
   {
     "g": "સુડતાલીસ",
-    "e": "Forty seven"
+    "e": "Forty seven",
+    "p": "num"
   },
   {
     "g": "અડતાલીસ",
-    "e": "Forty eight"
+    "e": "Forty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણપચાસ",
-    "e": "Forty nine"
+    "e": "Forty nine",
+    "p": "num"
   },
   {
     "g": "પચાસ",
-    "e": "Fifty"
+    "e": "Fifty",
+    "p": "num"
   },
   {
     "g": "એકાવન",
-    "e": "Fifty one"
+    "e": "Fifty one",
+    "p": "num"
   },
   {
     "g": "બાવન",
-    "e": "Fifty two"
+    "e": "Fifty two",
+    "p": "num"
   },
   {
     "g": "ત્રેપન",
-    "e": "Fifty three"
+    "e": "Fifty three",
+    "p": "num"
   },
   {
     "g": "ચોપન",
-    "e": "Fifty four"
+    "e": "Fifty four / 54",
+    "p": "num"
   },
   {
     "g": "પંચાવન",
-    "e": "Fifty five"
+    "e": "Fifty five",
+    "p": "num"
   },
   {
     "g": "છપ્પન",
-    "e": "Fifty six"
+    "e": "Fifty six",
+    "p": "num"
   },
   {
     "g": "સત્તાવન",
-    "e": "Fifty seven"
+    "e": "Fifty seven",
+    "p": "num"
   },
   {
     "g": "અઠ્ઠાવન",
-    "e": "Fifty eight"
+    "e": "Fifty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણસાઠ",
-    "e": "Fifty nine"
+    "e": "Fifty nine",
+    "p": "num"
   },
   {
     "g": "સાઠ",
-    "e": "Sixty"
+    "e": "Sixty",
+    "p": "num"
   },
   {
     "g": "એકસઠ",
-    "e": "Sixty one"
+    "e": "Sixty one",
+    "p": "num"
   },
   {
     "g": "બેસઠ",
-    "e": "Sixty two"
+    "e": "Sixty two",
+    "p": "num"
   },
   {
     "g": "ત્રેસઠ",
-    "e": "Sixty three"
+    "e": "Sixty three",
+    "p": "num"
   },
   {
     "g": "ચોસઠ",
-    "e": "Sixty four"
+    "e": "Sixty four",
+    "p": "num"
   },
   {
     "g": "પાંસઠ",
-    "e": "Sixty five"
+    "e": "Sixty five",
+    "p": "num"
   },
   {
     "g": "છાસઠ",
-    "e": "Sixty six"
+    "e": "Sixty six",
+    "p": "num"
   },
   {
     "g": "સડસઠ",
-    "e": "Sixty seven"
+    "e": "Sixty seven",
+    "p": "num"
   },
   {
     "g": "અડસઠ",
-    "e": "Sixty eight"
+    "e": "Sixty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણસિત્તેર",
-    "e": "Sixty nine"
+    "e": "Sixty nine",
+    "p": "num"
   },
   {
     "g": "સિત્તેર",
-    "e": "Seventy"
+    "e": "Seventy",
+    "p": "num"
   },
   {
     "g": "એકોતેર",
-    "e": "Seventy one"
+    "e": "Seventy one",
+    "p": "num"
   },
   {
     "g": "બોતેર",
-    "e": "Seventy two"
+    "e": "Seventy two",
+    "p": "num"
   },
   {
     "g": "ત્રોતેર",
-    "e": "Seventy three"
+    "e": "Seventy three",
+    "p": "num"
   },
   {
     "g": "ચુમ્મોતેર",
-    "e": "Seventy four"
+    "e": "Seventy four",
+    "p": "num"
   },
   {
     "g": "પંચોતેર",
-    "e": "Seventy five"
+    "e": "Seventy five",
+    "p": "num"
   },
   {
     "g": "છોતેર",
-    "e": "Seventy six"
+    "e": "Seventy six",
+    "p": "num"
   },
   {
     "g": "સિત્તોતેર",
-    "e": "Seventy seven"
+    "e": "Seventy seven",
+    "p": "num"
   },
   {
     "g": "અઠોતેર",
-    "e": "Seventy eight"
+    "e": "Seventy eight",
+    "p": "num"
   },
   {
     "g": "ઓગણએંસી",
-    "e": "Seventy nine"
+    "e": "Seventy nine",
+    "p": "num"
   },
   {
     "g": "એંસી",
-    "e": "Eighty"
+    "e": "Eighty",
+    "p": "num"
   },
   {
     "g": "એક્યાસી",
-    "e": "Eighty one"
+    "e": "Eighty one",
+    "p": "num"
   },
   {
     "g": "બ્યાસી",
-    "e": "Eighty two"
+    "e": "Eighty two",
+    "p": "num"
   },
   {
     "g": "ત્ર્યાસી",
-    "e": "Eighty three"
+    "e": "Eighty three",
+    "p": "num"
   },
   {
     "g": "ચોર્યાસી",
-    "e": "Eighty four"
+    "e": "Eighty four",
+    "p": "num"
   },
   {
     "g": "પંચ્યાસી",
-    "e": "Eighty five"
+    "e": "Eighty five",
+    "p": "num"
   },
   {
     "g": "છ્યાસી",
-    "e": "Eighty six"
+    "e": "Eighty six",
+    "p": "num"
   },
   {
     "g": "સિત્યાસી",
-    "e": "Eighty seven"
+    "e": "Eighty seven",
+    "p": "num"
   },
   {
     "g": "અઠ્યાસી",
-    "e": "Eighty eight"
+    "e": "Eighty eight",
+    "p": "num"
   },
   {
     "g": "ઓગણનવ્વાણું",
-    "e": "Eighty nine"
+    "e": "Eighty nine",
+    "p": "num"
   },
   {
     "g": "નવ્વાણું",
-    "e": "Ninety"
+    "e": "Ninety",
+    "p": "num"
   },
   {
     "g": "એકાણું",
-    "e": "Ninety one"
+    "e": "Ninety one",
+    "p": "num"
   },
   {
     "g": "બાણું",
-    "e": "Ninety two"
+    "e": "Ninety two",
+    "p": "num"
   },
   {
     "g": "ત્રાણું",
-    "e": "Ninety three"
+    "e": "Ninety three",
+    "p": "num"
   },
   {
     "g": "ચોરાણું",
-    "e": "Ninety four"
+    "e": "Ninety four",
+    "p": "num"
   },
   {
     "g": "પંચાણું",
-    "e": "Ninety five"
+    "e": "Ninety five",
+    "p": "num"
   },
   {
     "g": "છાણું",
-    "e": "Ninety six"
+    "e": "Ninety six",
+    "p": "num"
   },
   {
     "g": "સિત્તાણું",
-    "e": "Ninety seven"
+    "e": "Ninety seven",
+    "p": "num"
   },
   {
     "g": "અઠ્ઠાણું",
-    "e": "Ninety eight"
+    "e": "Ninety eight",
+    "p": "num"
   },
   {
     "g": "નેવાણું",
-    "e": "Ninety nine"
+    "e": "Ninety nine",
+    "p": "num"
   },
   {
     "g": "સો",
-    "e": "Hundred"
+    "e": "Hundred",
+    "p": "num"
   },
   {
     "g": "પસંદ કરવું",
-    "e": "To choose"
+    "e": "To choose",
+    "p": "v"
   },
   {
     "g": "વિશ્વાસ રાખવો",
-    "e": "To trust"
+    "e": "To trust",
+    "p": "n"
   },
   {
     "g": "જોઇતું",
-    "e": "To need"
+    "e": "To need",
+    "p": "n"
   },
   {
     "g": "આશા રાખવી",
-    "e": "To hope"
+    "e": "To hope",
+    "p": "n"
   },
   {
     "g": "પ્રયત્ન કરવો",
-    "e": "To try"
+    "e": "To try",
+    "p": "n"
   },
   {
     "g": "સ્મરણ કરવું",
-    "e": "To remember"
+    "e": "To remember",
+    "p": "v"
   },
   {
     "g": "ભૂલવું",
-    "e": "To forget"
+    "e": "To forget",
+    "p": "v"
   },
   {
     "g": "વિશ્વાસ કરવો",
-    "e": "To believe"
+    "e": "To believe",
+    "p": "n"
   },
   {
     "g": "રાખવું",
-    "e": "To keep"
+    "e": "To keep",
+    "p": "v"
   },
   {
     "g": "ખોલવું",
-    "e": "To open"
+    "e": "To open",
+    "p": "v"
   },
   {
     "g": "બંધ કરવું",
-    "e": "To close"
+    "e": "To close",
+    "p": "v"
   },
   {
     "g": "પ્રારંભ કરવો",
-    "e": "To start"
+    "e": "To start",
+    "p": "n"
   },
   {
     "g": "પૂર્ણ કરવું",
-    "e": "To finish"
+    "e": "To finish",
+    "p": "v"
   },
   {
     "g": "જીતવું",
-    "e": "To win"
+    "e": "To win",
+    "p": "v"
   },
   {
     "g": "હારવું",
-    "e": "To lose"
+    "e": "To lose",
+    "p": "v"
   },
   {
     "g": "ચાલાવવું",
-    "e": "To drive"
+    "e": "To drive",
+    "p": "v"
   },
   {
     "g": "તરવું",
-    "e": "To swim"
+    "e": "To swim",
+    "p": "v"
   },
   {
     "g": "ઉડવું",
-    "e": "To fly"
+    "e": "To fly",
+    "p": "v"
   },
   {
     "g": "બાંધવું",
-    "e": "To build"
+    "e": "To build",
+    "p": "v"
   },
   {
     "g": "તોડવું",
-    "e": "To break"
+    "e": "To break",
+    "p": "v"
   },
   {
     "g": "સ્વસ્થ",
-    "e": "Healthy"
+    "e": "Healthy",
+    "p": "n"
   },
   {
     "g": "બીમાર",
-    "e": "Sick"
+    "e": "Sick",
+    "p": "n"
   },
   {
     "g": "સાહસિક",
-    "e": "Brave"
+    "e": "Brave",
+    "p": "n"
   },
   {
     "g": "ડરપોક",
-    "e": "Cowardly"
+    "e": "Cowardly",
+    "p": "n"
   },
   {
     "g": "શક્તિશાળી",
-    "e": "Strong"
+    "e": "Strong",
+    "p": "n"
   },
   {
     "g": "નબળું",
-    "e": "Weak"
+    "e": "Weak",
+    "p": "n"
   },
   {
     "g": "ધીમું",
-    "e": "Slow"
+    "e": "Slow / Gentle",
+    "p": "adv"
   },
   {
     "g": "સમૃદ્ધ",
-    "e": "Rich"
+    "e": "Rich",
+    "p": "n"
   },
   {
     "g": "ગરીબ",
-    "e": "Poor"
+    "e": "Poor / Needy",
+    "p": "n"
   },
   {
     "g": "પ્રખ્યાત",
-    "e": "Famous"
+    "e": "Famous",
+    "p": "n"
   },
   {
     "g": "અજાણ્યું",
-    "e": "Unknown"
+    "e": "Unknown",
+    "p": "n"
   },
   {
     "g": "ખુશ",
-    "e": "Happy"
+    "e": "Happy",
+    "p": "n"
   },
   {
     "g": "દુઃખી",
-    "e": "Sad"
+    "e": "Sad",
+    "p": "n"
   },
   {
     "g": "થકેલું",
-    "e": "Tired"
+    "e": "Tired",
+    "p": "n"
   },
   {
     "g": "ઉત્સાહી",
-    "e": "Excited"
+    "e": "Excited",
+    "p": "n"
   },
   {
     "g": "ખતરનાક",
-    "e": "Dangerous"
+    "e": "Dangerous",
+    "p": "n"
   },
   {
     "g": "સુરક્ષિત",
-    "e": "Safe"
+    "e": "Safe",
+    "p": "n"
   },
   {
     "g": "રસપ્રદ",
-    "e": "Interesting"
+    "e": "Interesting",
+    "p": "n"
   },
   {
     "g": "ચપાટી",
-    "e": "Chapati"
+    "e": "Chapati",
+    "p": "n"
   },
   {
     "g": "પરાઠા",
-    "e": "Paratha"
+    "e": "Paratha",
+    "p": "n"
   },
   {
     "g": "ખિચડી",
-    "e": "Khichdi"
+    "e": "Khichdi",
+    "p": "n"
   },
   {
     "g": "ખમણ",
-    "e": "Khaman"
+    "e": "Khaman",
+    "p": "n"
   },
   {
     "g": "ઢોકળા",
-    "e": "Dhokla"
+    "e": "Dhokla",
+    "p": "n"
   },
   {
     "g": "ફાફડા",
-    "e": "Fafda"
+    "e": "Fafda",
+    "p": "n"
   },
   {
     "g": "જલેબી",
-    "e": "Jalebi"
+    "e": "Jalebi",
+    "p": "n"
   },
   {
     "g": "ગાંઠિયા",
-    "e": "Ganthiya"
+    "e": "Ganthiya",
+    "p": "n"
   },
   {
     "g": "સેવ",
-    "e": "Sev"
+    "e": "Sev",
+    "p": "n"
   },
   {
     "g": "શ્રીખંડ",
-    "e": "Shrikhand"
+    "e": "Shrikhand",
+    "p": "n"
   },
   {
     "g": "ખીર",
-    "e": "Kheer"
+    "e": "Kheer",
+    "p": "n"
   },
   {
     "g": "હલવો",
-    "e": "Halwa"
+    "e": "Halwa",
+    "p": "n"
   },
   {
     "g": "આઇસ્ક્રીમ",
-    "e": "Ice cream"
+    "e": "Ice cream",
+    "p": "n"
   },
   {
     "g": "ચોકલેટ",
-    "e": "Chocolate"
+    "e": "Chocolate",
+    "p": "n"
   },
   {
     "g": "બિસ્કીટ",
-    "e": "Biscuit"
+    "e": "Biscuit / Cookie",
+    "p": "n"
   },
   {
     "g": "કેક",
-    "e": "Cake"
+    "e": "Cake / Sponge cake",
+    "p": "n"
   },
   {
     "g": "પપૈયું",
-    "e": "Papaya"
+    "e": "Papaya",
+    "p": "n"
   },
   {
     "g": "અનાનસ",
-    "e": "Pineapple"
+    "e": "Pineapple",
+    "p": "n"
   },
   {
     "g": "જામફળ",
-    "e": "Guava"
+    "e": "Guava",
+    "p": "n"
   },
   {
     "g": "સીટાફળ",
-    "e": "Custard apple"
+    "e": "Custard apple",
+    "p": "n"
   },
   {
     "g": "બોર",
-    "e": "Jujube"
+    "e": "Jujube",
+    "p": "n"
   },
   {
     "g": "ચીકુ",
-    "e": "Sapodilla"
+    "e": "Sapodilla",
+    "p": "n"
   },
   {
     "g": "જાંબુ",
-    "e": "Black plum"
+    "e": "Black plum",
+    "p": "n"
   },
   {
     "g": "કાજુ",
-    "e": "Cashew"
+    "e": "Cashew",
+    "p": "n"
   },
   {
     "g": "બદામ",
-    "e": "Almond"
+    "e": "Almond",
+    "p": "n"
   },
   {
     "g": "અખરોટ",
-    "e": "Walnut"
+    "e": "Walnut",
+    "p": "n"
   },
   {
     "g": "અંજીર",
-    "e": "Fig"
+    "e": "Fig",
+    "p": "n"
   },
   {
     "g": "ખજૂર",
-    "e": "Date"
+    "e": "Date",
+    "p": "n"
   },
   {
     "g": "સિંગદાણા",
-    "e": "Peanuts"
+    "e": "Peanuts",
+    "p": "n"
   },
   {
     "g": "કિસમિસ",
-    "e": "Raisins"
+    "e": "Raisins",
+    "p": "n"
   },
   {
     "g": "કઠોળ",
-    "e": "Legume"
+    "e": "Legume",
+    "p": "n"
   },
   {
     "g": "શિંગ",
-    "e": "Groundnut"
+    "e": "Groundnut",
+    "p": "n"
   },
   {
     "g": "કેરટ",
-    "e": "Carrot"
+    "e": "Carrot",
+    "p": "n"
   },
   {
     "g": "મૂળા",
-    "e": "Radish"
+    "e": "Radish",
+    "p": "n"
   },
   {
     "g": "શકરિયા",
-    "e": "Sweet potato"
+    "e": "Sweet potato",
+    "p": "n"
   },
   {
     "g": "કોલીફલાવર",
-    "e": "Cauliflower"
+    "e": "Cauliflower",
+    "p": "n"
   },
   {
     "g": "ફૂલકોબી",
-    "e": "Cauliflower"
+    "e": "Cauliflower",
+    "p": "n"
   },
   {
     "g": "કોબી",
-    "e": "Cabbage"
+    "e": "Cabbage",
+    "p": "n"
   },
   {
     "g": "સુરતી પાપડી",
-    "e": "Flat beans"
+    "e": "Flat beans",
+    "p": "n"
   },
   {
     "g": "વાલ",
-    "e": "Beans"
+    "e": "Hair / Fence",
+    "p": "n"
   },
   {
     "g": "મેથી",
-    "e": "Fenugreek"
+    "e": "Fenugreek",
+    "p": "n"
   },
   {
     "g": "ધાણા",
-    "e": "Coriander"
+    "e": "Coriander",
+    "p": "n"
   },
   {
     "g": "કોથમીર",
-    "e": "Cilantro"
+    "e": "Cilantro",
+    "p": "n"
   },
   {
     "g": "સોપ",
-    "e": "Fennel"
+    "e": "Fennel",
+    "p": "n"
   },
   {
     "g": "તુલસી",
-    "e": "Basil"
+    "e": "Basil",
+    "p": "n"
   },
   {
     "g": "પુદીનુ",
-    "e": "Mint"
+    "e": "Mint",
+    "p": "n"
   },
   {
     "g": "લીલાં મરચાં",
-    "e": "Green chili"
+    "e": "Green chili",
+    "p": "n"
   },
   {
     "g": "લાલ મરચાં",
-    "e": "Red chili"
+    "e": "Red chili",
+    "p": "n"
   },
   {
     "g": "કોળું",
-    "e": "Pumpkin"
+    "e": "Pumpkin / Squash",
+    "p": "n"
   },
   {
     "g": "દૂધી",
-    "e": "Bottle gourd"
+    "e": "Bottle gourd / Calabash",
+    "p": "n"
   },
   {
     "g": "કામદાર",
-    "e": "Worker"
+    "e": "Worker",
+    "p": "n"
   },
   {
     "g": "કિસાન",
-    "e": "Farmer"
+    "e": "Farmer",
+    "p": "n"
   },
   {
     "g": "વણિક",
-    "e": "Trader"
+    "e": "Trader",
+    "p": "n"
   },
   {
     "g": "દુકાનદાર",
-    "e": "Shopkeeper"
+    "e": "Shopkeeper",
+    "p": "n"
   },
   {
     "g": "લેખક",
-    "e": "Writer"
+    "e": "Writer",
+    "p": "n"
   },
   {
     "g": "કવિ",
-    "e": "Poet"
+    "e": "Poet",
+    "p": "n"
   },
   {
     "g": "ગાયક",
-    "e": "Singer"
+    "e": "Singer",
+    "p": "n"
   },
   {
     "g": "નર્તક",
-    "e": "Dancer"
+    "e": "Dancer",
+    "p": "n"
   },
   {
     "g": "અભિનેતા",
-    "e": "Actor"
+    "e": "Actor",
+    "p": "n"
   },
   {
     "g": "અભિનેત્રી",
-    "e": "Actress"
+    "e": "Actress",
+    "p": "n"
   },
   {
     "g": "ડ્રાઈવર",
-    "e": "Driver"
+    "e": "Driver",
+    "p": "n"
   },
   {
     "g": "માઝી",
-    "e": "Sailor"
+    "e": "Sailor",
+    "p": "n"
   },
   {
     "g": "પોલીસ",
-    "e": "Police"
+    "e": "Police",
+    "p": "n"
   },
   {
     "g": "સૈનિક",
-    "e": "Soldier"
+    "e": "Soldier",
+    "p": "n"
   },
   {
     "g": "નર્સ",
-    "e": "Nurse"
+    "e": "Nurse",
+    "p": "n"
   },
   {
     "g": "ઈજનેર",
-    "e": "Engineer"
+    "e": "Engineer",
+    "p": "n"
   },
   {
     "g": "વૈજ્ઞાનિક",
-    "e": "Scientist"
+    "e": "Scientist",
+    "p": "n"
   },
   {
     "g": "વકીલ",
-    "e": "Lawyer"
+    "e": "Lawyer",
+    "p": "n"
   },
   {
     "g": "ન્યાયાધીશ",
-    "e": "Judge"
+    "e": "Judge",
+    "p": "n"
   },
   {
     "g": "હથોડો",
-    "e": "Hammer"
+    "e": "Hammer",
+    "p": "n"
   },
   {
     "g": "આરી",
-    "e": "Saw"
+    "e": "Saw",
+    "p": "n"
   },
   {
     "g": "પાનસ",
-    "e": "Wrench"
+    "e": "Wrench",
+    "p": "n"
   },
   {
     "g": "પેચકસ",
-    "e": "Screwdriver"
+    "e": "Screwdriver",
+    "p": "n"
   },
   {
     "g": "સોય",
-    "e": "Needle"
+    "e": "Needle",
+    "p": "n"
   },
   {
     "g": "દોરો",
-    "e": "Thread"
+    "e": "Thread",
+    "p": "n"
   },
   {
     "g": "કાતર",
-    "e": "Scissors"
+    "e": "Scissors",
+    "p": "n"
   },
   {
     "g": "કુંડો",
-    "e": "Pitcher"
+    "e": "Pitcher",
+    "p": "n"
   },
   {
     "g": "ઘડો",
-    "e": "Clay pot"
+    "e": "Clay pot",
+    "p": "n"
   },
   {
     "g": "ચુલો",
-    "e": "Stove"
+    "e": "Stove / Hearth",
+    "p": "n"
   },
   {
     "g": "અંગીઠી",
-    "e": "Fireplace"
+    "e": "Fireplace",
+    "p": "n"
   },
   {
     "g": "તંદુર",
-    "e": "Tandoor"
+    "e": "Tandoor",
+    "p": "n"
   },
   {
     "g": "કુહાડી",
-    "e": "Axe"
+    "e": "Axe",
+    "p": "n"
   },
   {
     "g": "ફાવડો",
-    "e": "Shovel"
+    "e": "Shovel",
+    "p": "n"
   },
   {
     "g": "ખુરપી",
-    "e": "Hoe"
+    "e": "Hoe",
+    "p": "n"
   },
   {
     "g": "બળદ",
-    "e": "Bull"
+    "e": "Bull",
+    "p": "n"
   },
   {
     "g": "ઘેટું",
-    "e": "Sheep"
+    "e": "Sheep",
+    "p": "n"
   },
   {
     "g": "ગધેડો",
-    "e": "Donkey"
+    "e": "Donkey",
+    "p": "n"
   },
   {
     "g": "કૂકડો",
-    "e": "Rooster"
+    "e": "Rooster",
+    "p": "n"
   },
   {
     "g": "બતક",
-    "e": "Duck"
+    "e": "Duck",
+    "p": "n"
   },
   {
     "g": "હંસ",
-    "e": "Goose"
+    "e": "Goose",
+    "p": "n"
   },
   {
     "g": "કાચબો",
-    "e": "Turtle"
+    "e": "Turtle",
+    "p": "n"
   },
   {
     "g": "સાપ",
-    "e": "Snake"
+    "e": "Snake",
+    "p": "n"
   },
   {
     "g": "કરચલો",
-    "e": "Crocodile"
+    "e": "Crocodile",
+    "p": "n"
   },
   {
     "g": "વાંદરો",
-    "e": "Monkey"
+    "e": "Monkey",
+    "p": "n"
   },
   {
     "g": "ચીતો",
-    "e": "Leopard"
+    "e": "Leopard",
+    "p": "n"
   },
   {
     "g": "જિરાફ",
-    "e": "Giraffe"
+    "e": "Giraffe",
+    "p": "n"
   },
   {
     "g": "ઝીબ્રા",
-    "e": "Zebra"
+    "e": "Zebra",
+    "p": "n"
   },
   {
     "g": "ખિસકોલી",
-    "e": "Squirrel"
+    "e": "Squirrel",
+    "p": "n"
   },
   {
     "g": "ચમગાદર",
-    "e": "Bat"
+    "e": "Bat",
+    "p": "n"
   },
   {
     "g": "ડીંબ",
-    "e": "Frog"
+    "e": "Frog",
+    "p": "n"
   },
   {
     "g": "માખી",
-    "e": "Fly"
+    "e": "Fly",
+    "p": "n"
   },
   {
     "g": "મધમાખી",
-    "e": "Bee"
+    "e": "Bee",
+    "p": "n"
   },
   {
     "g": "સપનું",
-    "e": "Dream"
+    "e": "Dream",
+    "p": "n"
   },
   {
     "g": "વિચાર",
-    "e": "Thought"
+    "e": "Thought",
+    "p": "n"
   },
   {
     "g": "આશા",
-    "e": "Hope"
+    "e": "Hope",
+    "p": "n"
   },
   {
     "g": "ભરોસો",
-    "e": "Trust"
+    "e": "Trust",
+    "p": "n"
   },
   {
     "g": "પ્રેરણા",
-    "e": "Inspiration"
+    "e": "Inspiration",
+    "p": "n"
   },
   {
     "g": "શાંતિ",
-    "e": "Peace"
+    "e": "Peace",
+    "p": "n"
   },
   {
     "g": "સ્વતંત્રતા",
-    "e": "Freedom"
+    "e": "Freedom",
+    "p": "n"
   },
   {
     "g": "સમાનતા",
-    "e": "Equality"
+    "e": "Equality",
+    "p": "n"
   },
   {
     "g": "ન્યાય",
-    "e": "Justice"
+    "e": "Justice",
+    "p": "n"
   },
   {
     "g": "સત્ય",
-    "e": "Truth"
+    "e": "Truth",
+    "p": "n"
   },
   {
     "g": "મિત્રતા",
-    "e": "Friendship"
+    "e": "Friendship",
+    "p": "n"
   },
   {
     "g": "ઘૃણા",
-    "e": "Hate"
+    "e": "Hate",
+    "p": "n"
   },
   {
     "g": "સહનશીલતા",
-    "e": "Tolerance"
+    "e": "Tolerance",
+    "p": "n"
   },
   {
     "g": "કરુણા",
-    "e": "Compassion"
+    "e": "Compassion",
+    "p": "n"
   },
   {
     "g": "કૃતજ્ઞતા",
-    "e": "Gratitude"
+    "e": "Gratitude",
+    "p": "n"
   },
   {
     "g": "ભક્તિ",
-    "e": "Devotion"
+    "e": "Devotion",
+    "p": "n"
   },
   {
     "g": "સેવા",
-    "e": "Service"
+    "e": "Service",
+    "p": "n"
   },
   {
     "g": "સંસ્કૃતિ",
-    "e": "Culture"
+    "e": "Culture",
+    "p": "n"
   },
   {
     "g": "સાહસ",
-    "e": "Courage"
+    "e": "Courage",
+    "p": "n"
   },
   {
     "g": "ચકલી",
-    "e": "Sparrow"
+    "e": "Sparrow",
+    "p": "n"
   },
   {
     "g": "કાગડો",
-    "e": "Crow"
+    "e": "Crow",
+    "p": "n"
   },
   {
     "g": "તોતા",
-    "e": "Parrot"
+    "e": "Parrot",
+    "p": "n"
   },
   {
     "g": "કોયલ",
-    "e": "Cuckoo"
+    "e": "Koel (cuckoo bird) / Cuckoo",
+    "p": "n"
   },
   {
     "g": "ઘુવડ",
-    "e": "Owl"
+    "e": "Owl",
+    "p": "n"
   },
   {
     "g": "મૈના",
-    "e": "Myna"
+    "e": "Myna",
+    "p": "n"
   },
   {
     "g": "સરસ",
-    "e": "Crane"
+    "e": "Crane",
+    "p": "n"
   },
   {
     "g": "બગલો",
-    "e": "Egret/Heron"
+    "e": "Egret/Heron",
+    "p": "n"
   },
   {
     "g": "ગિધ",
-    "e": "Vulture"
+    "e": "Vulture",
+    "p": "n"
   },
   {
     "g": "રાજહંસ",
-    "e": "Swan"
+    "e": "Swan",
+    "p": "n"
   },
   {
     "g": "બટેર",
-    "e": "Quail"
+    "e": "Quail",
+    "p": "n"
   },
   {
     "g": "કિંગફિશર",
-    "e": "Kingfisher"
+    "e": "Kingfisher",
+    "p": "n"
   },
   {
     "g": "વ્હેલ",
-    "e": "Whale"
+    "e": "Whale",
+    "p": "n"
   },
   {
     "g": "ડોલ્ફિન",
-    "e": "Dolphin"
+    "e": "Dolphin",
+    "p": "n"
   },
   {
     "g": "શાર્ક",
-    "e": "Shark"
+    "e": "Shark",
+    "p": "n"
   },
   {
     "g": "જેલીફિશ",
-    "e": "Jellyfish"
+    "e": "Jellyfish",
+    "p": "n"
   },
   {
     "g": "ઓક્ટોપસ",
-    "e": "Octopus"
+    "e": "Octopus",
+    "p": "n"
   },
   {
     "g": "કેકડો",
-    "e": "Crab"
+    "e": "Crab",
+    "p": "n"
   },
   {
     "g": "ચીંગળી",
-    "e": "Shrimp"
+    "e": "Shrimp",
+    "p": "n"
   },
   {
     "g": "શંખ",
-    "e": "Conch"
+    "e": "Conch",
+    "p": "n"
   },
   {
     "g": "ઘોંઘો",
-    "e": "Snail"
+    "e": "Snail",
+    "p": "n"
   },
   {
     "g": "ચીંટી",
-    "e": "Ant"
+    "e": "Ant",
+    "p": "n"
   },
   {
     "g": "દીમક",
-    "e": "Termite"
+    "e": "Termite",
+    "p": "n"
   },
   {
     "g": "મચ્છર",
-    "e": "Mosquito"
+    "e": "Mosquito",
+    "p": "n"
   },
   {
     "g": "તિતલી",
-    "e": "Butterfly"
+    "e": "Butterfly",
+    "p": "n"
   },
   {
     "g": "ભમરો",
-    "e": "Bumblebee"
+    "e": "Bumblebee",
+    "p": "n"
   },
   {
     "g": "જૂં",
-    "e": "Louse"
+    "e": "Louse",
+    "p": "n"
   },
   {
     "g": "પીસુ",
-    "e": "Flea"
+    "e": "Flea",
+    "p": "n"
   },
   {
     "g": "મકડો",
-    "e": "Spider"
+    "e": "Spider",
+    "p": "n"
   },
   {
     "g": "જોનક",
-    "e": "Leech"
+    "e": "Leech",
+    "p": "n"
   },
   {
     "g": "વડ",
-    "e": "Banyan"
+    "e": "Banyan",
+    "p": "n"
   },
   {
     "g": "પિપળ",
-    "e": "Peepal"
+    "e": "Peepal",
+    "p": "n"
   },
   {
     "g": "નીમ",
-    "e": "Neem"
+    "e": "Neem",
+    "p": "n"
   },
   {
     "g": "આમળા",
-    "e": "Indian gooseberry"
+    "e": "Indian gooseberry",
+    "p": "n"
   },
   {
     "g": "અરંડો",
-    "e": "Castor"
+    "e": "Castor",
+    "p": "n"
   },
   {
     "g": "ચંદન",
-    "e": "Sandalwood"
+    "e": "Sandalwood",
+    "p": "n"
   },
   {
     "g": "તાડ",
-    "e": "Palm"
+    "e": "Palm",
+    "p": "n"
   },
   {
     "g": "આંબલી",
-    "e": "Tamarind"
+    "e": "Tamarind",
+    "p": "n"
   },
   {
     "g": "અશોક",
-    "e": "Ashoka tree"
+    "e": "Ashoka tree",
+    "p": "n"
   },
   {
     "g": "બોરડું",
-    "e": "Jujube tree"
+    "e": "Jujube tree",
+    "p": "n"
   },
   {
     "g": "રાઈ",
-    "e": "Mustard seed"
+    "e": "Mustard seed",
+    "p": "n"
   },
   {
     "g": "જીરું",
-    "e": "Cumin"
+    "e": "Cumin",
+    "p": "n"
   },
   {
     "g": "હળદર",
-    "e": "Turmeric"
+    "e": "Turmeric",
+    "p": "n"
   },
   {
     "g": "હિંગ",
-    "e": "Asafoetida"
+    "e": "Asafoetida",
+    "p": "n"
   },
   {
     "g": "તેજપાન",
-    "e": "Bay leaf"
+    "e": "Bay leaf",
+    "p": "n"
   },
   {
     "g": "લવિંગ",
-    "e": "Clove"
+    "e": "Clove",
+    "p": "n"
   },
   {
     "g": "દાલચીની",
-    "e": "Cinnamon"
+    "e": "Cinnamon",
+    "p": "n"
   },
   {
     "g": "એલચી",
-    "e": "Cardamom"
+    "e": "Cardamom",
+    "p": "n"
   },
   {
     "g": "જાયફળ",
-    "e": "Nutmeg"
+    "e": "Nutmeg",
+    "p": "n"
   },
   {
     "g": "જાવિત્રી",
-    "e": "Mace"
+    "e": "Mace",
+    "p": "n"
   },
   {
     "g": "તલ",
-    "e": "Sesame"
+    "e": "Sesame",
+    "p": "n"
   },
   {
     "g": "ખસખસ",
-    "e": "Poppy seeds"
+    "e": "Poppy seeds",
+    "p": "n"
   },
   {
     "g": "સુંઠ",
-    "e": "Dry ginger"
+    "e": "Dry ginger",
+    "p": "n"
   },
   {
     "g": "તુવેર",
-    "e": "Pigeon pea"
+    "e": "Pigeon pea",
+    "p": "n"
   },
   {
     "g": "ચણા",
-    "e": "Chickpeas"
+    "e": "Chickpeas",
+    "p": "n"
   },
   {
     "g": "મસૂર",
-    "e": "Red lentil"
+    "e": "Red lentil",
+    "p": "n"
   },
   {
     "g": "મૂંગ",
-    "e": "Green gram"
+    "e": "Green gram",
+    "p": "n"
   },
   {
     "g": "ઉડદ",
-    "e": "Black gram"
+    "e": "Black gram",
+    "p": "n"
   },
   {
     "g": "રાજમા",
-    "e": "Kidney beans"
+    "e": "Kidney beans",
+    "p": "n"
   },
   {
     "g": "ચોળી",
-    "e": "Black-eyed pea"
+    "e": "Black-eyed pea",
+    "p": "n"
   },
   {
     "g": "જવાર",
-    "e": "Sorghum"
+    "e": "Sorghum",
+    "p": "n"
   },
   {
     "g": "બાજરી",
-    "e": "Pearl millet"
+    "e": "Pearl millet",
+    "p": "n"
   },
   {
     "g": "નાચણી",
-    "e": "Finger millet"
+    "e": "Finger millet",
+    "p": "n"
   },
   {
     "g": "સામો",
-    "e": "Barnyard millet"
+    "e": "Barnyard millet",
+    "p": "n"
   },
   {
     "g": "કુકર",
-    "e": "Pressure cooker"
+    "e": "Pressure cooker",
+    "p": "n"
   },
   {
     "g": "તાપેલી",
-    "e": "Saucepan"
+    "e": "Saucepan",
+    "p": "n"
   },
   {
     "g": "છલણી",
-    "e": "Strainer"
+    "e": "Strainer",
+    "p": "n"
   },
   {
     "g": "ઘસણી",
-    "e": "Grater"
+    "e": "Grater",
+    "p": "n"
   },
   {
     "g": "વેલણ",
-    "e": "Rolling pin"
+    "e": "Rolling pin",
+    "p": "n"
   },
   {
     "g": "પાટલું",
-    "e": "Rolling board"
+    "e": "Rolling board",
+    "p": "n"
   },
   {
     "g": "ડબ્બો",
-    "e": "Container"
+    "e": "Container",
+    "p": "n"
   },
   {
     "g": "બરણું",
-    "e": "Jar"
+    "e": "Jar",
+    "p": "n"
   },
   {
     "g": "ગ્લાસ",
-    "e": "Glass"
+    "e": "Glass",
+    "p": "n"
   },
   {
     "g": "કપ",
-    "e": "Cup"
+    "e": "Cup",
+    "p": "n"
   },
   {
     "g": "ડોલ",
-    "e": "Bucket"
+    "e": "Bucket",
+    "p": "n"
   },
   {
     "g": "થર્મોસ",
-    "e": "Thermos"
+    "e": "Thermos",
+    "p": "n"
   },
   {
     "g": "વાસણ",
-    "e": "Utensil"
+    "e": "Utensil",
+    "p": "n"
   },
   {
     "g": "પટ્ટો",
-    "e": "Belt"
+    "e": "Belt",
+    "p": "n"
   },
   {
     "g": "મોજાં",
-    "e": "Socks"
+    "e": "Socks",
+    "p": "n"
   },
   {
     "g": "હાથમોજાં",
-    "e": "Gloves"
+    "e": "Gloves",
+    "p": "n"
   },
   {
     "g": "કુર્તા",
-    "e": "Kurta"
+    "e": "Kurta",
+    "p": "n"
   },
   {
     "g": "પાયજામા",
-    "e": "Pajamas"
+    "e": "Pajamas",
+    "p": "n"
   },
   {
     "g": "શેરવાણી",
-    "e": "Sherwani"
+    "e": "Sherwani",
+    "p": "n"
   },
   {
     "g": "લેહેંગો",
-    "e": "Lehenga"
+    "e": "Lehenga",
+    "p": "n"
   },
   {
     "g": "ઓઢણી",
-    "e": "Veil/Shawl"
+    "e": "Veil/Shawl",
+    "p": "n"
   },
   {
     "g": "પગડી",
-    "e": "Turban"
+    "e": "Turban",
+    "p": "n"
   },
   {
     "g": "આંગઠી",
-    "e": "Ring"
+    "e": "Ring",
+    "p": "n"
   },
   {
     "g": "ચૂડી",
-    "e": "Bangle"
+    "e": "Bangle",
+    "p": "n"
   },
   {
     "g": "હાર",
-    "e": "Necklace"
+    "e": "Necklace",
+    "p": "n"
   },
   {
     "g": "નથ",
-    "e": "Nose ring"
+    "e": "Nose ring",
+    "p": "n"
   },
   {
     "g": "પાયલ",
-    "e": "Anklet"
+    "e": "Anklet",
+    "p": "n"
   },
   {
     "g": "બિન્દી",
-    "e": "Bindi"
+    "e": "Bindi",
+    "p": "n"
   },
   {
     "g": "ટિકલી",
-    "e": "Forehead ornament"
+    "e": "Forehead ornament",
+    "p": "n"
   },
   {
     "g": "બેન્કર",
-    "e": "Banker"
+    "e": "Banker",
+    "p": "n"
   },
   {
     "g": "હિસાબી",
-    "e": "Accountant"
+    "e": "Accountant",
+    "p": "n"
   },
   {
     "g": "પ્રોફેસર",
-    "e": "Professor"
+    "e": "Professor",
+    "p": "n"
   },
   {
     "g": "શોધક",
-    "e": "Researcher"
+    "e": "Researcher",
+    "p": "n"
   },
   {
     "g": "સ્થાપત્યકાર",
-    "e": "Architect"
+    "e": "Architect",
+    "p": "n"
   },
   {
     "g": "ડિઝાઇનર",
-    "e": "Designer"
+    "e": "Designer",
+    "p": "n"
   },
   {
     "g": "કારગર",
-    "e": "Artisan"
+    "e": "Artisan",
+    "p": "n"
   },
   {
     "g": "સુથાર",
-    "e": "Carpenter"
+    "e": "Carpenter",
+    "p": "n"
   },
   {
     "g": "રાજમિસ્ત્રી",
-    "e": "Mason"
+    "e": "Mason",
+    "p": "n"
   },
   {
     "g": "પ્લંબર",
-    "e": "Plumber"
+    "e": "Plumber",
+    "p": "n"
   },
   {
     "g": "ઇલેક્ટ્રિશિયન",
-    "e": "Electrician"
+    "e": "Electrician",
+    "p": "n"
   },
   {
     "g": "નોકરાણી",
-    "e": "Maid"
+    "e": "Maid",
+    "p": "n"
   },
   {
     "g": "સફાઈકર્મી",
-    "e": "Cleaner"
+    "e": "Cleaner",
+    "p": "n"
   },
   {
     "g": "માલી",
-    "e": "Gardener"
+    "e": "Gardener",
+    "p": "n"
   },
   {
     "g": "ડાકિયા",
-    "e": "Postman"
+    "e": "Postman",
+    "p": "n"
   },
   {
     "g": "પત્રકાર",
-    "e": "Journalist"
+    "e": "Journalist",
+    "p": "n"
   },
   {
     "g": "ફોટોગ્રાફર",
-    "e": "Photographer"
+    "e": "Photographer",
+    "p": "n"
   },
   {
     "g": "કારોબારી",
-    "e": "Executive"
+    "e": "Executive",
+    "p": "n"
   },
   {
     "g": "મેનેજર",
-    "e": "Manager"
+    "e": "Manager",
+    "p": "n"
   },
   {
     "g": "દર્દી",
-    "e": "Patient"
+    "e": "Patient",
+    "p": "n"
   },
   {
     "g": "સુધારવું",
-    "e": "To improve"
+    "e": "To improve",
+    "p": "v"
   },
   {
     "g": "ઘટાડવું",
-    "e": "To reduce"
+    "e": "To reduce",
+    "p": "v"
   },
   {
     "g": "વધારવું",
-    "e": "To increase"
+    "e": "To increase",
+    "p": "v"
   },
   {
     "g": "મળવું",
-    "e": "To meet"
+    "e": "To meet",
+    "p": "v"
   },
   {
     "g": "રહસ્ય રાખવું",
-    "e": "To keep secret"
+    "e": "To keep secret",
+    "p": "v"
   },
   {
     "g": "આયોજિત કરવું",
-    "e": "To organize"
+    "e": "To organize",
+    "p": "v"
   },
   {
     "g": "પહેરીવું",
-    "e": "To wear"
+    "e": "To wear",
+    "p": "v"
   },
   {
     "g": "ઉતારવું",
-    "e": "To remove (clothes)"
+    "e": "To remove / clothes",
+    "p": "v"
   },
   {
     "g": "ભરવું",
-    "e": "To fill"
+    "e": "To fill",
+    "p": "v"
   },
   {
     "g": "ખાલી કરવું",
-    "e": "To empty"
+    "e": "To empty",
+    "p": "v"
   },
   {
     "g": "માપવું",
-    "e": "To measure"
+    "e": "To measure",
+    "p": "v"
   },
   {
     "g": "સજાવવું",
-    "e": "To decorate"
+    "e": "To decorate",
+    "p": "v"
   },
   {
     "g": "પૂછવું",
-    "e": "To ask"
+    "e": "To ask",
+    "p": "v"
   },
   {
     "g": "જવાબ આપવો",
-    "e": "To answer"
+    "e": "To answer",
+    "p": "n"
   },
   {
     "g": "ધ્યાન આપવું",
-    "e": "To pay attention"
+    "e": "To pay attention",
+    "p": "v"
   },
   {
     "g": "વિરામ લેવું",
-    "e": "To take a break"
+    "e": "To take a break",
+    "p": "v"
   },
   {
     "g": "આરામ કરવો",
-    "e": "To rest"
+    "e": "To rest",
+    "p": "n"
   },
   {
     "g": "યાદ અપાવવું",
-    "e": "To remind"
+    "e": "To remind",
+    "p": "v"
   },
   {
     "g": "માફ કરવું",
-    "e": "To forgive"
+    "e": "To forgive",
+    "p": "v"
   },
   {
     "g": "આભાર માનવો",
-    "e": "To thank"
+    "e": "To thank",
+    "p": "n"
   },
   {
     "g": "શરૂ કરવું",
-    "e": "To begin"
+    "e": "To begin",
+    "p": "v"
   },
   {
     "g": "મોકલવું",
-    "e": "To send"
+    "e": "To send",
+    "p": "v"
   },
   {
     "g": "મળતાવવું",
-    "e": "To mix"
+    "e": "To mix",
+    "p": "v"
   },
   {
     "g": "વિભાજિત કરવું",
-    "e": "To divide"
+    "e": "To divide",
+    "p": "v"
   },
   {
     "g": "જાળવવું",
-    "e": "To maintain"
+    "e": "To maintain",
+    "p": "v"
   },
   {
     "g": "અનુવાદ કરવો",
-    "e": "To translate"
+    "e": "To translate",
+    "p": "n"
   },
   {
     "g": "અભ્યાસ કરવો",
-    "e": "To study"
+    "e": "To study",
+    "p": "n"
   },
   {
     "g": "સફર કરવી",
-    "e": "To travel"
+    "e": "To travel",
+    "p": "v"
   },
   {
     "g": "ફોટો પાડવો",
-    "e": "To photograph"
+    "e": "To photograph",
+    "p": "n"
   },
   {
     "g": "સાથે",
-    "e": "With"
+    "e": "With",
+    "p": "prep"
   },
   {
     "g": "વિના",
-    "e": "Without"
+    "e": "Without",
+    "p": "prep"
   },
   {
     "g": "પાસે",
-    "e": "Near/with (possession)"
+    "e": "Near/with / possession",
+    "p": "prep"
   },
   {
     "g": "વચ્ચે",
-    "e": "Between"
+    "e": "Between",
+    "p": "prep"
   },
   {
     "g": "તરફ",
-    "e": "Toward"
+    "e": "Toward",
+    "p": "prep"
   },
   {
     "g": "આસપાસ",
-    "e": "Around"
+    "e": "Around",
+    "p": "prep"
   },
   {
     "g": "અગાઉ",
-    "e": "Before"
+    "e": "Before",
+    "p": "prep"
   },
   {
     "g": "પછી",
-    "e": "After"
+    "e": "After",
+    "p": "prep"
   },
   {
     "g": "દરમિયાન",
-    "e": "During"
+    "e": "During",
+    "p": "prep"
   },
   {
     "g": "ઉપરથી",
-    "e": "From above"
+    "e": "From above",
+    "p": "n"
   },
   {
     "g": "નીચેથી",
-    "e": "From below"
+    "e": "From below",
+    "p": "n"
   },
   {
     "g": "અંદરથી",
-    "e": "From inside"
+    "e": "From inside",
+    "p": "n"
   },
   {
     "g": "બહારથી",
-    "e": "From outside"
+    "e": "From outside",
+    "p": "n"
   },
   {
     "g": "કારણે",
-    "e": "Due to"
+    "e": "Due to",
+    "p": "prep"
   },
   {
     "g": "માટે",
-    "e": "For"
+    "e": "For",
+    "p": "prep"
   },
   {
     "g": "વિરુદ્ધ",
-    "e": "Against"
+    "e": "Against",
+    "p": "prep"
   },
   {
     "g": "બદલે",
-    "e": "Instead of"
+    "e": "Instead of",
+    "p": "prep"
   },
   {
     "g": "જોકે",
-    "e": "Though"
+    "e": "Though",
+    "p": "conj"
   },
   {
     "g": "આમ છતાં",
-    "e": "Even so"
+    "e": "Even so",
+    "p": "n"
   },
   {
     "g": "ક્રિકેટ",
-    "e": "Cricket"
+    "e": "Cricket",
+    "p": "n"
   },
   {
     "g": "ફૂટબોલ",
-    "e": "Football"
+    "e": "Football",
+    "p": "n"
   },
   {
     "g": "હોકી",
-    "e": "Hockey"
+    "e": "Hockey",
+    "p": "n"
   },
   {
     "g": "કબડ્ડી",
-    "e": "Kabaddi"
+    "e": "Kabaddi",
+    "p": "n"
   },
   {
     "g": "ખો-ખો",
-    "e": "Kho-kho"
+    "e": "Kho-kho",
+    "p": "n"
   },
   {
     "g": "ટેનિસ",
-    "e": "Tennis"
+    "e": "Tennis",
+    "p": "n"
   },
   {
     "g": "બેડમિન્ટન",
-    "e": "Badminton"
+    "e": "Badminton",
+    "p": "n"
   },
   {
     "g": "ટેબલ ટેનિસ",
-    "e": "Table tennis"
+    "e": "Table tennis",
+    "p": "n"
   },
   {
     "g": "વોલીબોલ",
-    "e": "Volleyball"
+    "e": "Volleyball",
+    "p": "n"
   },
   {
     "g": "બાસ્કેટબોલ",
-    "e": "Basketball"
+    "e": "Basketball",
+    "p": "n"
   },
   {
     "g": "શતરંજ",
-    "e": "Chess"
+    "e": "Chess",
+    "p": "n"
   },
   {
     "g": "લુડો",
-    "e": "Ludo"
+    "e": "Ludo",
+    "p": "n"
   },
   {
     "g": "સાપશીડી",
-    "e": "Snakes and ladders"
+    "e": "Snakes and ladders",
+    "p": "n"
   },
   {
     "g": "દોડ",
-    "e": "Race"
+    "e": "Race",
+    "p": "n"
   },
   {
     "g": "કુસ્તી",
-    "e": "Wrestling"
+    "e": "Wrestling",
+    "p": "n"
   },
   {
     "g": "તરણ",
-    "e": "Swimming"
+    "e": "Swimming",
+    "p": "n"
   },
   {
     "g": "લૅપટોપ",
-    "e": "Laptop"
+    "e": "Laptop",
+    "p": "n"
   },
   {
     "g": "ટેબ્લેટ",
-    "e": "Tablet"
+    "e": "Tablet",
+    "p": "n"
   },
   {
     "g": "પ્રિન્ટર",
-    "e": "Printer"
+    "e": "Printer",
+    "p": "n"
   },
   {
     "g": "ઇન્ટરનેટ",
-    "e": "Internet"
+    "e": "Internet",
+    "p": "n"
   },
   {
     "g": "વાઇ-ફાઇ",
-    "e": "Wi‑Fi"
+    "e": "Wi‑Fi",
+    "p": "n"
   },
   {
     "g": "પાસવર્ડ",
-    "e": "Password"
+    "e": "Password",
+    "p": "n"
   },
   {
     "g": "વેબસાઇટ",
-    "e": "Website"
+    "e": "Website",
+    "p": "n"
   },
   {
     "g": "એપ",
-    "e": "App"
+    "e": "App",
+    "p": "n"
   },
   {
     "g": "સોફ્ટવેર",
-    "e": "Software"
+    "e": "Software",
+    "p": "n"
   },
   {
     "g": "હાર્ડવેર",
-    "e": "Hardware"
+    "e": "Hardware",
+    "p": "n"
   },
   {
     "g": "ડેટા",
-    "e": "Data"
+    "e": "Data",
+    "p": "n"
   },
   {
     "g": "ફાઇલ",
-    "e": "File"
+    "e": "File",
+    "p": "n"
   },
   {
     "g": "ફોલ્ડર",
-    "e": "Folder"
+    "e": "Folder",
+    "p": "n"
   },
   {
     "g": "સ્ક્રીન",
-    "e": "Screen"
+    "e": "Screen",
+    "p": "n"
   },
   {
     "g": "કીબોર્ડ",
-    "e": "Keyboard"
+    "e": "Keyboard",
+    "p": "n"
   },
   {
     "g": "માઉસ",
-    "e": "Mouse"
+    "e": "Mouse",
+    "p": "n"
   },
   {
     "g": "કૅમેરા",
-    "e": "Camera"
+    "e": "Camera",
+    "p": "n"
   },
   {
     "g": "માઇક્રોફોન",
-    "e": "Microphone"
+    "e": "Microphone",
+    "p": "n"
   },
   {
     "g": "ચોરસ્તો",
-    "e": "Intersection"
+    "e": "Intersection",
+    "p": "n"
   },
   {
     "g": "વળાંક",
-    "e": "Turn"
+    "e": "Turn",
+    "p": "n"
   },
   {
     "g": "પુલ",
-    "e": "Bridge"
+    "e": "Bridge",
+    "p": "n"
   },
   {
     "g": "ટનલ",
-    "e": "Tunnel"
+    "e": "Tunnel",
+    "p": "n"
   },
   {
     "g": "ટોલ",
-    "e": "Toll"
+    "e": "Toll",
+    "p": "n"
   },
   {
     "g": "ટ્રાફિક",
-    "e": "Traffic"
+    "e": "Traffic",
+    "p": "n"
   },
   {
     "g": "સિગ્નલ",
-    "e": "Signal"
+    "e": "Signal",
+    "p": "n"
   },
   {
     "g": "પાર્કિંગ",
-    "e": "Parking"
+    "e": "Parking",
+    "p": "n"
   },
   {
     "g": "લાઇસન્સ",
-    "e": "License"
+    "e": "License",
+    "p": "n"
   },
   {
     "g": "હેલ્મેટ",
-    "e": "Helmet"
+    "e": "Helmet",
+    "p": "n"
   },
   {
     "g": "બ્રેક",
-    "e": "Brake"
+    "e": "Brake",
+    "p": "n"
   },
   {
     "g": "સ્ટીયરિંગ",
-    "e": "Steering"
+    "e": "Steering",
+    "p": "n"
   },
   {
     "g": "ટીકેટ",
-    "e": "Ticket"
+    "e": "Ticket",
+    "p": "n"
   },
   {
     "g": "પ્લેટફોર્મ",
-    "e": "Platform"
+    "e": "Platform",
+    "p": "n"
   },
   {
     "g": "પરમિટ",
-    "e": "Permit"
+    "e": "Permit",
+    "p": "n"
   },
   {
     "g": "સરકાર",
-    "e": "Government"
+    "e": "Government",
+    "p": "n"
   },
   {
     "g": "મંત્રાલય",
-    "e": "Ministry"
+    "e": "Ministry",
+    "p": "n"
   },
   {
     "g": "વિભાગ",
-    "e": "Department"
+    "e": "Department",
+    "p": "n"
   },
   {
     "g": "નિયમ",
-    "e": "Rule"
+    "e": "Rule",
+    "p": "n"
   },
   {
     "g": "કાયદો",
-    "e": "Law"
+    "e": "Law",
+    "p": "n"
   },
   {
     "g": "અધિકાર",
-    "e": "Right"
+    "e": "Right",
+    "p": "n"
   },
   {
     "g": "કર્તવ્ય",
-    "e": "Duty"
+    "e": "Duty",
+    "p": "n"
   },
   {
     "g": "ચૂંટણી",
-    "e": "Election"
+    "e": "Election",
+    "p": "n"
   },
   {
     "g": "મતદાર",
-    "e": "Voter"
+    "e": "Voter",
+    "p": "n"
   },
   {
     "g": "મતદાન",
-    "e": "Voting"
+    "e": "Voting",
+    "p": "n"
   },
   {
     "g": "અદાલત",
-    "e": "Court"
+    "e": "Court",
+    "p": "n"
   },
   {
     "g": "થાણું",
-    "e": "Police station"
+    "e": "Police station",
+    "p": "n"
   },
   {
     "g": "કેસ",
-    "e": "Case"
+    "e": "Case",
+    "p": "n"
   },
   {
     "g": "જરિમાનો",
-    "e": "Fine"
+    "e": "Fine",
+    "p": "n"
   },
   {
     "g": "જેલ",
-    "e": "Jail"
+    "e": "Jail",
+    "p": "n"
   },
   {
     "g": "કેદી",
-    "e": "Prisoner"
+    "e": "Prisoner",
+    "p": "n"
   },
   {
     "g": "આદેશ",
-    "e": "Order"
+    "e": "Order",
+    "p": "n"
   },
   {
     "g": "પાઠ",
-    "e": "Lesson"
+    "e": "Lesson",
+    "p": "n"
   },
   {
     "g": "અભ્યાસ",
-    "e": "Study"
+    "e": "Study",
+    "p": "n"
   },
   {
     "g": "ગૃહકાર્ય",
-    "e": "Homework"
+    "e": "Homework",
+    "p": "n"
   },
   {
     "g": "પાઠ્યપુસ્તક",
-    "e": "Textbook"
+    "e": "Textbook",
+    "p": "n"
   },
   {
     "g": "પ્રશ્ન",
-    "e": "Question"
+    "e": "Question",
+    "p": "n"
   },
   {
     "g": "ઉત્તર",
-    "e": "Answer"
+    "e": "Answer",
+    "p": "n"
   },
   {
     "g": "પ્રમાણપત્ર",
-    "e": "Certificate"
+    "e": "Certificate",
+    "p": "n"
   },
   {
     "g": "વિદ્યાવૃત્તિ",
-    "e": "Scholarship"
+    "e": "Scholarship",
+    "p": "n"
   },
   {
     "g": "ગ્રેડ",
-    "e": "Grade"
+    "e": "Grade",
+    "p": "n"
   },
   {
     "g": "વર્ગ",
-    "e": "Class"
+    "e": "Class",
+    "p": "n"
   },
   {
     "g": "પ્રવેશ",
-    "e": "Admission"
+    "e": "Admission",
+    "p": "n"
   },
   {
     "g": "ઉમેરો",
-    "e": "Addition"
+    "e": "Addition",
+    "p": "n"
   },
   {
     "g": "બાદબાકી",
-    "e": "Subtraction"
+    "e": "Subtraction",
+    "p": "n"
   },
   {
     "g": "ગુણાકાર",
-    "e": "Multiplication"
+    "e": "Multiplication",
+    "p": "n"
   },
   {
     "g": "ભાગાકાર",
-    "e": "Division"
+    "e": "Division",
+    "p": "n"
   },
   {
     "g": "ટકો",
-    "e": "Percent"
+    "e": "Percent",
+    "p": "n"
   },
   {
     "g": "ભિન્ન",
-    "e": "Fraction"
+    "e": "Fraction",
+    "p": "n"
   },
   {
     "g": "જામિતિ",
-    "e": "Geometry"
+    "e": "Geometry",
+    "p": "n"
   },
   {
     "g": "બીજગણિત",
-    "e": "Algebra"
+    "e": "Algebra",
+    "p": "n"
   },
   {
     "g": "સમાન",
-    "e": "Equal"
+    "e": "Equal",
+    "p": "n"
   },
   {
     "g": "વધુ",
-    "e": "Greater"
+    "e": "Greater",
+    "p": "n"
   },
   {
     "g": "ઓછું",
-    "e": "Lesser"
+    "e": "Lesser",
+    "p": "n"
   },
   {
     "g": "ત્રિજ્યા",
-    "e": "Radius"
+    "e": "Radius",
+    "p": "n"
   },
   {
     "g": "વ્યાસ",
-    "e": "Diameter"
+    "e": "Diameter",
+    "p": "n"
   },
   {
     "g": "ક્લિનિક",
-    "e": "Clinic"
+    "e": "Clinic",
+    "p": "n"
   },
   {
     "g": "ઑપરેશન",
-    "e": "Operation"
+    "e": "Operation",
+    "p": "n"
   },
   {
     "g": "શસ્ત્રક્રિયા",
-    "e": "Surgery"
+    "e": "Surgery",
+    "p": "n"
   },
   {
     "g": "ટીકો",
-    "e": "Vaccine"
+    "e": "Vaccine",
+    "p": "n"
   },
   {
     "g": "થેરાપી",
-    "e": "Therapy"
+    "e": "Therapy",
+    "p": "n"
   },
   {
     "g": "પરીક્ષણ",
-    "e": "Test/Examination"
+    "e": "Test/Examination",
+    "p": "n"
   },
   {
     "g": "એમ્બ્યુલન્સ",
-    "e": "Ambulance"
+    "e": "Ambulance",
+    "p": "n"
   },
   {
     "g": "સંક્રમણ",
-    "e": "Infection"
+    "e": "Infection",
+    "p": "n"
   },
   {
     "g": "ચોટ",
-    "e": "Injury"
+    "e": "Injury",
+    "p": "n"
   },
   {
     "g": "પ્લાસ્ટર",
-    "e": "Plaster"
+    "e": "Plaster",
+    "p": "n"
   },
   {
     "g": "બેન્ડેજ",
-    "e": "Bandage"
+    "e": "Bandage",
+    "p": "n"
   },
   {
     "g": "દબાણ",
-    "e": "Pressure"
+    "e": "Pressure",
+    "p": "n"
   },
   {
     "g": "દિવાળી",
-    "e": "Diwali"
+    "e": "Diwali",
+    "p": "n"
   },
   {
     "g": "હોળી",
-    "e": "Holi"
+    "e": "Holi",
+    "p": "n"
   },
   {
     "g": "જનમાષ્ટમી",
-    "e": "Janmashtami"
+    "e": "Janmashtami",
+    "p": "n"
   },
   {
     "g": "ઉત્તરાયણ",
-    "e": "Kite festival"
+    "e": "Kite festival",
+    "p": "n"
   },
   {
     "g": "નવરાત્રિ",
-    "e": "Navratri"
+    "e": "Navratri",
+    "p": "n"
   },
   {
     "g": "રક્ષાબંધન",
-    "e": "Raksha Bandhan"
+    "e": "Raksha Bandhan",
+    "p": "n"
   },
   {
     "g": "ઇદ",
-    "e": "Eid"
+    "e": "Eid",
+    "p": "n"
   },
   {
     "g": "ક્રિસમસ",
-    "e": "Christmas"
+    "e": "Christmas",
+    "p": "n"
   },
   {
     "g": "પોંગલ",
-    "e": "Pongal"
+    "e": "Pongal",
+    "p": "n"
   },
   {
     "g": "ઓણમ",
-    "e": "Onam"
+    "e": "Onam",
+    "p": "n"
   },
   {
     "g": "તાપમાન",
-    "e": "Temperature"
+    "e": "Temperature",
+    "p": "n"
   },
   {
     "g": "આર્દ્રતા",
-    "e": "Humidity"
+    "e": "Humidity",
+    "p": "n"
   },
   {
     "g": "સૂકો",
-    "e": "Dry"
+    "e": "Dry",
+    "p": "n"
   },
   {
     "g": "ભીનાશ",
-    "e": "Dampness"
+    "e": "Dampness",
+    "p": "n"
   },
   {
     "g": "રીતુ",
-    "e": "Season"
+    "e": "Season",
+    "p": "n"
   },
   {
     "g": "વણઝાર",
-    "e": "Desert"
+    "e": "Desert",
+    "p": "n"
   },
   {
     "g": "મેદાન",
-    "e": "Plain"
+    "e": "Plain",
+    "p": "n"
   },
   {
     "g": "જંગલ",
-    "e": "Forest"
+    "e": "Forest",
+    "p": "n"
   },
   {
     "g": "આરાધના",
-    "e": "Worship"
+    "e": "Worship / Devotion",
+    "p": "n"
   },
   {
     "g": "તિર્થ",
-    "e": "Pilgrimage"
+    "e": "Pilgrimage / Holy place",
+    "p": "n"
   },
   {
     "g": "જવાબદારી",
-    "e": "Responsibility"
+    "e": "Responsibility",
+    "p": "n"
   },
   {
     "g": "અનુશાસન",
-    "e": "Discipline"
+    "e": "Discipline",
+    "p": "n"
   },
   {
     "g": "સમયસર",
-    "e": "On time"
+    "e": "On time",
+    "p": "n"
   },
   {
     "g": "આમંત્રણ",
-    "e": "Invitation"
+    "e": "Invitation",
+    "p": "n"
   },
   {
     "g": "પૂષ્ટિ",
-    "e": "Confirmation"
+    "e": "Confirmation",
+    "p": "n"
   },
   {
     "g": "રદ",
-    "e": "Cancel"
+    "e": "Cancel",
+    "p": "n"
   },
   {
     "g": "બુકિંગ",
-    "e": "Booking"
+    "e": "Booking",
+    "p": "n"
   },
   {
     "g": "ચુકવણી",
-    "e": "Payment"
+    "e": "Payment",
+    "p": "n"
   },
   {
     "g": "રસીડ",
-    "e": "Receipt"
+    "e": "Receipt",
+    "p": "n"
   },
   {
     "g": "બચત",
-    "e": "Savings"
+    "e": "Savings",
+    "p": "n"
   },
   {
     "g": "ખર્ચ",
-    "e": "Expense"
+    "e": "Expense",
+    "p": "n"
   },
   {
     "g": "આવક",
-    "e": "Income"
+    "e": "Income",
+    "p": "n"
   },
   {
     "g": "દુકાન",
-    "e": "Shop"
+    "e": "Shop / Store",
+    "p": "n"
   },
   {
     "g": "બેંક",
-    "e": "Bank"
+    "e": "Bank",
+    "p": "n"
   },
   {
     "g": "બીમા",
-    "e": "Insurance"
+    "e": "Insurance",
+    "p": "n"
   },
   {
     "g": "ચાવીપતરો",
-    "e": "Keychain"
+    "e": "Keychain",
+    "p": "n"
   },
   {
     "g": "રીમોટ",
-    "e": "Remote"
+    "e": "Remote",
+    "p": "n"
   },
   {
     "g": "ટેલિફોન",
-    "e": "Telephone"
+    "e": "Telephone",
+    "p": "n"
   },
   {
     "g": "પકાવવું",
-    "e": "To bake/cook"
+    "e": "To bake/cook",
+    "p": "v"
   },
   {
     "g": "ઉકળાવવું",
-    "e": "To boil"
+    "e": "To boil",
+    "p": "v"
   },
   {
     "g": "તળવું",
-    "e": "To fry"
+    "e": "To fry",
+    "p": "v"
   },
   {
     "g": "ઘસવું",
-    "e": "To rub"
+    "e": "To rub",
+    "p": "v"
   },
   {
     "g": "ચીંધવું",
-    "e": "To point out"
+    "e": "To point out",
+    "p": "v"
   },
   {
     "g": "લટકાવવું",
-    "e": "To hang"
+    "e": "To hang",
+    "p": "v"
   },
   {
     "g": "ચોંટાડવું",
-    "e": "To stick"
+    "e": "To stick",
+    "p": "v"
   },
   {
     "g": "ધકેલવું",
-    "e": "To push"
+    "e": "To push",
+    "p": "v"
   },
   {
     "g": "ખેંચવું",
-    "e": "To pull"
+    "e": "To pull",
+    "p": "v"
   },
   {
     "g": "સ્વીકારવું",
-    "e": "To accept"
+    "e": "To accept",
+    "p": "v"
   },
   {
     "g": "નકારી કાઢવું",
-    "e": "To reject"
+    "e": "To reject",
+    "p": "v"
   },
   {
     "g": "સમાધાન કરવું",
-    "e": "To resolve"
+    "e": "To resolve",
+    "p": "v"
   },
   {
     "g": "યોજનાબદ્ધ કરવું",
-    "e": "To plan"
+    "e": "To plan",
+    "p": "v"
   },
   {
     "g": "ચર્ચા કરવી",
-    "e": "To discuss"
+    "e": "To discuss",
+    "p": "v"
   },
   {
     "g": "તપાસ કરવી",
-    "e": "To inspect"
+    "e": "To inspect",
+    "p": "v"
   },
   {
     "g": "અહેવાલ આપવો",
-    "e": "To report"
+    "e": "To report",
+    "p": "n"
   },
   {
     "g": "સહી કરવી",
-    "e": "To sign"
+    "e": "To sign",
+    "p": "v"
   },
   {
     "g": "છાપવું",
-    "e": "To print"
+    "e": "To print",
+    "p": "v"
   },
   {
     "g": "ડાઉનલોડ કરવું",
-    "e": "To download"
+    "e": "To download",
+    "p": "v"
   },
   {
     "g": "અપલોડ કરવું",
-    "e": "To upload"
+    "e": "To upload",
+    "p": "v"
   },
   {
     "g": "દોરી",
-    "e": "String"
+    "e": "String / Rope",
+    "p": "n"
   },
   {
     "g": "મોમબત્તી",
-    "e": "Candle"
+    "e": "Candle",
+    "p": "n"
   },
   {
     "g": "દીવાસળી",
-    "e": "Matchstick"
+    "e": "Match / Matchstick",
+    "p": "n"
   },
   {
     "g": "બાલ્ટી",
-    "e": "Bucket"
+    "e": "Bucket / Pail",
+    "p": "n"
   },
   {
     "g": "ઝાડુ",
-    "e": "Broom"
+    "e": "Broom",
+    "p": "n"
   },
   {
     "g": "પોચો",
-    "e": "Mop"
+    "e": "Mop",
+    "p": "n"
   },
   {
     "g": "કચરો",
-    "e": "Garbage"
+    "e": "Garbage",
+    "p": "n"
   },
   {
     "g": "ડસ્ટબિન",
-    "e": "Dustbin"
+    "e": "Dustbin",
+    "p": "n"
   },
   {
     "g": "જિજ્ઞાસા",
-    "e": "Curiosity"
+    "e": "Curiosity",
+    "p": "n"
   },
   {
     "g": "ધીરજ",
-    "e": "Patience"
+    "e": "Patience",
+    "p": "n"
   },
   {
     "g": "આસ્થા",
-    "e": "Faith"
+    "e": "Faith",
+    "p": "n"
   },
   {
     "g": "આત્મવિશ્વાસ",
-    "e": "Confidence"
+    "e": "Confidence",
+    "p": "n"
   },
   {
     "g": "આદર",
-    "e": "Respect"
+    "e": "Respect",
+    "p": "n"
   },
   {
     "g": "અહંકાર",
-    "e": "Pride/Ego"
+    "e": "Pride/Ego",
+    "p": "n"
   },
   {
     "g": "લાજ",
-    "e": "Shyness"
+    "e": "Shyness",
+    "p": "n"
   },
   {
     "g": "ઇર્ષ્યા",
-    "e": "Jealousy"
+    "e": "Jealousy",
+    "p": "n"
   },
   {
     "g": "દક્ષિણ",
-    "e": "South"
+    "e": "South",
+    "p": "n"
   },
   {
     "g": "પૂર્વ",
-    "e": "East"
+    "e": "East",
+    "p": "n"
   },
   {
     "g": "પશ્ચિમ",
-    "e": "West"
+    "e": "West",
+    "p": "n"
   },
   {
     "g": "સવાર",
-    "e": "Morning"
+    "e": "Morning",
+    "p": "n"
   },
   {
     "g": "બપોર",
-    "e": "Afternoon"
+    "e": "Afternoon",
+    "p": "n"
   },
   {
     "g": "સાંજ",
-    "e": "Evening"
+    "e": "Evening",
+    "p": "n"
   },
   {
     "g": "રાત",
-    "e": "Night"
+    "e": "Night",
+    "p": "n"
   }
 ];
 
-// --- UTILITIES -------------------------------------------------------------
-const el = (id) => document.getElementById(id);
-const fmtPct = (n) => Math.round(n * 150);
-
-// Build decks in batches (100 per deck if you later expand to 1000)
-function buildDecks(data, size = 150) {
-  const decks = [];
-  for (let i = 0; i < data.length; i += size) {
-    decks.push(data.slice(i, i + size));
-  }
-  return decks;
-}
-
-// --- STATE -----------------------------------------------------------------
-let pool = [...DATA];
-let decks = buildDecks(pool, 150);
-let deckIdx = 0;
-let i = 0;
-let face = "front";
-let known = new Set(JSON.parse(localStorage.getItem("known_gj") || "[]"));
-let order = [...Array(pool.length).keys()];
-
-// --- RENDER ----------------------------------------------------------------
-function renderDeckSelect() {
-  const sel = el("deckSelect");
-  sel.innerHTML = "";
-  decks.forEach((d, idx) => {
-    const opt = document.createElement("option");
-    opt.value = idx;
-    opt.textContent = d.length >= 150 ? `Deck ${idx + 1} (${d.length})` : `Deck ${idx + 1} (${d.length})`;
-    sel.appendChild(opt);
-  });
-  sel.value = String(deckIdx);
-}
-
-function renderCard() {
-  const deck = decks[deckIdx];
-  const item = deck[i];
-  if (!item) return;
-  el("word").textContent = item.g;
-  el("meaning").textContent = item.e;
-  el("idx").textContent = `${i + 1} / ${deck.length}`;
-  el("bar").style.width = `${fmtPct(known.size / pool.length)}%`;
-  el("pct").textContent = `${fmtPct(known.size / pool.length)}% known`;
-  el("front").classList.toggle("hidden", face !== "front");
-  el("back").classList.toggle("hidden", face !== "back");
-  el("pill").textContent = face === "front" ? "Front • Gujarati" : "Back • English";
-}
-
-function next() {
-  const deck = decks[deckIdx];
-  i = (i + 1) % deck.length;
-  face = "front";
-  renderCard();
-}
-function prev() {
-  const deck = decks[deckIdx];
-  i = (i - 1 + deck.length) % deck.length;
-  face = "front";
-  renderCard();
-}
-function flip() {
-  face = face === "front" ? "back" : "front";
-  renderCard();
-}
-function shuffleDeck() {
-  const deck = decks[deckIdx];
-  for (let j = deck.length - 1; j > 0; j--) {
-    const k = Math.floor(Math.random() * (j + 1));
-    [deck[j], deck[k]] = [deck[k], deck[j]];
-  }
-  i = 0;
-  face = "front";
-  renderCard();
-}
-
-function applySearch(q) {
-  q = q.trim().toLowerCase();
-  if (!q) {
-    pool = [...DATA];
-  } else {
-    pool = DATA.filter(d => d.e.toLowerCase().includes(q));
-  }
-  decks = buildDecks(pool, 150);
-  deckIdx = 0;
-  i = 0;
-  renderDeckSelect();
-  renderCard();
-}
-
-function markKnownCurrent() {
-  const globalIdx = DATA.indexOf(decks[deckIdx][i]);
-  if (globalIdx >= 0) known.add(globalIdx);
-  localStorage.setItem("known_gj", JSON.stringify([...known]));
-  next();
-}
-function resetKnown() {
-  if (confirm("Reset known progress?")) {
-    known = new Set();
-    localStorage.removeItem("known_gj");
-    renderCard();
-  }
-}
-
-// --- EVENTS ----------------------------------------------------------------
-window.addEventListener("DOMContentLoaded", () => {
-  renderDeckSelect();
-  renderCard();
-
-  el("next").addEventListener("click", next);
-  el("prev").addEventListener("click", prev);
-  el("flip").addEventListener("click", flip);
-  el("shuffle").addEventListener("click", shuffleDeck);
-  el("showAns").addEventListener("click", () => { face = "back"; renderCard(); });
-  el("markKnown").addEventListener("click", markKnownCurrent);
-  el("resetKnown").addEventListener("click", resetKnown);
-
-  el("deckSelect").addEventListener("change", (e) => {
-    deckIdx = Number(e.target.value);
-    i = 0;
-    face = "front";
-    renderCard();
-  });
-  el("q").addEventListener("input", (e) => applySearch(e.target.value));
-
-  // Keyboard shortcuts
-  window.addEventListener("keydown", (e) => {
-    if (e.key === " " ) { e.preventDefault(); flip(); }
-    if (e.key === "ArrowRight") next();
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "/") { e.preventDefault(); el("q").focus(); }
-  });
-});
-
-// --- HOW TO EXTEND ---------------------------------------------------------
-/*
-To reach 1000 words:
-1) Append more { g: "...", e: "..." } items to DATA.
-2) The app auto-chunks decks in groups of 100.
-3) No other changes needed.
-*/
+export default DATA;
